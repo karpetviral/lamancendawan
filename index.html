@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Laman Cendawan MZT | Hasil Segar & Premium</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+        /* =======================================================
+           BAHAGIAN CSS - TEMA WARNA
+           =======================================================
+        */
+        :root {
+            /* TEMA: BIRU PREMIUM (V1.9) */
+            --primary-color: #0c3b6d; /* Biru Gelap (Navy Blue) */
+            --secondary-color: #548CA8; /* Biru Lembut */
+            --accent-color: #FFD700; /* Warna Emas */
+
+--bg-light: #FDFBF7;
+            --text-dark: #1B1B1B;
+            --text-light: #FFFFFF;
+
+--font-heading: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+
+--section-padding-desktop: 100px 8%;
+            --section-padding-mobile: 60px 5%;
+        }
+
+/* --- Reset & Asas --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+/* --- Header (Menu Atas) --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: all 0.4s ease;
+        }
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 15px 5%;
+        }
+
+.logo {
+            font-family: var(--font-heading);
+            font-size: 1.3rem; font-weight: 700;
+            color: var(--text-light); letter-spacing: 1px;
+            z-index: 1002; white-space: nowrap;
+            text-align: right; /* Logo ke kanan di mobile */
+        }
+        @media(min-width: 768px) { .logo { font-size: 1.8rem; text-align: left; } }
+
+header.scrolled .logo { color: var(--primary-color); }
+        .logo span { color: var(--accent-color); }
+
+/* Desktop Nav */
+        .nav-links { display: none; } 
+        @media(min-width: 992px) {
+            .nav-links { display: flex; gap: 40px; }
+            .nav-links a {
+                color: var(--text-light); font-size: 0.9rem;
+                text-transform: uppercase; letter-spacing: 1.5px;
+                position: relative; font-weight: 500;
+            }
+            header.scrolled .nav-links a { color: var(--text-dark); }
+            .nav-links a:hover { color: var(--accent-color); }
+        }
+
+/* Mobile Hamburger - Kiri */
+        .hamburger { display: block; font-size: 1.5rem; color: var(--text-light); cursor: pointer; z-index: 1002; }
+        @media(min-width: 992px) { .hamburger { display: none; } }
+        header.scrolled .hamburger { color: var(--text-dark); }
+
+/* Mobile Menu Drawer - Kiri */
+        .mobile-menu {
+            position: fixed; top: 0; left: -100%; 
+            width: 80%; max-width: 300px; height: 100vh;
+            background-color: #fff;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center; gap: 30px;
+            transition: 0.4s ease-in-out; z-index: 1001;
+        }
+        .mobile-menu.active { left: 0; }
+        .mobile-menu a { font-size: 1.1rem; color: var(--text-dark); font-weight: 500; text-transform: uppercase; }
+        .menu-overlay {
+            position: fixed; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.5); z-index: 1000;
+            display: none; opacity: 0; transition: opacity 0.3s;
+        }
+        .menu-overlay.active { display: block; opacity: 1; }
+
+/* --- Hero Section (DIKEMASKINI V1.9) --- */
+        .hero {
+            height: 100vh; min-height: 600px;
+            /* Gambar baru dimasukkan di sini */
+            background: linear-gradient(rgba(12, 59, 109, 0.4), rgba(12, 59, 109, 0.6)), 
+                        url('https://i.imgur.com/amBgR6N.jpeg');
+            background-size: cover; background-position: center;
+            background-attachment: scroll; 
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; color: var(--text-light); padding: 0 20px;
+        }
+        @media(min-width: 1024px) { .hero { background-attachment: fixed; } }
+
+.hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            margin-bottom: 15px; line-height: 1.2;
+        }
+        .hero-content p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            margin-bottom: 30px; font-weight: 300; letter-spacing: 2px;
+        }
+        .btn-primary {
+            display: inline-block; padding: 14px 40px;
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--text-light); text-transform: uppercase;
+            font-size: 0.9rem; letter-spacing: 2px; transition: 0.3s;
+        }
+        .btn-primary:hover { background-color: var(--accent-color); color: var(--text-dark); }
+
+/* --- Layout Umum --- */
+        section { padding: var(--section-padding-mobile); }
+        @media(min-width: 768px) { section { padding: var(--section-padding-desktop); } }
+
+.section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--primary-color); margin-bottom: 10px;
+        }
+        .section-title p { color: var(--secondary-color); font-style: italic; font-size: 0.95rem; }
+
+/* --- About Us --- */
+        .about-container {
+            display: flex; flex-direction: column; gap: 40px;
+            align-items: center; max-width: 1200px; margin: 0 auto;
+        }
+        @media(min-width: 900px) { .about-container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; } }
+        .about-img img { border-radius: 4px; box-shadow: 15px 15px 0 var(--secondary-color); width: 100%; }
+        .about-text h3 { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 20px; color: var(--primary-color); }
+        @media(min-width: 768px) { .about-text h3 { font-size: 2.2rem; } }
+        .about-paragraph-gap { margin-top: 25px; display: block; }
+
+/* --- Products --- */
+        .products { background-color: #fff; }
+        .product-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px; max-width: 1200px; margin: 0 auto;
+        }
+        .product-card {
+            text-align: center; padding: 20px; background: #fff;
+            border: 1px solid #eee; transition: transform 0.3s ease;
+        }
+        .product-card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
+        .card-img-wrap { overflow: hidden; margin-bottom: 20px; height: 250px; width: 100%; }
+        .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .product-card:hover .card-img-wrap img { transform: scale(1.1); }
+        .product-card h4 { font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color); min-height: 3rem; display: flex; align-items: center; justify-content: center; }
+        .product-desc { font-size: 0.9rem; color: #777; margin-bottom: 20px; line-height: 1.5; }
+        .cta-link {
+            display: inline-block; color: var(--primary-color); font-weight: 600;
+            border-bottom: 2px solid var(--accent-color); padding-bottom: 5px;
+        }
+
+/* --- AGENT SECTION --- */
+        .agent-section {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+        }
+        .agent-content { max-width: 800px; margin: 0 auto; }
+        .agent-content h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+        .agent-content p { font-size: 1.1rem; margin-bottom: 30px; font-weight: 300; }
+        .btn-agent {
+            display: inline-block; padding: 15px 45px;
+            background-color: var(--accent-color);
+            color: var(--primary-color); /* Teks gelap atas background emas */
+            text-transform: uppercase; font-weight: 700; letter-spacing: 1px;
+            border-radius: 50px; transition: 0.3s;
+            border: 2px solid var(--accent-color);
+        }
+        .btn-agent:hover {
+            background-color: transparent; color: var(--accent-color);
+        }
+
+/* --- Contact --- */
+        .contact-wrapper {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; flex-direction: column;
+            background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-radius: 8px; overflow: hidden;
+            margin-bottom: 50px;
+        }
+        @media(min-width: 900px) { .contact-wrapper { flex-direction: row; } }
+
+.contact-info { background-color: var(--primary-color); color: #fff; padding: 40px 30px; flex: 1; }
+        @media(min-width: 768px) { .contact-info { padding: 60px 50px; } }
+        .contact-info h3 { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 30px; }
+        .info-item { display: flex; align-items: flex-start; margin-bottom: 25px; }
+        .info-item i { color: var(--accent-color); font-size: 1.2rem; margin-right: 15px; margin-top: 5px; }
+
+.contact-form { padding: 40px 30px; flex: 1.5; }
+        @media(min-width: 768px) { .contact-form { padding: 60px 50px; } }
+        .form-group { margin-bottom: 25px; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px 0; border: none;
+            border-bottom: 1px solid #ccc; background: transparent;
+            font-family: var(--font-body); outline: none; transition: 0.3s; font-size: 1rem;
+        }
+        .form-group input:focus, .form-group textarea:focus { border-bottom-color: var(--primary-color); }
+        .btn-submit {
+            background-color: var(--primary-color); color: #fff;
+            padding: 14px 35px; border: none; width: 100%;
+            text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer; font-weight: 600; font-size: 0.9rem;
+            transition: 0.3s; border-radius: 4px;
+        }
+        @media(min-width: 768px) { .btn-submit { width: auto; } }
+        .btn-submit:hover { background-color: var(--text-dark); }
+
+/* Map Container */
+        .map-container {
+            width: 100%; max-width: 1100px; margin: 0 auto;
+            border-radius: 8px; overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 400px;
+        }
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+
+/* --- Footer --- */
+        footer { background-color: var(--primary-color); color: rgba(255,255,255,0.7); text-align: center; padding: 40px 20px; }
+        .social-icons a { color: #fff; font-size: 1.5rem; margin: 0 15px; display: inline-block; transition: 0.3s; }
+        .social-icons a:hover { color: var(--accent-color); }
+        .footer-copyright { display: block; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+<header id="navbar">
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars" id="burgerIcon"></i>
+        </div>
+        <a href="#" class="logo">LAMAN CENDAWAN<span> MZT</span></a>
+        <ul class="nav-links">
+            <li><a href="#home">Utama</a></li>
+            <li><a href="#about">Tentang Kami</a></li>
+            <li><a href="#products">Produk</a></li>
+            <li><a href="#agent">Ejen</a></li>
+            <li><a href="#contact">Hubungi</a></li>
+        </ul>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#home" onclick="toggleMenu()">Utama</a>
+            <a href="#about" onclick="toggleMenu()">Tentang Kami</a>
+            <a href="#products" onclick="toggleMenu()">Produk</a>
+            <a href="#agent" onclick="toggleMenu()">Jadi Ejen</a>
+            <a href="#contact" onclick="toggleMenu()">Hubungi</a>
+        </div>
+    </header>
+
+<section id="home" class="hero">
+        <div class="hero-content">
+            <p>KUALITI | SEGAR | ASLI</p>
+            <h1>Keunikan Rasa Alam <br> Dalam Setiap Kelopak</h1>
+            <a href="#products" class="btn-primary">Lihat Koleksi</a>
+        </div>
+    </section>
+
+<section id="about">
+        <div class="section-title">
+            <h2>Warisan MZT</h2>
+            <p>Komited membekalkan hasil cendawan tiram kelabu terbaik di Lembah Klang.</p>
+        </div>
+        <div class="about-container">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?q=80&w=800&auto=format&fit=crop" alt="Cendawan Tiram Kelabu">
+            </div>
+            <div class="about-text">
+                <h3>Dedikasi Dalam Pertanian</h3>
+                <p>Di <strong>Laman Cendawan MZT</strong>, kami percaya bahawa makanan yang baik bermula dari sumber yang bersih. Fokus utama kami adalah penanaman Cendawan Tiram Kelabu menggunakan teknik moden yang menjamin kebersihan dan kesegaran.</p>
+
+<p class="about-paragraph-gap">
+                    Kami beroperasi sebagai pemborong dan pengeluar yang mensasarkan kualiti premium untuk pasaran tempatan, restoran, dan juga kegunaan harian isi rumah anda.
+                </p>
+
+<div style="margin-top:20px;">
+                    <p><i class="fas fa-check" style="color:var(--accent-color)"></i> Tanpa Racun Perosak</p>
+                    <p><i class="fas fa-check" style="color:var(--accent-color)"></i> Dituai Segar Setiap Hari</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section id="products" class="products">
+        <div class="section-title">
+            <h2>Produk Kami</h2>
+            <p>Pilihan segar untuk keperluan masakan dan perniagaan anda.</p>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1606156959482-5118515e35c4?q=80&w=600&auto=format&fit=crop" alt="Cendawan Segar Pilihan">
+                </div>
+                <h4>Cendawan Segar Pilihan</h4>
+                <p class="product-desc">Dituai pagi hari untuk kesegaran optimum. Pilihan utama chef dan penggemar masakan sihat.</p>
+                <a href="https://wa.me/60132026156" class="cta-link">Tempah Segera →</a>
+            </div>
+
+<div class="product-card">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1626508035297-09575dc313a6?q=80&w=600&auto=format&fit=crop" alt="Bongkah Siap Tanam">
+                </div>
+                <h4>Bongkah Siap Tanam</h4>
+                <p class="product-desc">Mudah untuk diusahakan di rumah. Nikmati hasil tuaian segar sendiri dengan bongkah berkualiti kami.</p>
+                <a href="https://wa.me/60132026156" class="cta-link">Beli Bongkah →</a>
+            </div>
+
+<div class="product-card">
+                <div class="card-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1606156959482-5118515e35c4?q=80&w=600&auto=format&fit=crop" alt="Produk Hiliran Cendawan">
+                </div>
+                <h4>Produk Hiliran Berasaskan Cendawan</h4>
+                <p class="product-desc">Pelbagai aneka produk berasaskan cendawan seperti snek rangup, popia cendawan dan serunding. Enak dimakan begitu sahaja.</p>
+                <a href="https://wa.me/60132026156" class="cta-link">Hubungi Kami →</a>
+            </div>
+        </div>
+    </section>
+
+<section id="agent" class="agent-section">
+        <div class="agent-content">
+            <h2>Jana Pendapatan Bersama MZT</h2>
+            <p>Berminat untuk menambah pendapatan sampingan? Sertai keluarga besar Laman Cendawan MZT sebagai ejen jualan. Produk permintaan tinggi, modal rendah, dan bimbingan disediakan.</p>
+            <a href="https://wa.me/60132026156?text=Salam%20MZT,%20saya%20berminat%20untuk%20menjadi%20Ejen%20Jualan." class="btn-agent">Daftar Minat Ejen</a>
+        </div>
+    </section>
+
+<section id="contact">
+        <div class="section-title">
+            <h2>Hubungi Laman Cendawan MZT</h2>
+            <p>Kami sedia menjawab sebarang pertanyaan anda.</p>
+        </div>
+
+<div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>Info Perhubungan</h3>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <p style="font-size:0.8rem; color:#ddd;">Telefon / WhatsApp</p>
+                        <p style="font-size:1.1rem; font-weight:600;">013-202 6156</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <p style="font-size:0.8rem; color:#ddd;">Emel Rasmi</p>
+                        <p style="font-size:1rem; font-weight:600; word-break:break-all;">lamancendawan@gmail.com</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <p style="font-size:0.8rem; color:#ddd;">Lokasi Operasi</p>
+                        <p style="font-size:1rem; font-weight:600; line-height: 1.5;">
+                            Laman Cendawan MZT,<br>
+                            Lot bersebelahan Masjid Zaid Bin Thabit,<br>
+                            Jalan Lingkaran Tengah MRR2,<br>
+                            Desa Tun Razak, Cheras,<br>
+                            Kuala Lumpur
+                        </p>
+                    </div>
+                </div>
+
+<div style="margin-top: 40px;">
+                    <p style="margin-bottom:15px; font-size:0.9rem; opacity:0.8;">Ikuti Perkembangan Kami:</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/lamancendawan" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.tiktok.com/@lamancendawan" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+
+<div class="contact-form">
+                <h3 style="margin-bottom:20px; font-family:var(--font-heading); color:var(--primary-color);">Hantar Mesej</h3>
+                <form id="whatsappForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="location" placeholder="Lokasi Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="4" placeholder="Perkara / Tempahan" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Hantar ke WhatsApp</button>
+                </form>
+            </div>
+        </div>
+
+<div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.9057475654356!2d101.7188883!3d3.0855556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc35c6c0c3c6c5%3A0x6c6c6c6c6c6c6c6c!2sMasjid%20Zaid%20Bin%20Thabit!5e0!3m2!1sen!2smy!4v1680000000000!5m2!1sen!2smy" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+</section>
+
+<footer>
+        <p class="footer-text">© 2025 Laman Cendawan MZT.</p>
+        <p class="footer-text footer-copyright">Hak Cipta Terpelihara.</p>
+        <p class="footer-text" style="margin-top:10px; opacity: 0.6; font-size: 0.75rem;">Membekal Cendawan Tiram Kelabu Segar</p>
+    </footer>
+
+<script>
+        const header = document.querySelector('header');
+        const burgerIcon = document.getElementById('burgerIcon');
+
+        window.addEventListener('scroll', function() {
+            const isScrolled = window.scrollY > 50;
+            header.classList.toggle('scrolled', isScrolled);
+            const isMenuOpen = document.getElementById('mobileMenu').classList.contains('active');
+            
+            if(!isMenuOpen) {
+                if (isScrolled) { burgerIcon.style.color = '#0c3b6d'; } 
+                else { burgerIcon.style.color = '#FFFFFF'; }
+            }
+        });
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('menuOverlay');
+            const burgerIcon = document.getElementById('burgerIcon');
+            const isScrolled = window.scrollY > 50;
+
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+
+            if (menu.classList.contains('active')) {
+                burgerIcon.classList.remove('fa-bars');
+                burgerIcon.classList.add('fa-times');
+                burgerIcon.style.color = '#0c3b6d'; 
+            } else {
+                burgerIcon.classList.remove('fa-times');
+                burgerIcon.classList.add('fa-bars');
+                if (isScrolled) { burgerIcon.style.color = '#0c3b6d'; }
+                else { burgerIcon.style.color = '#FFFFFF'; }
+            }
+        }
+
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const location = document.getElementById('location').value;
+            const message = document.getElementById('message').value;
+            const phone = '60132026156'; 
+            const text = `Salam Laman Cendawan MZT, nama saya ${name} dari ${location}. ${message}`;
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+        });
+    </script>
+</body>
+</html>
