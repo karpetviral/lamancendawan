@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>MushTrack — Sistem Rekod Cendawan Tiram Kelabu</title>
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
   <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,44 +29,16 @@
               850: '#0F1C17',
               800: '#14261F',
               750: '#1A3128',
-            },
-            emeraldPulse: {
-              400: '#34D399',
-              500: '#10B981',
-              600: '#059669',
-            },
-            limePulse: {
-              400: '#A3E635',
-              500: '#84CC16',
-            },
-            violetPulse: {
-              400: '#A78BFA',
-              500: '#8B5CF6',
-              600: '#6366F1',
-            },
-            solarAmber: {
-              400: '#FBBF24',
-              500: '#F59E0B',
-              600: '#EA580C',
-            },
-            electricCyan: {
-              400: '#22D3EE',
-              500: '#06B6D4',
-            },
-            crimsonRose: {
-              400: '#FB7185',
-              500: '#F43F5E',
-              600: '#E11D48',
             }
           },
           boxShadow: {
-            'obsidian-card': '0 10px 30px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(52, 211, 153, 0.08)',
-            'obsidian-hover': '0 20px 40px -12px rgba(0, 0, 0, 0.85), 0 0 24px -4px rgba(16, 185, 129, 0.22)',
+            'obsidian-card': '0 12px 32px -12px rgba(0, 0, 0, 0.78), inset 0 1px 0 0 rgba(52, 211, 153, 0.09)',
+            'obsidian-hover': '0 22px 44px -14px rgba(0, 0, 0, 0.9), 0 0 28px -4px rgba(16, 185, 129, 0.24)',
             'emerald-neon': '0 8px 25px -5px rgba(16, 185, 129, 0.45)',
             'violet-neon': '0 8px 25px -5px rgba(139, 92, 246, 0.4)',
             'amber-neon': '0 8px 25px -5px rgba(245, 158, 11, 0.4)',
-            'cyan-neon': '0 8px 25px -5px rgba(6, 182, 212, 0.35)',
-            'rose-neon': '0 8px 25px -5px rgba(244, 63, 94, 0.35)',
+            'cyan-neon': '0 8px 25px -5px rgba(6, 182, 212, 0.38)',
+            'rose-neon': '0 8px 25px -5px rgba(244, 63, 94, 0.38)',
           }
         }
       }
@@ -85,8 +59,8 @@
       overscroll-behavior-y: none;
       background-image:
         radial-gradient(circle at 12% 0%, rgba(16, 185, 129, 0.14) 0%, transparent 42%),
-        radial-gradient(circle at 88% 8%, rgba(245, 158, 11, 0.08) 0%, transparent 38%),
-        radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.07) 0%, transparent 45%);
+        radial-gradient(circle at 88% 8%, rgba(245, 158, 11, 0.09) 0%, transparent 38%),
+        radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.08) 0%, transparent 45%);
       background-attachment: fixed;
     }
 
@@ -101,7 +75,7 @@
         linear-gradient(to right, rgba(52, 211, 153, 0.03) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(52, 211, 153, 0.03) 1px, transparent 1px);
       background-size: 44px 44px;
-      mask-image: radial-gradient(ellipse at center, black 40%, transparent 88%);
+      mask-image: radial-gradient(ellipse at center, black 42%, transparent 88%);
     }
 
     .font-mono-num {
@@ -113,24 +87,29 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* Glass Obsidian Surface */
+    /* High-Contrast Obsidian Glass Surface */
     .surface-card {
-      background: linear-gradient(165deg, rgba(20, 38, 31, 0.86) 0%, rgba(15, 28, 23, 0.94) 100%);
+      background: linear-gradient(165deg, rgba(20, 38, 31, 0.88) 0%, rgba(15, 28, 23, 0.95) 100%);
       border: 1px solid rgba(52, 211, 153, 0.18);
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(52, 211, 153, 0.09);
-      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.78), inset 0 1px 0 0 rgba(52, 211, 153, 0.09);
+      backdrop-filter: blur(14px);
     }
 
     /* Spring Interactive Buttons */
     .btn-spring {
-      transition: transform 0.22s var(--ease-spring), box-shadow 0.24s var(--ease-out-expo), background-color 0.18s ease, border-color 0.18s ease, filter 0.18s ease;
+      transition: transform 0.22s var(--ease-spring), box-shadow 0.24s var(--ease-out-expo), background-color 0.18s ease, border-color 0.18s ease, filter 0.18s ease, opacity 0.18s ease;
     }
-    .btn-spring:hover {
+    .btn-spring:hover:not(:disabled) {
       transform: translateY(-1.5px);
       filter: brightness(1.06);
     }
-    .btn-spring:active {
+    .btn-spring:active:not(:disabled) {
       transform: scale(0.965) translateY(0);
+    }
+    .btn-spring:disabled {
+      opacity: 0.58;
+      cursor: not-allowed;
+      transform: none;
     }
 
     /* Batch Cards Hover & Active Motion */
@@ -139,8 +118,8 @@
     }
     .batch-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(52, 211, 153, 0.45);
-      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.85), 0 0 26px -4px rgba(16, 185, 129, 0.22);
+      border-color: rgba(52, 211, 153, 0.48);
+      box-shadow: 0 22px 44px -14px rgba(0, 0, 0, 0.9), 0 0 28px -4px rgba(16, 185, 129, 0.24);
     }
     .batch-card:active {
       transform: scale(0.985);
@@ -165,7 +144,7 @@
     @keyframes fadeSlideUp {
       from {
         opacity: 0;
-        transform: translateY(18px);
+        transform: translateY(16px);
       }
       to {
         opacity: 1;
@@ -174,8 +153,8 @@
     }
     .stagger-item {
       opacity: 0;
-      animation: fadeSlideUp 0.44s var(--ease-spring) forwards;
-      animation-delay: calc(var(--stagger, 0) * 55ms);
+      animation: fadeSlideUp 0.42s var(--ease-spring) forwards;
+      animation-delay: calc(var(--stagger, 0) * 45ms);
     }
 
     /* Smooth Progress Bar Fill */
@@ -283,7 +262,7 @@
       animation: toastLiftOut 0.22s ease forwards;
     }
 
-    /* Custom Dark Scrollbar & Native Input Color Scheme */
+    /* Dark Native Form Controls & Scrollbar */
     input, select, textarea {
       color-scheme: dark;
     }
@@ -307,33 +286,35 @@
 
   <!-- ==================== GLOBAL STICKY HEADER ==================== -->
   <header class="sticky top-0 z-30 bg-[#070D0B]/85 backdrop-blur-xl border-b border-emerald-400/15">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-[74px] flex items-center justify-between gap-3">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-[74px] flex items-center justify-between gap-2.5 sm:gap-3">
       <!-- Brand Identity -->
-      <button onclick="navigateToDashboard()" class="flex items-center gap-3 text-left group focus:outline-none">
-        <div class="relative w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-emerald-500 via-emerald-600 to-lime-500 text-obsidian-950 flex items-center justify-center shadow-emerald-neon group-hover:scale-105 transition-transform duration-200">
-          <!-- Custom Botanical Mushroom SVG -->
+      <button type="button" data-action="nav-dashboard" class="flex items-center gap-2.5 sm:gap-3 text-left group focus:outline-none min-w-0">
+        <div class="relative w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-emerald-500 via-emerald-600 to-lime-500 text-obsidian-950 flex items-center justify-center shadow-emerald-neon group-hover:scale-105 transition-transform duration-200 shrink-0">
+          <!-- Botanical Mushroom SVG -->
           <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3.5 13.5C3.5 8.5 7.3 4.5 12 4.5C16.7 4.5 20.5 8.5 20.5 13.5C20.5 14.6 19.6 15.5 18.5 15.5H5.5C4.4 15.5 3.5 14.6 3.5 13.5Z" fill="currentColor" fill-opacity="0.25"/>
             <path d="M9.75 15.5V19C9.75 20.24 10.76 21.25 12 21.25C13.24 21.25 14.25 20.24 14.25 19V15.5"/>
             <path d="M8 10C9.1 9 10.5 8.5 12 8.5"/>
           </svg>
         </div>
-        <div>
+        <div class="min-w-0">
           <div class="flex items-center gap-2">
-            <span class="text-lg sm:text-xl font-extrabold tracking-tight text-white">MushTrack</span>
-            <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-widest bg-emerald-500/15 text-emerald-300 border border-emerald-400/30">
-              MycoPulse
+            <span class="text-base sm:text-xl font-extrabold tracking-tight text-white truncate">MushTrack</span>
+            <!-- Firebase Live Sync Status Badge -->
+            <span id="sync-status-badge" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-extrabold bg-amber-500/15 text-amber-300 border border-amber-400/35 shrink-0 transition-all duration-300">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+              <span>Menyambung...</span>
             </span>
           </div>
-          <p class="text-[11px] sm:text-xs font-medium text-emerald-100/60 leading-tight">Cendawan Tiram Kelabu</p>
+          <p class="text-[11px] sm:text-xs font-medium text-emerald-100/60 leading-tight truncate">Cendawan Tiram Kelabu</p>
         </div>
       </button>
 
-      <!-- Live Clock (No Timezone Labels) + Primary Action + Settings -->
-      <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Live Digital Clock (No Timezone Labels) + Primary Action + Settings -->
+      <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
         <!-- Digital Clock Pill -->
-        <div class="flex items-center gap-2 bg-[#0F1C17] border border-emerald-400/20 px-3 sm:px-3.5 py-2 rounded-xl shadow-inner">
-          <span class="relative flex h-2 w-2 shrink-0">
+        <div class="flex items-center gap-2 bg-[#0F1C17] border border-emerald-400/20 px-2.5 sm:px-3.5 py-2 rounded-xl shadow-inner">
+          <span class="hidden sm:inline-flex relative h-2 w-2 shrink-0">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
           </span>
@@ -344,7 +325,8 @@
 
         <!-- Desktop "+ Batch Baru" Button -->
         <button
-          onclick="openNewBatchModal()"
+          type="button"
+          data-action="open-new-batch"
           class="btn-spring hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-lime-500 text-obsidian-950 font-extrabold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-emerald-neon"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.8" viewBox="0 0 24 24">
@@ -353,10 +335,11 @@
           <span>+ Batch Baru</span>
         </button>
 
-        <!-- Settings Button -->
+        <!-- Settings Gear Button -->
         <button
-          onclick="openSettingsModal()"
-          aria-label="Tetapan Data"
+          type="button"
+          data-action="open-settings"
+          aria-label="Tetapan Pangkalan Data"
           class="btn-spring min-w-[42px] min-h-[42px] p-2.5 rounded-xl bg-[#0F1C17] hover:bg-[#162922] border border-emerald-400/20 text-emerald-200/80 hover:text-white flex items-center justify-center"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -369,7 +352,7 @@
   </header>
 
   <!-- ==================== SKRIN 1: DASHBOARD UTAMA ==================== -->
-  <main id="screen-dashboard" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 sm:pt-7 pb-28 sm:pb-14 space-y-6 sm:space-y-8">
+  <main id="screen-dashboard" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 sm:pt-7 pb-28 sm:pb-14 space-y-6 sm:space-y-8">
 
     <!-- HEADER HERO & 3 KPI UTAMA -->
     <section aria-label="Ringkasan Operasi" class="space-y-4">
@@ -411,11 +394,11 @@
         </div>
       </section>
 
-      <!-- BAHAGIAN: SENARAI BATCH (8/12 on Desktop) -->
-      <section aria-labelledby="heading-batches" class="lg:col-span-8 space-y-4">
+      <!-- BAHAGIAN: SENARAI BATCH AKTIF & ARKIB (8/12 on Desktop) -->
+      <section aria-labelledby="heading-batches" class="lg:col-span-8 space-y-5">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h2 id="heading-batches" class="text-lg sm:text-xl font-extrabold text-white">Senarai Batch</h2>
+            <h2 id="heading-batches" class="text-lg sm:text-xl font-extrabold text-white">Senarai Batch Aktif</h2>
             <p class="text-xs text-slate-400 mt-0.5">Pilih kad batch untuk rekod tuaian, bongkah rosak & pantauan suhu kelembapan</p>
           </div>
 
@@ -427,13 +410,13 @@
             <input
               type="text"
               id="batch-search-input"
-              oninput="handleSearchInput(this.value)"
               placeholder="Cari kod batch..."
               class="font-mono-num w-full text-xs sm:text-sm font-semibold bg-[#0F1C17] border border-emerald-400/20 focus:border-emerald-400/60 rounded-xl pl-10 pr-8 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all"
             />
             <button
+              type="button"
               id="clear-search-btn"
-              onclick="clearBatchSearch()"
+              data-action="clear-search"
               aria-label="Padam carian"
               class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1"
             >
@@ -444,14 +427,40 @@
           </div>
         </div>
 
-        <!-- Penapis Status (Semua, Peram, Buka, Rehat, Tamat) -->
+        <!-- Penapis Status Aktif (Semua Aktif, Peram, Buka, Rehat) -->
         <div id="batch-filter-bar" class="flex items-center gap-2 overflow-x-auto pb-1">
           <!-- Dijana oleh JavaScript -->
         </div>
 
-        <!-- Grid Kad Batch Responsif (2 kolum pada desktop/tablet) -->
+        <!-- Grid Kad Batch Aktif (2 kolum pada desktop/tablet) -->
         <div id="batch-cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Kad Batch dijana oleh JavaScript -->
+          <!-- Kad Batch Aktif dijana oleh JavaScript -->
+        </div>
+
+        <!-- BAHAGIAN BERASINGAN: BATCH TAMAT / ARKIB -->
+        <div id="archived-batches-section" class="hidden pt-4 border-t border-white/10 space-y-3.5">
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+              <h3 class="text-sm sm:text-base font-extrabold text-slate-200">Batch Tamat / Arkib</h3>
+              <span id="archive-badge-count" class="font-mono-num text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white/10 text-slate-300">0</span>
+            </div>
+            <button
+              type="button"
+              id="toggle-archive-btn"
+              data-action="toggle-archive"
+              class="btn-spring text-xs font-bold text-slate-300 hover:text-white px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center gap-1.5"
+            >
+              <span id="toggle-archive-label">Sembunyikan</span>
+              <svg id="toggle-archive-chevron" class="w-3.5 h-3.5 transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+
+          <div id="archived-cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Kad Batch Tamat dijana oleh JavaScript -->
+          </div>
         </div>
       </section>
 
@@ -460,7 +469,8 @@
     <!-- Mobile Floating Action Button (+ Batch Baru) -->
     <div class="sm:hidden fixed bottom-5 right-4 z-30">
       <button
-        onclick="openNewBatchModal()"
+        type="button"
+        data-action="open-new-batch"
         class="btn-spring inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-lime-500 text-obsidian-950 font-extrabold text-sm px-5 py-3.5 rounded-2xl shadow-emerald-neon"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.8" viewBox="0 0 24 24">
@@ -472,7 +482,7 @@
   </main>
 
   <!-- ==================== SKRIN 2: HALAMAN DETAIL BATCH ==================== -->
-  <main id="screen-detail" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 sm:pt-7 pb-16">
+  <main id="screen-detail" class="hidden max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 sm:pt-7 pb-16">
     <!-- Dijana secara dinamik oleh JavaScript -->
   </main>
 
@@ -483,16 +493,16 @@
       <div class="flex items-center justify-between pb-3.5 border-b border-emerald-400/15">
         <div>
           <h3 class="text-lg font-extrabold text-white">Daftar Batch Baru</h3>
-          <p class="text-xs text-emerald-100/60">Rekod kemasukan bongkah cendawan ke bangsal</p>
+          <p class="text-xs text-emerald-100/60">Rekod kemasukan bongkah cendawan ke pangkalan data</p>
         </div>
-        <button onclick="closeModal('modal-new-batch')" aria-label="Tutup" class="btn-spring p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300">
+        <button type="button" data-action="close-modal" data-modal-id="modal-new-batch" aria-label="Tutup" class="btn-spring p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
 
-      <form id="form-new-batch" onsubmit="handleCreateBatch(event)" class="mt-4 space-y-4">
+      <form id="form-new-batch" class="mt-4 space-y-4">
         <div id="error-new-batch" class="hidden bg-rose-500/15 border border-rose-500/40 text-rose-300 text-xs font-semibold px-3.5 py-2.5 rounded-xl"></div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
@@ -501,7 +511,8 @@
             <input
               type="text"
               id="nb-code"
-              placeholder="Cth: B26-04"
+              maxlength="32"
+              placeholder="Cth: B26-01"
               class="font-mono-num w-full text-sm sm:text-base font-bold bg-[#070D0B] border border-emerald-400/25 rounded-xl px-3.5 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all"
               required
             />
@@ -527,18 +538,18 @@
           <span class="block text-xs font-bold uppercase tracking-wider text-emerald-200/75 mb-2">Fasa Permulaan</span>
           <div class="grid grid-cols-2 gap-2.5">
             <label class="cursor-pointer">
-              <input type="radio" name="nb-phase" value="Peram" onchange="updateNewBatchPreview()" class="peer sr-only" checked />
+              <input type="radio" name="nb-phase" value="peram" class="peer sr-only" checked />
               <div class="p-3.5 rounded-2xl border-2 border-white/10 bg-[#070D0B] peer-checked:border-violet-500 peer-checked:bg-violet-500/15 transition-all">
                 <span class="block text-sm font-extrabold text-white">Peram</span>
-                <span class="block text-[11px] font-semibold text-violet-300 mt-0.5">Default duration: 35 hari</span>
+                <span class="block text-[11px] font-semibold text-violet-300 mt-0.5">default duration: 35 hari</span>
               </div>
             </label>
 
             <label class="cursor-pointer">
-              <input type="radio" name="nb-phase" value="Buka" onchange="updateNewBatchPreview()" class="peer sr-only" />
+              <input type="radio" name="nb-phase" value="buka" class="peer sr-only" />
               <div class="p-3.5 rounded-2xl border-2 border-white/10 bg-[#070D0B] peer-checked:border-emerald-400 peer-checked:bg-emerald-500/15 transition-all">
                 <span class="block text-sm font-extrabold text-white">Terus Buka</span>
-                <span class="block text-[11px] font-semibold text-emerald-300 mt-0.5">Default duration: 5 hari</span>
+                <span class="block text-[11px] font-semibold text-emerald-300 mt-0.5">default duration: 5 hari</span>
               </div>
             </label>
           </div>
@@ -550,7 +561,6 @@
             <input
               type="date"
               id="nb-start-date"
-              onchange="updateNewBatchPreview()"
               class="font-mono-num w-full text-xs sm:text-sm font-semibold bg-[#070D0B] border border-emerald-400/25 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all"
               required
             />
@@ -567,7 +577,6 @@
               min="1"
               max="365"
               step="1"
-              oninput="updateNewBatchPreview()"
               placeholder="Kosongkan = default duration (35 hari)"
               class="font-mono-num w-full text-xs sm:text-sm font-bold bg-[#070D0B] border border-emerald-400/25 rounded-xl px-3.5 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all"
             />
@@ -575,15 +584,13 @@
         </div>
 
         <!-- Penunjuk Dinamik Default Duration vs Tempoh Tersuai -->
-        <div id="nb-duration-helper" class="p-3.5 rounded-2xl bg-[#070D0B]/90 border border-emerald-400/20 space-y-1.5">
-          <!-- Dijana oleh JavaScript -->
-        </div>
+        <div id="nb-duration-helper" class="p-3.5 rounded-2xl bg-[#070D0B]/90 border border-emerald-400/20 space-y-1.5"></div>
 
         <div class="pt-1 flex gap-2.5">
-          <button type="button" onclick="closeModal('modal-new-batch')" class="btn-spring flex-1 py-3.5 rounded-xl font-bold text-sm bg-white/5 hover:bg-white/10 text-slate-300">
+          <button type="button" data-action="close-modal" data-modal-id="modal-new-batch" class="btn-spring flex-1 py-3.5 rounded-xl font-bold text-sm bg-white/5 hover:bg-white/10 text-slate-300">
             Batal
           </button>
-          <button type="submit" class="btn-spring flex-[2] py-3.5 rounded-xl font-extrabold text-sm bg-gradient-to-r from-emerald-500 to-lime-500 text-obsidian-950 shadow-emerald-neon">
+          <button type="submit" id="btn-submit-new-batch" class="btn-spring flex-[2] py-3.5 rounded-xl font-extrabold text-sm bg-gradient-to-r from-emerald-500 to-lime-500 text-obsidian-950 shadow-emerald-neon">
             Simpan Batch
           </button>
         </div>
@@ -591,47 +598,45 @@
     </div>
   </div>
 
-  <!-- ==================== MODAL 2: TUKAR STATUS / SAHKAN TUGASAN ==================== -->
+  <!-- ==================== MODAL 2: TUKAR STATUS / TINDAKAN TUGASAN ==================== -->
   <div id="modal-phase-switch" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
     <div class="modal-surface bg-[#0F1C17] w-full max-w-lg rounded-t-3xl sm:rounded-3xl p-5 sm:p-6 shadow-2xl border border-emerald-400/25 max-h-[92vh] overflow-y-auto">
       <div class="w-10 h-1 bg-emerald-400/25 rounded-full mx-auto mb-3 sm:hidden"></div>
       <div class="flex items-center justify-between pb-3.5 border-b border-emerald-400/15">
         <div>
-          <h3 id="ps-modal-title" class="text-lg font-extrabold text-white">Tukar Status / Fasa</h3>
-          <p id="ps-modal-subtitle" class="font-mono-num text-xs font-semibold text-emerald-400">Batch B26-02</p>
+          <h3 id="ps-modal-title" class="text-lg font-extrabold text-white">Tukar Status / Tindakan Tugasan</h3>
+          <p id="ps-modal-subtitle" class="font-mono-num text-xs font-semibold text-emerald-400"></p>
         </div>
-        <button onclick="closeModal('modal-phase-switch')" aria-label="Tutup" class="btn-spring p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300">
+        <button type="button" data-action="close-modal" data-modal-id="modal-phase-switch" aria-label="Tutup" class="btn-spring p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
 
-      <form id="form-phase-switch" onsubmit="handleConfirmPhaseSwitch(event)" class="mt-4 space-y-4">
+      <form id="form-phase-switch" class="mt-4 space-y-4">
         <div id="error-phase-switch" class="hidden bg-rose-500/15 border border-rose-500/40 text-rose-300 text-xs font-semibold px-3.5 py-2.5 rounded-xl"></div>
 
         <div>
           <label for="ps-target-phase" class="block text-xs font-bold uppercase tracking-wider text-emerald-200/75 mb-1.5">Pilih Status Baharu</label>
           <select
             id="ps-target-phase"
-            onchange="updatePhaseSwitchPreview()"
             class="w-full text-xs sm:text-sm font-bold bg-[#070D0B] border border-emerald-400/25 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all"
           >
-            <option value="Buka">Buka — Kutip Hasil (Default duration: 5 hari)</option>
-            <option value="Rehat">Rehat — Tutup Mulut Bongkah (Default duration: 7 hari)</option>
-            <option value="Peram">Peram — Pemeraman Miselium (Default duration: 35 hari)</option>
-            <option value="Tamat">Tamat — Kitaran Selesai / Pelupusan</option>
+            <option value="buka">Buka — Kutip Hasil (default duration: 5 hari)</option>
+            <option value="rehat">Rehat — Tutup Mulut Bongkah (default duration: 7 hari)</option>
+            <option value="peram">Peram — Pemeraman Miselium (default duration: 35 hari)</option>
+            <option value="tamat">Tamat — Kitaran Selesai / Pelupusan</option>
           </select>
         </div>
 
         <div id="ps-schedule-fields" class="space-y-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <div>
-              <label for="ps-start-date" class="block text-xs font-bold uppercase tracking-wider text-emerald-200/75 mb-1.5">Tarikh Mula *</label>
+              <label for="ps-start-date" class="block text-xs font-bold uppercase tracking-wider text-emerald-200/75 mb-1.5">Tarikh Mula Fasa *</label>
               <input
                 type="date"
                 id="ps-start-date"
-                onchange="updatePhaseSwitchPreview()"
                 class="font-mono-num w-full text-xs sm:text-sm font-semibold bg-[#070D0B] border border-emerald-400/25 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all"
               />
             </div>
@@ -647,24 +652,30 @@
                 min="1"
                 max="365"
                 step="1"
-                oninput="updatePhaseSwitchPreview()"
                 placeholder="Kosongkan = default duration (5 hari)"
                 class="font-mono-num w-full text-xs sm:text-sm font-bold bg-[#070D0B] border border-emerald-400/25 rounded-xl px-3.5 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all"
               />
             </div>
           </div>
+        </div>
 
-          <div>
-            <label for="ps-custom-time" class="block text-xs font-bold uppercase tracking-wider text-emerald-200/75 mb-1.5">
+        <!-- Masa Tindakan + Pemilih Hari Ini / Semalam -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <label for="ps-custom-time" class="block text-xs font-bold uppercase tracking-wider text-emerald-200/75">
               Masa Tindakan <span class="font-normal text-slate-400 normal-case">(Optional)</span>
             </label>
-            <input
-              type="time"
-              id="ps-custom-time"
-              class="font-mono-num w-full text-xs sm:text-sm font-semibold bg-[#070D0B] border border-emerald-400/25 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all"
-            />
-            <span class="block text-[11px] text-slate-400 mt-1">Kosongkan = masa semasa</span>
+            <div class="inline-flex rounded-xl bg-[#070D0B] p-0.5 border border-emerald-400/20" role="group" aria-label="Pilih hari rekod">
+              <button type="button" data-action="set-day-choice" data-target="ps" data-day="hari_ini" class="day-toggle-ps px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-emerald-500 text-obsidian-950 transition-all">Hari Ini</button>
+              <button type="button" data-action="set-day-choice" data-target="ps" data-day="semalam" class="day-toggle-ps px-2.5 py-1 rounded-lg text-[11px] font-bold text-slate-400 hover:text-white transition-all">Semalam</button>
+            </div>
           </div>
+          <input
+            type="time"
+            id="ps-custom-time"
+            class="font-mono-num w-full text-xs sm:text-sm font-semibold bg-[#070D0B] border border-emerald-400/25 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all"
+          />
+          <div id="ps-time-helper" class="text-[11px] text-slate-400">Kosongkan = masa semasa</div>
         </div>
 
         <div>
@@ -674,20 +685,19 @@
           <input
             type="text"
             id="ps-note"
+            maxlength="140"
             placeholder="Cth: Korek bersih mulut bongkah sebelum tutup"
             class="w-full text-sm bg-[#070D0B] border border-emerald-400/25 rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all"
           />
         </div>
 
-        <div id="ps-duration-helper" class="p-3.5 rounded-2xl bg-[#070D0B]/90 border border-emerald-400/20 space-y-1.5">
-          <!-- Dijana oleh JavaScript -->
-        </div>
+        <div id="ps-duration-helper" class="p-3.5 rounded-2xl bg-[#070D0B]/90 border border-emerald-400/20 space-y-1.5"></div>
 
         <div class="pt-1 flex gap-2.5">
-          <button type="button" onclick="closeModal('modal-phase-switch')" class="btn-spring flex-1 py-3.5 rounded-xl font-bold text-sm bg-white/5 hover:bg-white/10 text-slate-300">
+          <button type="button" data-action="close-modal" data-modal-id="modal-phase-switch" class="btn-spring flex-1 py-3.5 rounded-xl font-bold text-sm bg-white/5 hover:bg-white/10 text-slate-300">
             Batal
           </button>
-          <button type="submit" class="btn-spring flex-[2] py-3.5 rounded-xl font-extrabold text-sm bg-gradient-to-r from-emerald-500 to-lime-500 text-obsidian-950 shadow-emerald-neon">
+          <button type="submit" id="btn-submit-phase-switch" class="btn-spring flex-[2] py-3.5 rounded-xl font-extrabold text-sm bg-gradient-to-r from-emerald-500 to-lime-500 text-obsidian-950 shadow-emerald-neon">
             Sahkan & Simpan
           </button>
         </div>
@@ -702,45 +712,49 @@
       <div class="flex items-center justify-between pb-3.5 border-b border-emerald-400/15">
         <div>
           <h3 class="text-lg font-extrabold text-white">Rekod Tuaian</h3>
-          <p id="hv-modal-subtitle" class="font-mono-num text-xs font-semibold text-emerald-400">Batch B26-01 • Pusingan #2</p>
+          <p id="hv-modal-subtitle" class="font-mono-num text-xs font-semibold text-emerald-400"></p>
         </div>
-        <button onclick="closeModal('modal-harvest')" aria-label="Tutup" class="btn-spring p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300">
+        <button type="button" data-action="close-modal" data-modal-id="modal-harvest" aria-label="Tutup" class="btn-spring p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
 
-      <form id="form-harvest" onsubmit="handleSaveHarvest(event)" class="mt-4 space-y-4">
+      <form id="form-harvest" class="mt-4 space-y-4">
         <div id="error-harvest" class="hidden bg-rose-500/15 border border-rose-500/40 text-rose-300 text-xs font-semibold px-3.5 py-2.5 rounded-xl"></div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-          <div>
-            <label for="hv-weight" class="block text-xs font-bold uppercase tracking-wider text-emerald-200/75 mb-1.5">Berat Hasil (kg) *</label>
-            <input
-              type="number"
-              id="hv-weight"
-              inputmode="decimal"
-              step="0.01"
-              min="0.01"
-              placeholder="Cth: 4.85"
-              class="font-mono-num w-full text-lg font-extrabold bg-[#070D0B] border border-emerald-400/30 rounded-xl px-3.5 py-3 text-emerald-300 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all"
-              required
-            />
-          </div>
+        <div>
+          <label for="hv-weight" class="block text-xs font-bold uppercase tracking-wider text-emerald-200/75 mb-1.5">Berat Hasil (kg) *</label>
+          <input
+            type="number"
+            id="hv-weight"
+            inputmode="decimal"
+            step="0.01"
+            min="0.01"
+            placeholder="Cth: 4.85"
+            class="font-mono-num w-full text-lg font-extrabold bg-[#070D0B] border border-emerald-400/30 rounded-xl px-3.5 py-3 text-emerald-300 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all"
+            required
+          />
+        </div>
 
-          <div>
-            <label for="hv-datetime" class="block text-xs font-bold uppercase tracking-wider text-emerald-200/75 mb-1.5">
-              Tarikh & Masa <span class="font-normal text-slate-400 normal-case">(Optional)</span>
+        <!-- Masa Tuaian + Pemilih Hari Ini / Semalam -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <label for="hv-custom-time" class="block text-xs font-bold uppercase tracking-wider text-emerald-200/75">
+              Masa Tuaian <span class="font-normal text-slate-400 normal-case">(Optional)</span>
             </label>
-            <input
-              type="datetime-local"
-              id="hv-datetime"
-              onchange="updateHarvestPreview()"
-              class="font-mono-num w-full text-xs font-semibold bg-[#070D0B] border border-emerald-400/25 rounded-xl px-3 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all"
-            />
-            <span class="block text-[11px] text-slate-400 mt-1">Kosongkan = masa semasa</span>
+            <div class="inline-flex rounded-xl bg-[#070D0B] p-0.5 border border-emerald-400/20" role="group" aria-label="Pilih hari rekod tuaian">
+              <button type="button" data-action="set-day-choice" data-target="hv" data-day="hari_ini" class="day-toggle-hv px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-emerald-500 text-obsidian-950 transition-all">Hari Ini</button>
+              <button type="button" data-action="set-day-choice" data-target="hv" data-day="semalam" class="day-toggle-hv px-2.5 py-1 rounded-lg text-[11px] font-bold text-slate-400 hover:text-white transition-all">Semalam</button>
+            </div>
           </div>
+          <input
+            type="time"
+            id="hv-custom-time"
+            class="font-mono-num w-full text-xs sm:text-sm font-semibold bg-[#070D0B] border border-emerald-400/25 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all"
+          />
+          <div id="hv-time-helper" class="text-[11px] text-slate-400">Kosongkan = masa semasa</div>
         </div>
 
         <!-- Pilihan Rehat Akhir Pusingan -->
@@ -749,7 +763,6 @@
             <input
               type="checkbox"
               id="hv-end-flush"
-              onchange="updateHarvestPreview()"
               class="mt-0.5 w-5 h-5 rounded-md accent-amber-500 border-amber-400/40"
             />
             <div class="flex-1">
@@ -769,7 +782,6 @@
               min="1"
               max="90"
               step="1"
-              oninput="updateHarvestPreview()"
               placeholder="Kosongkan = default duration (7 hari)"
               class="font-mono-num w-full text-xs sm:text-sm font-bold bg-[#070D0B] border border-amber-400/35 rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400"
             />
@@ -778,10 +790,10 @@
         </div>
 
         <div class="pt-1 flex gap-2.5">
-          <button type="button" onclick="closeModal('modal-harvest')" class="btn-spring flex-1 py-3.5 rounded-xl font-bold text-sm bg-white/5 hover:bg-white/10 text-slate-300">
+          <button type="button" data-action="close-modal" data-modal-id="modal-harvest" class="btn-spring flex-1 py-3.5 rounded-xl font-bold text-sm bg-white/5 hover:bg-white/10 text-slate-300">
             Batal
           </button>
-          <button type="submit" class="btn-spring flex-[2] py-3.5 rounded-xl font-extrabold text-sm bg-gradient-to-r from-emerald-500 to-lime-500 text-obsidian-950 shadow-emerald-neon">
+          <button type="submit" id="btn-submit-harvest" class="btn-spring flex-[2] py-3.5 rounded-xl font-extrabold text-sm bg-gradient-to-r from-emerald-500 to-lime-500 text-obsidian-950 shadow-emerald-neon">
             Simpan Tuaian
           </button>
         </div>
@@ -796,69 +808,74 @@
       <div class="flex items-center justify-between pb-3.5 border-b border-rose-500/20">
         <div>
           <h3 class="text-lg font-extrabold text-white">Tolak Bongkah Rosak</h3>
-          <p id="dm-modal-subtitle" class="font-mono-num text-xs font-semibold text-rose-400">Batch B26-01 • Baki aktif: 960 bongkah</p>
+          <p id="dm-modal-subtitle" class="font-mono-num text-xs font-semibold text-rose-400"></p>
         </div>
-        <button onclick="closeModal('modal-damage')" aria-label="Tutup" class="btn-spring p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300">
+        <button type="button" data-action="close-modal" data-modal-id="modal-damage" aria-label="Tutup" class="btn-spring p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
 
-      <form id="form-damage" onsubmit="handleSaveDamage(event)" class="mt-4 space-y-4">
+      <form id="form-damage" class="mt-4 space-y-4">
         <div id="error-damage" class="hidden bg-rose-500/15 border border-rose-500/40 text-rose-300 text-xs font-semibold px-3.5 py-2.5 rounded-xl"></div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-          <div>
-            <label for="dm-qty" class="block text-xs font-bold uppercase tracking-wider text-rose-200/80 mb-1.5">Bilangan Dibuang *</label>
-            <input
-              type="number"
-              id="dm-qty"
-              inputmode="numeric"
-              min="1"
-              step="1"
-              placeholder="Cth: 5"
-              class="font-mono-num w-full text-lg font-extrabold bg-[#070D0B] border border-rose-500/35 rounded-xl px-3.5 py-3 text-rose-300 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-500 transition-all"
-              required
-            />
-          </div>
+        <div>
+          <label for="dm-qty" class="block text-xs font-bold uppercase tracking-wider text-rose-200/80 mb-1.5">Bilangan Dibuang (Nombor Bulat) *</label>
+          <input
+            type="number"
+            id="dm-qty"
+            inputmode="numeric"
+            min="1"
+            step="1"
+            placeholder="Cth: 5"
+            class="font-mono-num w-full text-lg font-extrabold bg-[#070D0B] border border-rose-500/35 rounded-xl px-3.5 py-3 text-rose-300 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-500 transition-all"
+            required
+          />
+        </div>
 
-          <div>
-            <label for="dm-datetime" class="block text-xs font-bold uppercase tracking-wider text-rose-200/80 mb-1.5">
-              Tarikh & Masa <span class="font-normal text-slate-400 normal-case">(Optional)</span>
+        <!-- Masa Rekod + Pemilih Hari Ini / Semalam -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <label for="dm-custom-time" class="block text-xs font-bold uppercase tracking-wider text-rose-200/80">
+              Masa Rekod <span class="font-normal text-slate-400 normal-case">(Optional)</span>
             </label>
-            <input
-              type="datetime-local"
-              id="dm-datetime"
-              class="font-mono-num w-full text-xs font-semibold bg-[#070D0B] border border-rose-500/30 rounded-xl px-3 py-3 text-white focus:outline-none focus:ring-2 focus:ring-rose-500 transition-all"
-            />
-            <span class="block text-[11px] text-slate-400 mt-1">Kosongkan = masa semasa</span>
+            <div class="inline-flex rounded-xl bg-[#070D0B] p-0.5 border border-rose-500/25" role="group" aria-label="Pilih hari rekod bongkah rosak">
+              <button type="button" data-action="set-day-choice" data-target="dm" data-day="hari_ini" class="day-toggle-dm px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-rose-500 text-white transition-all">Hari Ini</button>
+              <button type="button" data-action="set-day-choice" data-target="dm" data-day="semalam" class="day-toggle-dm px-2.5 py-1 rounded-lg text-[11px] font-bold text-slate-400 hover:text-white transition-all">Semalam</button>
+            </div>
           </div>
+          <input
+            type="time"
+            id="dm-custom-time"
+            class="font-mono-num w-full text-xs sm:text-sm font-semibold bg-[#070D0B] border border-rose-500/30 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:ring-2 focus:ring-rose-500 transition-all"
+          />
+          <div id="dm-time-helper" class="text-[11px] text-slate-400">Kosongkan = masa semasa</div>
         </div>
 
         <div>
           <span class="block text-xs font-bold uppercase tracking-wider text-rose-200/80 mb-2">Punca Kerosakan</span>
           <div class="grid grid-cols-2 gap-2">
-            <button type="button" onclick="selectDamageReason('Kulat Hijau')" data-reason="Kulat Hijau" class="dm-reason-btn btn-spring text-left px-3.5 py-3 rounded-xl border-2 text-xs font-bold">
+            <button type="button" data-action="select-damage-reason" data-reason="Kulat Hijau" class="dm-reason-btn btn-spring text-left px-3.5 py-3 rounded-xl border-2 text-xs font-bold">
               Kulat Hijau
             </button>
-            <button type="button" onclick="selectDamageReason('Kulat Hitam')" data-reason="Kulat Hitam" class="dm-reason-btn btn-spring text-left px-3.5 py-3 rounded-xl border-2 text-xs font-bold">
+            <button type="button" data-action="select-damage-reason" data-reason="Kulat Hitam" class="dm-reason-btn btn-spring text-left px-3.5 py-3 rounded-xl border-2 text-xs font-bold">
               Kulat Hitam
             </button>
-            <button type="button" onclick="selectDamageReason('Perosak / Hama')" data-reason="Perosak / Hama" class="dm-reason-btn btn-spring text-left px-3.5 py-3 rounded-xl border-2 text-xs font-bold">
+            <button type="button" data-action="select-damage-reason" data-reason="Perosak / Hama" class="dm-reason-btn btn-spring text-left px-3.5 py-3 rounded-xl border-2 text-xs font-bold">
               Perosak / Hama
             </button>
-            <button type="button" onclick="selectDamageReason('Tamat Tempoh')" data-reason="Tamat Tempoh" class="dm-reason-btn btn-spring text-left px-3.5 py-3 rounded-xl border-2 text-xs font-bold">
+            <button type="button" data-action="select-damage-reason" data-reason="Tamat Tempoh" class="dm-reason-btn btn-spring text-left px-3.5 py-3 rounded-xl border-2 text-xs font-bold">
               Tamat Tempoh
             </button>
           </div>
         </div>
 
         <div class="pt-1 flex gap-2.5">
-          <button type="button" onclick="closeModal('modal-damage')" class="btn-spring flex-1 py-3.5 rounded-xl font-bold text-sm bg-white/5 hover:bg-white/10 text-slate-300">
+          <button type="button" data-action="close-modal" data-modal-id="modal-damage" class="btn-spring flex-1 py-3.5 rounded-xl font-bold text-sm bg-white/5 hover:bg-white/10 text-slate-300">
             Batal
           </button>
-          <button type="submit" class="btn-spring flex-[2] py-3.5 rounded-xl font-extrabold text-sm bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-rose-neon">
+          <button type="submit" id="btn-submit-damage" class="btn-spring flex-[2] py-3.5 rounded-xl font-extrabold text-sm bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-rose-neon">
             Simpan Rekod Rosak
           </button>
         </div>
@@ -873,16 +890,16 @@
       <div class="flex items-center justify-between pb-3.5 border-b border-cyan-400/20">
         <div>
           <h3 class="text-lg font-extrabold text-white">Log Suhu & Kelembapan</h3>
-          <p id="cl-modal-subtitle" class="font-mono-num text-xs font-semibold text-cyan-400">Batch B26-01 • Ideal: 24–28°C & 80–90%</p>
+          <p id="cl-modal-subtitle" class="font-mono-num text-xs font-semibold text-cyan-400"></p>
         </div>
-        <button onclick="closeModal('modal-climate')" aria-label="Tutup" class="btn-spring p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300">
+        <button type="button" data-action="close-modal" data-modal-id="modal-climate" aria-label="Tutup" class="btn-spring p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
 
-      <form id="form-climate" onsubmit="handleSaveClimateModal(event)" class="mt-4 space-y-4">
+      <form id="form-climate" class="mt-4 space-y-4">
         <div id="error-climate" class="hidden bg-rose-500/15 border border-rose-500/40 text-rose-300 text-xs font-semibold px-3.5 py-2.5 rounded-xl"></div>
 
         <div class="grid grid-cols-2 gap-3.5">
@@ -895,7 +912,6 @@
               step="0.1"
               min="0"
               max="60"
-              oninput="updateClimateModalPreview()"
               placeholder="Cth: 26.5"
               class="font-mono-num w-full text-lg font-extrabold bg-[#070D0B] border border-cyan-400/35 rounded-xl px-3.5 py-3 text-cyan-300 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all"
               required
@@ -911,7 +927,6 @@
               step="1"
               min="0"
               max="100"
-              oninput="updateClimateModalPreview()"
               placeholder="Cth: 86"
               class="font-mono-num w-full text-lg font-extrabold bg-[#070D0B] border border-cyan-400/35 rounded-xl px-3.5 py-3 text-cyan-300 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all"
               required
@@ -920,43 +935,48 @@
         </div>
 
         <!-- Live Telemetry Status Preview -->
-        <div id="cl-modal-preview" class="p-3 rounded-2xl bg-[#070D0B]/90 border border-cyan-400/20 flex items-center justify-between text-xs">
+        <div id="cl-modal-preview" class="p-3 rounded-2xl bg-[#070D0B]/90 border border-cyan-400/20 flex items-center justify-between gap-2 text-xs">
           <span class="text-slate-400">Julat sasaran: <strong class="text-cyan-300">24–28°C</strong> • <strong class="text-cyan-300">80–90%</strong></span>
           <span id="cl-preview-badges" class="flex items-center gap-1.5"></span>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-          <div>
-            <label for="cl-modal-time" class="block text-xs font-bold uppercase tracking-wider text-cyan-200/80 mb-1.5">
-              Tarikh & Masa <span class="font-normal text-slate-400 normal-case">(Optional)</span>
+        <!-- Masa Bacaan + Pemilih Hari Ini / Semalam -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <label for="cl-modal-time" class="block text-xs font-bold uppercase tracking-wider text-cyan-200/80">
+              Masa Bacaan <span class="font-normal text-slate-400 normal-case">(Optional)</span>
             </label>
-            <input
-              type="datetime-local"
-              id="cl-modal-time"
-              class="font-mono-num w-full text-xs font-semibold bg-[#070D0B] border border-cyan-400/25 rounded-xl px-3 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all"
-            />
-            <span class="block text-[11px] text-slate-400 mt-1">Kosongkan = masa semasa</span>
+            <div class="inline-flex rounded-xl bg-[#070D0B] p-0.5 border border-cyan-400/25" role="group" aria-label="Pilih hari bacaan iklim">
+              <button type="button" data-action="set-day-choice" data-target="cl" data-day="hari_ini" class="day-toggle-cl px-2.5 py-1 rounded-lg text-[11px] font-extrabold bg-cyan-400 text-obsidian-950 transition-all">Hari Ini</button>
+              <button type="button" data-action="set-day-choice" data-target="cl" data-day="semalam" class="day-toggle-cl px-2.5 py-1 rounded-lg text-[11px] font-bold text-slate-400 hover:text-white transition-all">Semalam</button>
+            </div>
           </div>
+          <input
+            type="time"
+            id="cl-modal-time"
+            class="font-mono-num w-full text-xs sm:text-sm font-semibold bg-[#070D0B] border border-cyan-400/25 rounded-xl px-3.5 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all"
+          />
+          <div id="cl-time-helper" class="text-[11px] text-slate-400">Kosongkan = masa semasa</div>
+        </div>
 
-          <div>
-            <label for="cl-modal-note" class="block text-xs font-bold uppercase tracking-wider text-cyan-200/80 mb-1.5">
-              Nota Ringkas <span class="font-normal text-slate-400 normal-case">(Optional)</span>
-            </label>
-            <input
-              type="text"
-              id="cl-modal-note"
-              placeholder="Cth: Sembur kabus pagi"
-              class="w-full text-xs font-medium bg-[#070D0B] border border-cyan-400/25 rounded-xl px-3.5 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all"
-            />
-            <span class="block text-[11px] text-slate-400 mt-1">Keadaan rak / pengudaraan</span>
-          </div>
+        <div>
+          <label for="cl-modal-note" class="block text-xs font-bold uppercase tracking-wider text-cyan-200/80 mb-1.5">
+            Nota Ringkas <span class="font-normal text-slate-400 normal-case">(Optional)</span>
+          </label>
+          <input
+            type="text"
+            id="cl-modal-note"
+            maxlength="140"
+            placeholder="Cth: Sembur kabus pagi, buka langsir pengudaraan"
+            class="w-full text-xs sm:text-sm font-medium bg-[#070D0B] border border-cyan-400/25 rounded-xl px-3.5 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all"
+          />
         </div>
 
         <div class="pt-1 flex gap-2.5">
-          <button type="button" onclick="closeModal('modal-climate')" class="btn-spring flex-1 py-3.5 rounded-xl font-bold text-sm bg-white/5 hover:bg-white/10 text-slate-300">
+          <button type="button" data-action="close-modal" data-modal-id="modal-climate" class="btn-spring flex-1 py-3.5 rounded-xl font-bold text-sm bg-white/5 hover:bg-white/10 text-slate-300">
             Batal
           </button>
-          <button type="submit" class="btn-spring flex-[2] py-3.5 rounded-xl font-extrabold text-sm bg-gradient-to-r from-cyan-400 to-cyan-500 text-obsidian-950 shadow-cyan-neon">
+          <button type="submit" id="btn-submit-climate" class="btn-spring flex-[2] py-3.5 rounded-xl font-extrabold text-sm bg-gradient-to-r from-cyan-400 to-cyan-500 text-obsidian-950 shadow-cyan-neon">
             Simpan Log Iklim
           </button>
         </div>
@@ -964,16 +984,16 @@
     </div>
   </div>
 
-  <!-- ==================== MODAL 6: TETAPAN DATA ==================== -->
+  <!-- ==================== MODAL 6: TETAPAN PANGKALAN DATA ==================== -->
   <div id="modal-settings" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
     <div class="modal-surface bg-[#0F1C17] w-full max-w-lg rounded-t-3xl sm:rounded-3xl p-5 sm:p-6 shadow-2xl border border-emerald-400/25">
       <div class="w-10 h-1 bg-emerald-400/25 rounded-full mx-auto mb-3 sm:hidden"></div>
       <div class="flex items-center justify-between pb-3.5 border-b border-emerald-400/15">
         <div>
-          <h3 class="text-lg font-extrabold text-white">Tetapan Storan Data</h3>
-          <p class="text-xs text-emerald-100/60">Urus data tempatan aplikasi ini</p>
+          <h3 class="text-lg font-extrabold text-white">Tetapan Pangkalan Data</h3>
+          <p class="text-xs text-emerald-100/60">Penyegerakan masa nyata merentas peranti</p>
         </div>
-        <button onclick="closeModal('modal-settings')" aria-label="Tutup" class="btn-spring p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300">
+        <button type="button" data-action="close-modal" data-modal-id="modal-settings" aria-label="Tutup" class="btn-spring p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -981,43 +1001,42 @@
       </div>
 
       <div class="mt-4 space-y-3">
-        <button onclick="promptSettingsAction('demo')" class="btn-spring w-full flex items-center gap-3.5 p-4 rounded-2xl border border-emerald-400/25 bg-emerald-500/10 hover:bg-emerald-500/15 text-left">
-          <div class="w-10 h-10 rounded-xl bg-emerald-500 text-obsidian-950 flex items-center justify-center shrink-0">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-            </svg>
-          </div>
+        <!-- Ringkasan Status Sambungan -->
+        <div class="p-4 rounded-2xl bg-[#070D0B]/90 border border-emerald-400/20 flex items-center justify-between gap-3">
           <div>
-            <span class="block text-sm font-extrabold text-emerald-300">Reset Data Contoh</span>
-            <span class="block text-xs text-emerald-100/70">Muatkan semula 4 batch contoh (Buka, Peram, Rehat & Tamat) lengkap dengan tugasan & log iklim.</span>
+            <span class="block text-xs font-extrabold text-white">Status Pangkalan Data</span>
+            <span id="settings-auth-status" class="block text-[11px] text-emerald-300/80 mt-0.5">Sesi keselamatan aktif</span>
           </div>
-        </button>
+          <span id="settings-batch-count" class="font-mono-num text-xs font-extrabold px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30">0 batch</span>
+        </div>
 
-        <button onclick="promptSettingsAction('clear')" class="btn-spring w-full flex items-center gap-3.5 p-4 rounded-2xl border border-rose-500/30 bg-rose-500/10 hover:bg-rose-500/15 text-left">
+        <button type="button" data-action="prompt-clear-all" class="btn-spring w-full flex items-center gap-3.5 p-4 rounded-2xl border border-rose-500/30 bg-rose-500/10 hover:bg-rose-500/15 text-left">
           <div class="w-10 h-10 rounded-xl bg-rose-500 text-white flex items-center justify-center shrink-0">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
             </svg>
           </div>
           <div>
-            <span class="block text-sm font-extrabold text-rose-300">Padam Semua Data</span>
-            <span class="block text-xs text-rose-200/70">Kosongkan keseluruhan rekod batch untuk mula merekod dari sifar.</span>
+            <span class="block text-sm font-extrabold text-rose-300">Padam Semua Rekod</span>
+            <span class="block text-xs text-rose-200/70">Padam keseluruhan rekod batch daripada pangkalan data untuk mula dari sifar.</span>
           </div>
         </button>
       </div>
 
       <!-- Inline Confirmation Box -->
-      <div id="settings-confirm-panel" class="hidden mt-4 p-4 rounded-2xl bg-[#070D0B] border border-amber-400/30 space-y-3">
-        <p id="settings-confirm-msg" class="text-xs font-medium leading-relaxed text-amber-100"></p>
+      <div id="settings-confirm-panel" class="hidden mt-4 p-4 rounded-2xl bg-[#070D0B] border border-rose-500/35 space-y-3">
+        <p class="text-xs font-medium leading-relaxed text-rose-200">
+          Amaran: Semua rekod batch, tuaian, bongkah rosak, dan log iklim akan dipadamkan secara kekal daripada pangkalan data. Teruskan?
+        </p>
         <div class="flex gap-2.5">
-          <button onclick="hideSettingsConfirm()" class="btn-spring flex-1 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-bold text-slate-200">Batal</button>
-          <button id="settings-confirm-yes" class="btn-spring flex-1 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-obsidian-950 text-xs font-extrabold">Ya, Teruskan</button>
+          <button type="button" data-action="hide-settings-confirm" class="btn-spring flex-1 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-bold text-slate-200">Batal</button>
+          <button type="button" id="settings-confirm-yes" data-action="confirm-clear-all" class="btn-spring flex-1 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-extrabold">Ya, Padam Semua</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ==================== MODAL 7: PENGESAHAN PADAM ==================== -->
+  <!-- ==================== MODAL 7: PENGESAHAN PADAM LOG / BATCH ==================== -->
   <div id="modal-confirm-delete" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="modal-surface bg-[#0F1C17] w-full max-w-sm rounded-3xl p-5 shadow-2xl border border-rose-500/30 space-y-4">
       <div class="flex items-start gap-3">
@@ -1032,10 +1051,10 @@
         </div>
       </div>
       <div class="flex gap-2.5 pt-1">
-        <button onclick="closeModal('modal-confirm-delete')" class="btn-spring flex-1 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-bold">
+        <button type="button" data-action="close-modal" data-modal-id="modal-confirm-delete" class="btn-spring flex-1 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-bold">
           Batal
         </button>
-        <button id="cd-confirm-btn" class="btn-spring flex-1 py-3 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-extrabold">
+        <button type="button" id="cd-confirm-btn" class="btn-spring flex-1 py-3 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-extrabold">
           Ya, Padam
         </button>
       </div>
@@ -1045,28 +1064,60 @@
   <!-- ==================== TOAST NOTIFICATION STACK ==================== -->
   <div id="toast-stack" class="fixed top-4 left-1/2 -translate-x-1/2 z-[60] pointer-events-none w-[92%] max-w-md flex flex-col items-center gap-2"></div>
 
-  <script>
+  <!-- ==================== FIREBASE REALTIME DATABASE & AUTH MODULE ==================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+    import { getDatabase, ref, onValue, set, remove, push, runTransaction } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+
+    // Konfigurasi Projek Firebase MushTrack
+    const firebaseConfig = {
+      apiKey: "AIzaSyDerV7kpE_7P5l3YRQuuHxxLfI7JGdCXtQ",
+      authDomain: "mushtrack2026.firebaseapp.com",
+      databaseURL: "https://mushtrack2026-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "mushtrack2026",
+      storageBucket: "mushtrack2026.firebasestorage.app",
+      messagingSenderId: "523554813384",
+      appId: "1:523554813384:web:39a0dbd2a82ded92693cfd"
+    };
+
+    // Inisialisasi Firebase, Auth & Pangkalan Data Masa Nyata
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    const batchesRef = ref(db, 'mushtrack/batches');
+    const connectedRef = ref(db, '.info/connected');
+    const serverTimeOffsetRef = ref(db, '.info/serverTimeOffset');
+
     // =========================================================================
-    // 1. KONFIGURASI TERAS & ENJIN WAKTU MALAYSIA SECARA SENYAP
+    // 1. KONFIGURASI TERAS & ENJIN WAKTU PELAYAR MALAYSIA SECARA SENYAP
     // =========================================================================
-    const STORAGE_KEY = 'mushtrack_mycopulse_v1';
     const TARGET_TIMEZONE = 'Asia/Kuala_Lumpur';
 
     // Standard Default Durations (Hari)
     const DEFAULT_DURATIONS = {
-      Peram: 35,
-      Buka: 5,
-      Rehat: 7,
-      Tamat: 0
+      peram: 35,
+      buka: 5,
+      rehat: 7,
+      tamat: 0
     };
 
     const HARI_BM = ['Ahad', 'Isnin', 'Selasa', 'Rabu', 'Khamis', 'Jumaat', 'Sabtu'];
     const BULAN_BM = ['Jan', 'Feb', 'Mac', 'Apr', 'Mei', 'Jun', 'Jul', 'Ogos', 'Sep', 'Okt', 'Nov', 'Dis'];
 
+    // Offset pelayan Firebase (ms) supaya jam tidak bergantung kepada jam peranti pekerja
+    let serverTimeOffsetMs = 0;
+
+    function getNowMs() {
+      return Date.now() + serverTimeOffsetMs;
+    }
+
     /**
-     * Mengira komponen tarikh & masa tepat di Asia/Kuala_Lumpur tanpa sebarang label zon masa
+     * Mengira komponen tarikh & masa tepat mengikut waktu Malaysia (Asia/Kuala_Lumpur)
+     * menggunakan masa pelayan terselaras tanpa sebarang label zon masa pada paparan.
      */
-    function getKLParts(dateObj = new Date()) {
+    function getKLParts(epochMs = getNowMs()) {
       const formatter = new Intl.DateTimeFormat('en-CA', {
         timeZone: TARGET_TIMEZONE,
         year: 'numeric',
@@ -1078,7 +1129,7 @@
         hour12: false
       });
 
-      const parts = formatter.formatToParts(dateObj);
+      const parts = formatter.formatToParts(new Date(epochMs));
       const map = {};
       for (const p of parts) {
         if (p.type !== 'literal') map[p.type] = p.value;
@@ -1129,6 +1180,58 @@
       return Math.round((Date.UTC(y1, m1 - 1, d1) - Date.UTC(y2, m2 - 1, d2)) / 86400000);
     }
 
+    /**
+     * Menyelesaikan tarikh & masa tersuai dengan pengendalian automatik melintasi tengah malam.
+     * Jika `Hari Ini` dipilih tetapi masa melebihi masa pelayan semasa (> 5 minit ke hadapan),
+     * tarikh akan dianjakkan secara automatik ke `Semalam`.
+     */
+    function resolveCustomDateTime(dayChoice, customTimeStr) {
+      const nowMs = getNowMs();
+      const nowParts = getKLParts(nowMs);
+      const yesterdayStr = addDaysToDateStr(nowParts.dateStr, -1);
+
+      if (dayChoice === 'semalam') {
+        const effectiveTime = customTimeStr || nowParts.timeStr;
+        return {
+          dateStr: yesterdayStr,
+          timeStr: effectiveTime,
+          dateTimeStr: `${yesterdayStr}T${effectiveTime}`,
+          dayLabel: 'Semalam',
+          shiftedFromMidnight: false
+        };
+      }
+
+      if (!customTimeStr) {
+        return {
+          dateStr: nowParts.dateStr,
+          timeStr: nowParts.timeStr,
+          dateTimeStr: `${nowParts.dateStr}T${nowParts.timeStr}`,
+          dayLabel: 'Hari Ini',
+          shiftedFromMidnight: false
+        };
+      }
+
+      // Semak sama ada masa pada 'Hari Ini' melintasi tengah malam ke masa hadapan (> 5 minit)
+      const candidateMs = Date.parse(`${nowParts.dateStr}T${customTimeStr}:00+08:00`);
+      if (!isNaN(candidateMs) && candidateMs > nowMs + 5 * 60 * 1000) {
+        return {
+          dateStr: yesterdayStr,
+          timeStr: customTimeStr,
+          dateTimeStr: `${yesterdayStr}T${customTimeStr}`,
+          dayLabel: 'Semalam',
+          shiftedFromMidnight: true
+        };
+      }
+
+      return {
+        dateStr: nowParts.dateStr,
+        timeStr: customTimeStr,
+        dateTimeStr: `${nowParts.dateStr}T${customTimeStr}`,
+        dayLabel: 'Hari Ini',
+        shiftedFromMidnight: false
+      };
+    }
+
     function formatDisplayDate(dateStr) {
       if (!dateStr) return '-';
       const [y, m, d] = dateStr.split('T')[0].split('-').map(Number);
@@ -1166,14 +1269,11 @@
     }
 
     function formatNumber(val) {
-      return Number(val).toLocaleString('ms-MY');
-    }
-
-    function createId(prefix = 'id') {
-      return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
+      return Number(val || 0).toLocaleString('ms-MY');
     }
 
     function escapeHTML(str) {
+      if (str === null || str === undefined) return '';
       return String(str)
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
@@ -1182,174 +1282,219 @@
         .replace(/'/g, '&#039;');
     }
 
+    function normalizePhaseKey(rawStatus) {
+      const s = String(rawStatus || 'peram').trim().toLowerCase();
+      if (s === 'buka' || s === 'peram' || s === 'rehat' || s === 'tamat') return s;
+      return 'peram';
+    }
+
+    function getPhaseLabel(statusKey) {
+      const key = normalizePhaseKey(statusKey);
+      if (key === 'buka') return 'Buka';
+      if (key === 'rehat') return 'Rehat';
+      if (key === 'tamat') return 'Tamat';
+      return 'Peram';
+    }
+
     // =========================================================================
-    // 2. DATA STATE & DATA CONTOH REALISTIK BERASASKAN TARIKH HARI INI
+    // 2. KEADAAN APLIKASI, AUTHENTICATION & PENYELARASAN REALTIME DATABASE
     // =========================================================================
-    let appState = { batches: [] };
+    let appState = {
+      batches: [],
+      isInitialLoading: true,
+      hasConnectedOnce: false,
+      dbError: false,
+      authReady: false,
+      authUid: null
+    };
+
     let activeScreen = 'dashboard';
     let currentBatchId = null;
-    let activePhaseFilter = 'Semua';
+    let activePhaseFilter = 'semua';
     let searchQuery = '';
+    let isArchiveExpanded = true;
     let selectedDamageReason = 'Kulat Hijau';
     let phaseSwitchContext = { batchId: null, isQuickTask: false };
 
-    function buildDemoData() {
-      const today = getTodayDateStr();
+    // Pilihan Hari Ini / Semalam bagi setiap modal dengan input masa
+    const modalDayChoices = {
+      ps: 'hari_ini',
+      hv: 'hari_ini',
+      dm: 'hari_ini',
+      cl: 'hari_ini'
+    };
 
-      return {
-        batches: [
-          {
-            id: 'batch_demo_1',
-            code: 'B26-01',
-            startDate: addDaysToDateStr(today, -5),
-            durationDays: 5,
-            targetDate: today, // Tamat tempoh Buka hari ini -> muncul dalam Tugasan Hari Ini ("Mula Rehat")
-            initialQty: 1000,
-            status: 'Buka',
-            flush: 2,
-            harvests: [
-              { id: 'hv_1', timestamp: `${addDaysToDateStr(today, -17)}T08:45`, flush: 1, weightKg: 26.40 },
-              { id: 'hv_2', timestamp: `${addDaysToDateStr(today, -14)}T09:15`, flush: 1, weightKg: 19.80 },
-              { id: 'hv_3', timestamp: `${addDaysToDateStr(today, -2)}T08:20`, flush: 2, weightKg: 21.50 }
-            ],
-            damages: [
-              { id: 'dm_1', timestamp: `${addDaysToDateStr(today, -19)}T16:10`, qty: 18, reason: 'Kulat Hijau' },
-              { id: 'dm_2', timestamp: `${addDaysToDateStr(today, -6)}T11:30`, qty: 12, reason: 'Kulat Hitam' }
-            ],
-            climateLogs: [
-              { id: 'cl_1', timestamp: `${today}T08:15`, tempC: 26.5, humidityPct: 86, note: 'Kelopak pusingan 2 kembang sekata, kabus pagi baik' },
-              { id: 'cl_2', timestamp: `${addDaysToDateStr(today, -1)}T14:30`, tempC: 28.7, humidityPct: 78, note: 'Suhu tengah hari naik, sembur lantai bangsal' }
-            ],
-            phaseLogs: [
-              { id: 'pl_1', timestamp: `${addDaysToDateStr(today, -52)}T08:00`, status: 'Peram', durationDays: 35, note: 'Kemasukan bongkah baharu' },
-              { id: 'pl_2', timestamp: `${addDaysToDateStr(today, -17)}T08:00`, status: 'Buka', durationDays: 5, note: 'Buka Pusingan #1' },
-              { id: 'pl_3', timestamp: `${addDaysToDateStr(today, -12)}T09:00`, status: 'Rehat', durationDays: 7, note: 'Korek & tutup mulut bongkah' },
-              { id: 'pl_4', timestamp: `${addDaysToDateStr(today, -5)}T08:00`, status: 'Buka', durationDays: 5, note: 'Buka Pusingan #2' }
-            ]
-          },
-          {
-            id: 'batch_demo_2',
-            code: 'B26-02',
-            startDate: addDaysToDateStr(today, -35),
-            durationDays: 35,
-            targetDate: today, // Selesai Peram hari ini -> muncul dalam Tugasan Hari Ini ("Selesai Buka")
-            initialQty: 1200,
-            status: 'Peram',
-            flush: 0,
-            harvests: [],
-            damages: [
-              { id: 'dm_3', timestamp: `${addDaysToDateStr(today, -12)}T10:15`, qty: 15, reason: 'Kulat Hijau' }
-            ],
-            climateLogs: [
-              { id: 'cl_3', timestamp: `${today}T08:45`, tempC: 27.2, humidityPct: 84, note: 'Miselium putih penuh 100%, sedia dibuka hari ini' }
-            ],
-            phaseLogs: [
-              { id: 'pl_5', timestamp: `${addDaysToDateStr(today, -35)}T08:30`, status: 'Peram', durationDays: 35, note: 'Pemeraman miselium bermula' }
-            ]
-          },
-          {
-            id: 'batch_demo_3',
-            code: 'B26-03',
-            startDate: addDaysToDateStr(today, -4),
-            durationDays: 7,
-            targetDate: addDaysToDateStr(today, 3),
-            initialQty: 900,
-            status: 'Rehat',
-            flush: 1,
-            harvests: [
-              { id: 'hv_4', timestamp: `${addDaysToDateStr(today, -4)}T09:10`, flush: 1, weightKg: 31.20 }
-            ],
-            damages: [
-              { id: 'dm_4', timestamp: `${addDaysToDateStr(today, -5)}T15:00`, qty: 10, reason: 'Perosak / Hama' }
-            ],
-            climateLogs: [
-              { id: 'cl_4', timestamp: `${today}T08:00`, tempC: 25.8, humidityPct: 88, note: 'Rak bawah sejuk & lembap sepanjang tempoh rehat' }
-            ],
-            phaseLogs: [
-              { id: 'pl_6', timestamp: `${addDaysToDateStr(today, -46)}T08:00`, status: 'Peram', durationDays: 35, note: 'Kemasukan batch pembekal' },
-              { id: 'pl_7', timestamp: `${addDaysToDateStr(today, -4)}T09:30`, status: 'Rehat', durationDays: 7, note: 'Rehat selepas tuaian Pusingan #1' }
-            ]
-          },
-          {
-            id: 'batch_demo_4',
-            code: 'B25-09',
-            startDate: addDaysToDateStr(today, -14),
-            durationDays: 0,
-            targetDate: null,
-            initialQty: 800,
-            status: 'Tamat',
-            flush: 6,
-            harvests: [
-              { id: 'hv_5', timestamp: `${addDaysToDateStr(today, -65)}T08:30`, flush: 1, weightKg: 42.50 },
-              { id: 'hv_6', timestamp: `${addDaysToDateStr(today, -52)}T08:40`, flush: 2, weightKg: 48.10 },
-              { id: 'hv_7', timestamp: `${addDaysToDateStr(today, -40)}T09:00`, flush: 3, weightKg: 44.80 },
-              { id: 'hv_8', timestamp: `${addDaysToDateStr(today, -28)}T08:50`, flush: 4, weightKg: 36.20 },
-              { id: 'hv_9', timestamp: `${addDaysToDateStr(today, -16)}T09:10`, flush: 5, weightKg: 28.40 }
-            ],
-            damages: [
-              { id: 'dm_5', timestamp: `${addDaysToDateStr(today, -14)}T14:00`, qty: 800, reason: 'Tamat Tempoh' }
-            ],
-            climateLogs: [
-              { id: 'cl_5', timestamp: `${addDaysToDateStr(today, -16)}T09:15`, tempC: 26.8, humidityPct: 83, note: 'Tuaian akhir sebelum pelupusan kompos' }
-            ],
-            phaseLogs: [
-              { id: 'pl_8', timestamp: `${addDaysToDateStr(today, -14)}T14:00`, status: 'Tamat', durationDays: 0, note: 'Batch ditamatkan selepas 6 pusingan hasil' }
-            ]
-          }
-        ]
-      };
+    function normalizeKeyedMap(rawMap) {
+      if (!rawMap || typeof rawMap !== 'object') return [];
+      return Object.entries(rawMap)
+        .filter(([, val]) => val !== null && typeof val === 'object')
+        .map(([key, val]) => ({
+          ...val,
+          id: key
+        }));
     }
 
-    function loadState() {
+    function updateSyncBadge(state) {
+      const badge = document.getElementById('sync-status-badge');
+      if (!badge) return;
+
+      if (state === 'connected') {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-extrabold bg-emerald-500/15 text-emerald-300 border border-emerald-400/35 shrink-0 transition-all duration-300';
+        badge.innerHTML = `
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+          </span>
+          <span>Live Sync</span>
+        `;
+      } else if (state === 'connecting') {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-extrabold bg-amber-500/15 text-amber-300 border border-amber-400/35 shrink-0 transition-all duration-300';
+        badge.innerHTML = `
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+          <span>Menyambung...</span>
+        `;
+      } else {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-extrabold bg-rose-500/15 text-rose-300 border border-rose-400/40 shrink-0 transition-all duration-300';
+        badge.innerHTML = `
+          <span class="w-2 h-2 rounded-full bg-rose-400"></span>
+          <span>Offline / Ralat</span>
+        `;
+      }
+    }
+
+    // Inisialisasi Firebase Anonymous Authentication secara senyap di latar belakang
+    async function initAnonymousAuth() {
       try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) {
-          appState = buildDemoData();
-          saveState();
-          return;
-        }
-        const parsed = JSON.parse(raw);
-        appState = {
-          batches: Array.isArray(parsed.batches)
-            ? parsed.batches.map(b => ({
+        await signInAnonymously(auth);
+      } catch (err) {
+        console.warn('Sesi Anonymous Auth tidak dapat dimulakan:', err?.code || err?.message);
+        appState.authReady = false;
+      }
+    }
+
+    onAuthStateChanged(auth, (user) => {
+      appState.authReady = Boolean(user);
+      appState.authUid = user ? user.uid : null;
+      const authStatusEl = document.getElementById('settings-auth-status');
+      if (authStatusEl) {
+        authStatusEl.textContent = user
+          ? 'Sesi keselamatan pangkalan data aktif'
+          : 'Mod akses terbuka (Anonymous Auth belum diaktifkan)';
+      }
+    });
+
+    // Pemantau offset jam pelayan Firebase (.info/serverTimeOffset)
+    onValue(serverTimeOffsetRef, (snap) => {
+      const offset = snap.val();
+      if (typeof offset === 'number' && !isNaN(offset)) {
+        serverTimeOffsetMs = offset;
+        updateHeaderClock();
+      }
+    });
+
+    // Pemantau status sambungan Firebase (.info/connected)
+    onValue(connectedRef, (snap) => {
+      const isConnected = snap.val() === true;
+      if (isConnected) {
+        appState.hasConnectedOnce = true;
+        appState.dbError = false;
+        updateSyncBadge('connected');
+      } else if (appState.hasConnectedOnce || appState.dbError) {
+        updateSyncBadge('offline');
+      } else {
+        updateSyncBadge('connecting');
+      }
+    });
+
+    // Pemantau masa nyata koleksi mushtrack/batches
+    onValue(
+      batchesRef,
+      (snapshot) => {
+        const rawData = snapshot.val();
+        appState.isInitialLoading = false;
+        appState.dbError = false;
+
+        if (!rawData || typeof rawData !== 'object') {
+          appState.batches = [];
+        } else {
+          appState.batches = Object.entries(rawData)
+            .filter(([, val]) => val !== null && typeof val === 'object')
+            .map(([batchKey, b]) => {
+              const harvestLogs = normalizeKeyedMap(b.harvestLogs);
+              const damageLogs = normalizeKeyedMap(b.damageLogs);
+              const climateLogs = normalizeKeyedMap(b.climateLogs);
+              const statusHistory = normalizeKeyedMap(b.statusHistory);
+
+              const initialQty = Math.max(0, Math.round(Number(b.initialQty || 0)));
+              const totalDamaged = damageLogs.reduce((acc, d) => acc + Math.max(0, Math.round(Number(d.qty || 0))), 0);
+              const computedActive = Math.max(0, initialQty - totalDamaged);
+              const activeBlocks = typeof b.activeBlocks === 'number'
+                ? Math.max(0, Math.min(initialQty, Math.round(b.activeBlocks)))
+                : computedActive;
+
+              const computedHarvest = Math.round(harvestLogs.reduce((acc, h) => acc + Number(h.weightKg || 0), 0) * 100) / 100;
+              const totalHarvestKg = typeof b.totalHarvestKg === 'number'
+                ? Math.round(b.totalHarvestKg * 100) / 100
+                : computedHarvest;
+
+              const cycleCount = typeof b.cycleCount === 'number'
+                ? Math.max(0, Math.round(b.cycleCount))
+                : Math.max(0, Math.round(Number(b.flush || 0)));
+
+              let statusKey = normalizePhaseKey(b.status);
+              if (activeBlocks === 0 && initialQty > 0) {
+                statusKey = 'tamat';
+              }
+
+              return {
                 ...b,
-                harvests: Array.isArray(b.harvests) ? b.harvests : [],
-                damages: Array.isArray(b.damages) ? b.damages : [],
-                climateLogs: Array.isArray(b.climateLogs) ? b.climateLogs : [],
-                phaseLogs: Array.isArray(b.phaseLogs) ? b.phaseLogs : []
-              }))
-            : []
-        };
-      } catch (err) {
-        console.error('Ralat membaca localStorage:', err);
-        appState = buildDemoData();
-      }
-    }
+                id: batchKey,
+                code: String(b.code || batchKey),
+                initialQty,
+                activeBlocks,
+                totalHarvestKg,
+                cycleCount,
+                status: statusKey,
+                harvestLogs,
+                damageLogs,
+                climateLogs,
+                statusHistory
+              };
+            })
+            .sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
+        }
 
-    function saveState() {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
-      } catch (err) {
-        console.error('Ralat menyimpan localStorage:', err);
-        showToast('Gagal menyimpan data ke storan peranti.', 'error');
+        const countEl = document.getElementById('settings-batch-count');
+        if (countEl) {
+          countEl.textContent = `${appState.batches.length} batch`;
+        }
+
+        renderApp(false);
+      },
+      (error) => {
+        console.error('Ralat Firebase Realtime Database:', error);
+        appState.isInitialLoading = false;
+        appState.dbError = true;
+        updateSyncBadge('offline');
+        renderApp(false);
+        showToast('Gagal menyegerakkan data pangkalan data.', 'error');
       }
-    }
+    );
 
     // =========================================================================
     // 3. TELEMETRI, METRIK & SISTEM WARNA FASA
     // =========================================================================
     function getBatchDamagedCount(batch) {
-      return (batch.damages || []).reduce((acc, d) => acc + Number(d.qty || 0), 0);
+      return Math.max(0, Number(batch.initialQty || 0) - Number(batch.activeBlocks ?? batch.initialQty ?? 0));
     }
 
     function getBatchActiveBlocks(batch) {
-      if (batch.status === 'Tamat') return 0;
-      return Math.max(0, Number(batch.initialQty || 0) - getBatchDamagedCount(batch));
+      if (batch.status === 'tamat') return 0;
+      return Math.max(0, Number(batch.activeBlocks ?? 0));
     }
 
     function getBatchTotalHarvestKg(batch) {
-      const sum = (batch.harvests || []).reduce((acc, h) => acc + Number(h.weightKg || 0), 0);
-      return Math.round(sum * 100) / 100;
+      return Math.round(Number(batch.totalHarvestKg || 0) * 100) / 100;
     }
 
     function getBatchAvgYieldGrams(batch) {
@@ -1363,14 +1508,11 @@
       return [...batch.climateLogs].sort((a, b) => (b.timestamp || '').localeCompare(a.timestamp || ''))[0];
     }
 
-    /**
-     * Penilaian Julat Ideal Suhu (24°C–28°C)
-     */
     function evaluateTemp(tempC) {
       const t = Number(tempC);
       if (t > 28) {
         return {
-          status: 'Suhu Tinggi',
+          status: 'Panas',
           isOptimal: false,
           badgeClass: 'bg-rose-500/20 text-rose-300 border-rose-400/40',
           textClass: 'text-rose-400',
@@ -1380,7 +1522,7 @@
       }
       if (t < 24) {
         return {
-          status: 'Suhu Rendah',
+          status: 'Sejuk',
           isOptimal: false,
           badgeClass: 'bg-indigo-500/20 text-indigo-300 border-indigo-400/40',
           textClass: 'text-indigo-300',
@@ -1398,9 +1540,6 @@
       };
     }
 
-    /**
-     * Penilaian Julat Ideal Kelembapan (80%–90%)
-     */
     function evaluateHumidity(humPct) {
       const h = Number(humPct);
       if (h < 80) {
@@ -1415,7 +1554,7 @@
       }
       if (h > 90) {
         return {
-          status: 'Terlalu Lembap',
+          status: 'Lembap',
           isOptimal: false,
           badgeClass: 'bg-violet-500/20 text-violet-300 border-violet-400/40',
           textClass: 'text-violet-300',
@@ -1433,23 +1572,21 @@
       };
     }
 
-    /**
-     * Lencana Status Berwarna Mengikut Palet MycoPulse
-     */
-    function getPhaseBadgeHTML(status) {
-      if (status === 'Buka') {
+    function getPhaseBadgeHTML(statusKey) {
+      const key = normalizePhaseKey(statusKey);
+      if (key === 'buka') {
         return `
           <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold bg-gradient-to-r from-emerald-500/25 to-lime-500/20 text-emerald-300 border border-emerald-400/45 shadow-2xs">
             <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>Buka
           </span>`;
       }
-      if (status === 'Peram') {
+      if (key === 'peram') {
         return `
           <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold bg-gradient-to-r from-violet-500/25 to-indigo-500/20 text-violet-300 border border-violet-400/45 shadow-2xs">
             <span class="w-2 h-2 rounded-full bg-violet-400"></span>Peram
           </span>`;
       }
-      if (status === 'Rehat') {
+      if (key === 'rehat') {
         return `
           <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold bg-gradient-to-r from-amber-500/25 to-orange-500/20 text-amber-300 border border-amber-400/45 shadow-2xs">
             <span class="w-2 h-2 rounded-full bg-amber-400"></span>Rehat
@@ -1461,10 +1598,11 @@
         </span>`;
     }
 
-    function getPhaseBarGradient(status) {
-      if (status === 'Buka') return 'bg-gradient-to-r from-emerald-500 to-lime-400';
-      if (status === 'Peram') return 'bg-gradient-to-r from-violet-500 to-indigo-400';
-      if (status === 'Rehat') return 'bg-gradient-to-r from-amber-500 to-orange-400';
+    function getPhaseBarGradient(statusKey) {
+      const key = normalizePhaseKey(statusKey);
+      if (key === 'buka') return 'bg-gradient-to-r from-emerald-500 to-lime-400';
+      if (key === 'peram') return 'bg-gradient-to-r from-violet-500 to-indigo-400';
+      if (key === 'rehat') return 'bg-gradient-to-r from-amber-500 to-orange-400';
       return 'bg-slate-500';
     }
 
@@ -1489,7 +1627,7 @@
 
         renderDashboardKPIs();
         renderTasksQueue();
-        renderBatchGrid();
+        renderBatchLists();
       } else if (activeScreen === 'detail' && currentBatchId) {
         const batch = appState.batches.find(b => b.id === currentBatchId);
         if (!batch) {
@@ -1510,20 +1648,17 @@
       }
     }
 
-    /**
-     * 3 Kad KPI Utama pada Dashboard Hero
-     */
     function renderDashboardKPIs() {
       const batches = appState.batches;
-      const activeBatches = batches.filter(b => b.status !== 'Tamat');
+      const activeBatches = batches.filter(b => b.status !== 'tamat' && b.activeBlocks > 0);
 
       const totalActiveBlocks = activeBatches.reduce((sum, b) => sum + getBatchActiveBlocks(b), 0);
       const totalInitialActive = activeBatches.reduce((sum, b) => sum + Number(b.initialQty || 0), 0);
       const totalHarvestKg = batches.reduce((sum, b) => sum + getBatchTotalHarvestKg(b), 0);
 
-      const bukaCount = activeBatches.filter(b => b.status === 'Buka').length;
-      const peramCount = activeBatches.filter(b => b.status === 'Peram').length;
-      const rehatCount = activeBatches.filter(b => b.status === 'Rehat').length;
+      const bukaCount = activeBatches.filter(b => b.status === 'buka').length;
+      const peramCount = activeBatches.filter(b => b.status === 'peram').length;
+      const rehatCount = activeBatches.filter(b => b.status === 'rehat').length;
 
       document.getElementById('kpi-grid').innerHTML = `
         <!-- KPI 1: Baki Bongkah Aktif -->
@@ -1538,7 +1673,7 @@
             </div>
           </div>
           <p class="font-mono-num text-3xl sm:text-4xl font-extrabold text-white mt-2.5">${formatNumber(totalActiveBlocks)}</p>
-          <p class="text-xs font-medium text-emerald-100/60 mt-1.5 tabular-nums">Daripada <span class="text-emerald-300 font-bold">${formatNumber(totalInitialActive)}</span> bongkah semasa</p>
+          <p class="text-xs font-medium text-emerald-100/60 mt-1.5 tabular-nums">Daripada <span class="text-emerald-300 font-bold">${formatNumber(totalInitialActive)}</span> bongkah batch aktif</p>
         </div>
 
         <!-- KPI 2: Jumlah Hasil Terkumpul (kg) -->
@@ -1581,15 +1716,26 @@
     }
 
     /**
-     * Bahagian "Tugasan Hari Ini"
+     * Tugasan Hari Ini — Hanya batch aktif (status !== 'tamat' dan activeBlocks > 0)
      */
     function renderTasksQueue() {
       const today = getTodayDateStr();
       const container = document.getElementById('tasks-queue-container');
       const badgeEl = document.getElementById('tasks-badge-count');
 
+      if (appState.isInitialLoading) {
+        badgeEl.textContent = '...';
+        container.innerHTML = `
+          <div class="surface-card rounded-2xl p-5 space-y-3 animate-pulse">
+            <div class="h-4 w-28 bg-emerald-500/15 rounded-md"></div>
+            <div class="h-3 w-48 bg-white/10 rounded-md"></div>
+          </div>
+        `;
+        return;
+      }
+
       const dueBatches = appState.batches.filter(
-        b => b.status !== 'Tamat' && b.targetDate && diffDaysBetween(b.targetDate, today) <= 0
+        b => b.status !== 'tamat' && b.activeBlocks > 0 && b.targetDate && diffDaysBetween(b.targetDate, today) <= 0
       );
 
       badgeEl.textContent = dueBatches.length;
@@ -1616,14 +1762,14 @@
 
       container.innerHTML = dueBatches.map((batch, idx) => {
         const overdueDays = Math.abs(diffDaysBetween(batch.targetDate, today));
-        const isReadyToOpen = batch.status === 'Peram' || batch.status === 'Rehat';
-        const nextPhase = isReadyToOpen ? 'Buka' : 'Rehat';
+        const isReadyToOpen = batch.status === 'peram' || batch.status === 'rehat';
+        const nextPhase = isReadyToOpen ? 'buka' : 'rehat';
 
-        const statusHint = batch.status === 'Peram'
-          ? `Tamat fasa Peram (${batch.durationDays || DEFAULT_DURATIONS.Peram} hari)`
-          : batch.status === 'Rehat'
-            ? `Tamat fasa Rehat Pusingan #${batch.flush || 1}`
-            : `Tamat fasa Buka Pusingan #${batch.flush || 1}`;
+        const statusHint = batch.status === 'peram'
+          ? `Tamat fasa Peram (${batch.durationDays || DEFAULT_DURATIONS.peram} hari)`
+          : batch.status === 'rehat'
+            ? `Tamat fasa Rehat Pusingan #${batch.cycleCount || 1}`
+            : `Tamat fasa Buka Pusingan #${batch.cycleCount || 1}`;
 
         const timingBadge = overdueDays > 0
           ? `<span class="text-[11px] font-extrabold text-rose-400">Lewat ${overdueDays} hari</span>`
@@ -1637,7 +1783,7 @@
 
         return `
           <div style="--stagger:${idx}" class="stagger-item surface-card rounded-2xl p-4 ${borderAccent} flex items-center justify-between gap-3">
-            <div onclick="openBatchDetail('${batch.id}')" class="cursor-pointer min-w-0 flex-1 group">
+            <div data-action="open-batch-detail" data-batch-id="${escapeHTML(batch.id)}" class="cursor-pointer min-w-0 flex-1 group">
               <div class="flex items-center gap-2">
                 <span class="font-mono-num text-base font-extrabold text-white group-hover:text-emerald-300 transition-colors">${escapeHTML(batch.code)}</span>
                 ${timingBadge}
@@ -1647,7 +1793,10 @@
             </div>
 
             <button
-              onclick="openPhaseSwitchModal('${batch.id}', '${nextPhase}', true)"
+              type="button"
+              data-action="quick-task"
+              data-batch-id="${escapeHTML(batch.id)}"
+              data-phase="${nextPhase}"
               class="btn-spring shrink-0 min-h-[42px] px-3.5 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-1.5 ${actionBtnClass}"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24">
@@ -1661,165 +1810,257 @@
     }
 
     /**
-     * Penapis Status & Grid Kad Batch
+     * Pembina Kad Batch (Digunakan untuk Batch Aktif & Batch Tamat / Arkib)
      */
-    function renderBatchGrid() {
+    function buildBatchCardHTML(batch, idx, today, isArchived = false) {
+      const activeBlocks = getBatchActiveBlocks(batch);
+      const initialQty = Number(batch.initialQty || 0);
+      const healthPct = initialQty > 0 ? Math.round((activeBlocks / initialQty) * 100) : 0;
+      const totalKg = getBatchTotalHarvestKg(batch);
+      const flushLabel = batch.cycleCount > 0 ? `Pusingan #${batch.cycleCount}` : 'Pemeraman';
+
+      // Lencana kompak bacaan suhu & kelembapan terkini khusus bagi batch ini
+      const latestClimate = getLatestClimateLog(batch);
+      let climatePillHTML = '';
+      if (latestClimate) {
+        const tEval = evaluateTemp(latestClimate.tempC);
+        const hEval = evaluateHumidity(latestClimate.humidityPct);
+        const bothOptimal = tEval.isOptimal && hEval.isOptimal;
+        const dotColor = bothOptimal
+          ? 'bg-cyan-400'
+          : (!tEval.isOptimal && Number(latestClimate.tempC) > 28 ? 'bg-rose-400' : 'bg-amber-400');
+
+        climatePillHTML = `
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cyan-500/10 border border-cyan-400/25 font-mono-num text-[11px] font-bold text-cyan-200">
+            <span class="w-2 h-2 rounded-full ${dotColor} shrink-0"></span>
+            <span>${Number(latestClimate.tempC).toFixed(1)}°C · ${Math.round(Number(latestClimate.humidityPct))}%</span>
+          </span>
+        `;
+      } else {
+        climatePillHTML = `
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-slate-400">
+            <span class="w-2 h-2 rounded-full bg-slate-500 shrink-0"></span>
+            <span>Tiada log iklim</span>
+          </span>
+        `;
+      }
+
+      let cycleBarPct = 100;
+      let daysStatusHTML = '';
+      let targetDateText = 'Kitaran selesai';
+
+      if (!isArchived && batch.status !== 'tamat' && batch.targetDate) {
+        const totalDur = Number(batch.durationDays || DEFAULT_DURATIONS[batch.status] || 5);
+        const elapsed = Math.max(0, diffDaysBetween(today, batch.startDate));
+        const daysDiff = diffDaysBetween(batch.targetDate, today);
+        cycleBarPct = totalDur > 0 ? Math.min(100, Math.max(8, Math.round((elapsed / totalDur) * 100))) : 100;
+        targetDateText = `Sasaran: ${formatDisplayDate(batch.targetDate)}`;
+
+        if (daysDiff > 0) {
+          daysStatusHTML = `<span class="font-mono-num text-xs font-extrabold text-emerald-300">Baki ${daysDiff} hari</span>`;
+        } else if (daysDiff === 0) {
+          daysStatusHTML = `<span class="text-xs font-extrabold text-amber-300">Tamat hari ini</span>`;
+        } else {
+          daysStatusHTML = `<span class="text-xs font-extrabold text-rose-400">Lewat ${Math.abs(daysDiff)} hari</span>`;
+        }
+      } else {
+        const zeroReason = Number(batch.activeBlocks) === 0 && initialQty > 0 ? 'Baki 0 bongkah' : 'Kitaran tamat';
+        daysStatusHTML = `<span class="text-xs font-bold text-slate-400">${zeroReason}</span>`;
+      }
+
+      const cardOpacity = isArchived ? 'opacity-80 hover:opacity-100 border-white/15' : '';
+
+      return `
+        <article
+          style="--stagger:${idx}"
+          data-action="open-batch-detail"
+          data-batch-id="${escapeHTML(batch.id)}"
+          class="stagger-item batch-card surface-card ${cardOpacity} cursor-pointer rounded-3xl p-5 flex flex-col justify-between gap-4"
+        >
+          <div class="space-y-3.5">
+            <!-- Baris Atas: Kod Batch, Pusingan, Lencana Status -->
+            <div class="flex items-center justify-between gap-2">
+              <div class="flex items-center gap-2 min-w-0">
+                <h3 class="font-mono-num text-lg font-extrabold text-white truncate">${escapeHTML(batch.code)}</h3>
+                <span class="font-mono-num text-[11px] font-bold px-2 py-0.5 rounded-md bg-white/10 text-slate-300 shrink-0">${flushLabel}</span>
+              </div>
+              ${getPhaseBadgeHTML(batch.status)}
+            </div>
+
+            <!-- Pil Bacaan Iklim Terkini & Jumlah Hasil -->
+            <div class="flex items-center justify-between gap-2">
+              ${climatePillHTML}
+              <span class="font-mono-num text-xs font-extrabold text-lime-300">${totalKg.toFixed(2)} kg</span>
+            </div>
+
+            <!-- Kemajuan Tempoh Fasa Semasa -->
+            <div>
+              <div class="flex items-center justify-between text-xs mb-1.5">
+                <span class="text-slate-400 font-medium">Tempoh Fasa (${getPhaseLabel(batch.status)})</span>
+                ${daysStatusHTML}
+              </div>
+              <div class="w-full h-2 bg-[#070D0B] rounded-full overflow-hidden border border-white/5">
+                <div class="progress-bar-fill h-full ${getPhaseBarGradient(batch.status)} rounded-full" style="width: ${cycleBarPct}%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Baris Bawah: Baki Bongkah Aktif & Tarikh Sasaran -->
+          <div class="pt-3 border-t border-emerald-400/15 flex items-center justify-between gap-2 text-xs">
+            <div class="flex items-center gap-1.5">
+              <span class="text-slate-400">Aktif:</span>
+              <span class="font-mono-num font-extrabold text-white">${formatNumber(activeBlocks)}</span>
+              <span class="font-mono-num text-slate-500">/ ${formatNumber(initialQty)} (${healthPct}%)</span>
+            </div>
+            <div class="flex items-center gap-1 text-slate-400 font-mono-num text-[11px]">
+              <span>${targetDateText}</span>
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    /**
+     * Memaparkan Senarai Batch Aktif dan Bahagian Berasingan Batch Tamat / Arkib
+     */
+    function renderBatchLists() {
       const today = getTodayDateStr();
-      const batches = appState.batches;
+      const allBatches = appState.batches;
+      const activeBatches = allBatches.filter(b => b.status !== 'tamat' && b.activeBlocks > 0);
+      const archivedBatches = allBatches.filter(b => b.status === 'tamat' || b.activeBlocks === 0);
 
       const counts = {
-        Semua: batches.length,
-        Peram: batches.filter(b => b.status === 'Peram').length,
-        Buka: batches.filter(b => b.status === 'Buka').length,
-        Rehat: batches.filter(b => b.status === 'Rehat').length,
-        Tamat: batches.filter(b => b.status === 'Tamat').length
+        semua: activeBatches.length,
+        peram: activeBatches.filter(b => b.status === 'peram').length,
+        buka: activeBatches.filter(b => b.status === 'buka').length,
+        rehat: activeBatches.filter(b => b.status === 'rehat').length
       };
 
+      const filterDefs = [
+        { key: 'semua', label: 'Semua Aktif' },
+        { key: 'peram', label: 'Peram' },
+        { key: 'buka', label: 'Buka' },
+        { key: 'rehat', label: 'Rehat' }
+      ];
+
       const filterBar = document.getElementById('batch-filter-bar');
-      filterBar.innerHTML = ['Semua', 'Peram', 'Buka', 'Rehat', 'Tamat'].map(phase => {
-        const isActive = activePhaseFilter === phase;
+      filterBar.innerHTML = filterDefs.map(f => {
+        const isActive = activePhaseFilter === f.key;
         const activeClass = isActive
           ? 'bg-emerald-500/20 text-emerald-300 border-emerald-400/50 shadow-2xs'
           : 'bg-[#0F1C17] text-slate-400 hover:text-white border-emerald-400/15 hover:border-emerald-400/35';
         return `
           <button
-            onclick="setPhaseFilter('${phase}')"
+            type="button"
+            data-action="set-filter"
+            data-phase="${f.key}"
             class="btn-spring shrink-0 px-3.5 py-2 rounded-xl border text-xs font-extrabold flex items-center gap-1.5 ${activeClass}"
           >
-            <span>${phase}</span>
-            <span class="font-mono-num text-[11px] ${isActive ? 'text-emerald-200' : 'text-slate-500'}">${counts[phase]}</span>
+            <span>${f.label}</span>
+            <span class="font-mono-num text-[11px] ${isActive ? 'text-emerald-200' : 'text-slate-500'}">${counts[f.key]}</span>
           </button>
         `;
       }).join('');
 
-      let filtered = activePhaseFilter === 'Semua'
-        ? batches
-        : batches.filter(b => b.status === activePhaseFilter);
+      const gridEl = document.getElementById('batch-cards-grid');
+      const archiveSection = document.getElementById('archived-batches-section');
+      const archiveGridEl = document.getElementById('archived-cards-grid');
+      const archiveCountEl = document.getElementById('archive-badge-count');
 
-      if (searchQuery.trim() !== '') {
-        const q = searchQuery.trim().toLowerCase();
-        filtered = filtered.filter(b => (b.code || '').toLowerCase().includes(q));
+      // Keadaan memuatkan awal dari Firebase RTDB
+      if (appState.isInitialLoading) {
+        archiveSection.classList.add('hidden');
+        gridEl.innerHTML = [0, 1].map(() => `
+          <div class="surface-card rounded-3xl p-5 space-y-4 animate-pulse">
+            <div class="flex justify-between items-center">
+              <div class="h-6 w-24 bg-emerald-500/15 rounded-lg"></div>
+              <div class="h-6 w-16 bg-white/10 rounded-full"></div>
+            </div>
+            <div class="h-5 w-36 bg-cyan-500/10 rounded-lg"></div>
+            <div class="h-2.5 w-full bg-white/10 rounded-full"></div>
+            <div class="h-4 w-44 bg-white/10 rounded-md"></div>
+          </div>
+        `).join('');
+        return;
       }
 
-      const gridEl = document.getElementById('batch-cards-grid');
-
-      if (filtered.length === 0) {
+      // Keadaan kosong apabila tiada langsung batch dalam pangkalan data
+      if (allBatches.length === 0) {
+        archiveSection.classList.add('hidden');
         gridEl.innerHTML = `
-          <div class="md:col-span-2 surface-card rounded-3xl p-10 text-center border-dashed">
-            <p class="text-sm font-extrabold text-white">Tiada batch ditemui.</p>
-            <p class="text-xs text-slate-400 mt-1">Cuba tukar penapis status atau tekan "+ Batch Baru" untuk mendaftar batch.</p>
+          <div class="md:col-span-2 surface-card rounded-3xl p-8 sm:p-10 text-center border-dashed border-emerald-400/30 space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 flex items-center justify-center mx-auto">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            </div>
+            <div class="max-w-md mx-auto">
+              <h3 class="text-base sm:text-lg font-extrabold text-white">Belum Ada Rekod Batch</h3>
+              <p class="text-xs sm:text-sm text-slate-400 mt-1 leading-relaxed">
+                Pangkalan data masih kosong. Daftar batch bongkah pertama anda untuk mula merekod penjagaan, suhu kelembapan, dan hasil tuaian.
+              </p>
+            </div>
+            <div class="pt-1">
+              <button
+                type="button"
+                data-action="open-new-batch"
+                class="btn-spring inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-lime-500 text-obsidian-950 font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-emerald-neon"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.8" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+                <span>+ Daftar Batch Pertama</span>
+              </button>
+            </div>
           </div>
         `;
         return;
       }
 
-      gridEl.innerHTML = filtered.map((batch, idx) => {
-        const activeBlocks = getBatchActiveBlocks(batch);
-        const initialQty = Number(batch.initialQty || 0);
-        const healthPct = initialQty > 0 ? Math.round((activeBlocks / initialQty) * 100) : 0;
-        const totalKg = getBatchTotalHarvestKg(batch);
-        const flushLabel = batch.flush > 0 ? `Pusingan #${batch.flush}` : 'Pemeraman';
+      const q = searchQuery.trim().toLowerCase();
 
-        // Pil bacaan suhu & kelembapan terkini khusus bagi batch ini
-        const latestClimate = getLatestClimateLog(batch);
-        let climatePillHTML = '';
-        if (latestClimate) {
-          const tEval = evaluateTemp(latestClimate.tempC);
-          const hEval = evaluateHumidity(latestClimate.humidityPct);
-          const bothOptimal = tEval.isOptimal && hEval.isOptimal;
-          const dotColor = bothOptimal
-            ? 'bg-cyan-400'
-            : (!tEval.isOptimal && Number(latestClimate.tempC) > 28 ? 'bg-rose-400' : 'bg-amber-400');
+      // Tapis Batch Aktif
+      let filteredActive = activePhaseFilter === 'semua'
+        ? activeBatches
+        : activeBatches.filter(b => b.status === activePhaseFilter);
 
-          climatePillHTML = `
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cyan-500/10 border border-cyan-400/25 font-mono-num text-[11px] font-bold text-cyan-200">
-              <span class="w-2 h-2 rounded-full ${dotColor} shrink-0"></span>
-              <span>${Number(latestClimate.tempC).toFixed(1)}°C · ${Math.round(Number(latestClimate.humidityPct))}%</span>
-            </span>
-          `;
-        } else {
-          climatePillHTML = `
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[11px] font-medium text-slate-400">
-              <span class="w-2 h-2 rounded-full bg-slate-500 shrink-0"></span>
-              <span>Tiada log iklim</span>
-            </span>
-          `;
-        }
+      if (q !== '') {
+        filteredActive = filteredActive.filter(b => (b.code || '').toLowerCase().includes(q));
+      }
 
-        // Bar kemajuan tempoh & baki hari / lewat hari
-        let cycleBarPct = 100;
-        let daysStatusHTML = '';
-        let targetDateText = 'Kitaran selesai';
-
-        if (batch.status !== 'Tamat' && batch.targetDate) {
-          const totalDur = Number(batch.durationDays || DEFAULT_DURATIONS[batch.status] || 5);
-          const elapsed = Math.max(0, diffDaysBetween(today, batch.startDate));
-          const daysDiff = diffDaysBetween(batch.targetDate, today);
-          cycleBarPct = totalDur > 0 ? Math.min(100, Math.max(8, Math.round((elapsed / totalDur) * 100))) : 100;
-          targetDateText = `Sasaran: ${formatDisplayDate(batch.targetDate)}`;
-
-          if (daysDiff > 0) {
-            daysStatusHTML = `<span class="font-mono-num text-xs font-extrabold text-emerald-300">Baki ${daysDiff} hari</span>`;
-          } else if (daysDiff === 0) {
-            daysStatusHTML = `<span class="text-xs font-extrabold text-amber-300">Tamat hari ini</span>`;
-          } else {
-            daysStatusHTML = `<span class="text-xs font-extrabold text-rose-400">Lewat ${Math.abs(daysDiff)} hari</span>`;
-          }
-        } else {
-          daysStatusHTML = `<span class="text-xs font-bold text-slate-400">Arkib Tamat</span>`;
-        }
-
-        return `
-          <article
-            style="--stagger:${idx}"
-            onclick="openBatchDetail('${batch.id}')"
-            class="stagger-item batch-card surface-card cursor-pointer rounded-3xl p-5 flex flex-col justify-between gap-4"
-          >
-            <div class="space-y-3.5">
-              <!-- Baris Atas: Kod Batch, Pusingan, Lencana Status -->
-              <div class="flex items-center justify-between gap-2">
-                <div class="flex items-center gap-2 min-w-0">
-                  <h3 class="font-mono-num text-lg font-extrabold text-white truncate">${escapeHTML(batch.code)}</h3>
-                  <span class="font-mono-num text-[11px] font-bold px-2 py-0.5 rounded-md bg-white/10 text-slate-300 shrink-0">${flushLabel}</span>
-                </div>
-                ${getPhaseBadgeHTML(batch.status)}
-              </div>
-
-              <!-- Pil Bacaan Iklim Terkini & Jumlah Hasil -->
-              <div class="flex items-center justify-between gap-2">
-                ${climatePillHTML}
-                <span class="font-mono-num text-xs font-extrabold text-lime-300">${totalKg.toFixed(2)} kg</span>
-              </div>
-
-              <!-- Kemajuan Tempoh Fasa semasa -->
-              <div>
-                <div class="flex items-center justify-between text-xs mb-1.5">
-                  <span class="text-slate-400 font-medium">Tempoh Fasa (${batch.status})</span>
-                  ${daysStatusHTML}
-                </div>
-                <div class="w-full h-2 bg-[#070D0B] rounded-full overflow-hidden border border-white/5">
-                  <div class="progress-bar-fill h-full ${getPhaseBarGradient(batch.status)} rounded-full" style="width: ${cycleBarPct}%"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Baris Bawah: Baki Bongkah Aktif & Tarikh Sasaran -->
-            <div class="pt-3 border-t border-emerald-400/15 flex items-center justify-between gap-2 text-xs">
-              <div class="flex items-center gap-1.5">
-                <span class="text-slate-400">Aktif:</span>
-                <span class="font-mono-num font-extrabold text-white">${formatNumber(activeBlocks)}</span>
-                <span class="font-mono-num text-slate-500">/ ${formatNumber(initialQty)} (${healthPct}%)</span>
-              </div>
-              <div class="flex items-center gap-1 text-slate-400 font-mono-num text-[11px]">
-                <span>${targetDateText}</span>
-                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </div>
-          </article>
+      if (filteredActive.length === 0) {
+        gridEl.innerHTML = `
+          <div class="md:col-span-2 surface-card rounded-3xl p-8 text-center border-dashed border-emerald-400/25">
+            <p class="text-sm font-extrabold text-white">Tiada batch aktif ditemui untuk penapis ini.</p>
+            <p class="text-xs text-slate-400 mt-1">Cuba tukar penapis status atau daftar batch baharu.</p>
+          </div>
         `;
-      }).join('');
+      } else {
+        gridEl.innerHTML = filteredActive.map((batch, idx) => buildBatchCardHTML(batch, idx, today, false)).join('');
+      }
+
+      // Papar Bahagian Berasingan Batch Tamat / Arkib jika wujud
+      let filteredArchived = archivedBatches;
+      if (q !== '') {
+        filteredArchived = archivedBatches.filter(b => (b.code || '').toLowerCase().includes(q));
+      }
+
+      if (filteredArchived.length > 0) {
+        archiveSection.classList.remove('hidden');
+        archiveCountEl.textContent = filteredArchived.length;
+        archiveGridEl.classList.toggle('hidden', !isArchiveExpanded);
+        document.getElementById('toggle-archive-label').textContent = isArchiveExpanded ? 'Sembunyikan' : 'Tunjukkan';
+        document.getElementById('toggle-archive-chevron').style.transform = isArchiveExpanded ? 'rotate(0deg)' : 'rotate(-90deg)';
+
+        if (isArchiveExpanded) {
+          archiveGridEl.innerHTML = filteredArchived.map((batch, idx) => buildBatchCardHTML(batch, idx, today, true)).join('');
+        }
+      } else {
+        archiveSection.classList.add('hidden');
+      }
     }
 
     /**
@@ -1832,10 +2073,11 @@
       const initialQty = Number(batch.initialQty || 0);
       const totalKg = getBatchTotalHarvestKg(batch);
       const avgYieldGrams = getBatchAvgYieldGrams(batch);
+      const isClosedBatch = batch.status === 'tamat' || activeBlocks === 0;
 
       // Kemajuan Tempoh Fasa
       let cycleInfoHTML = '';
-      if (batch.status !== 'Tamat' && batch.targetDate) {
+      if (!isClosedBatch && batch.targetDate) {
         const totalDuration = Number(batch.durationDays || DEFAULT_DURATIONS[batch.status] || 5);
         const elapsedDays = Math.max(0, diffDaysBetween(today, batch.startDate));
         const remainingDays = diffDaysBetween(batch.targetDate, today);
@@ -1853,7 +2095,7 @@
           <div class="bg-[#070D0B]/90 rounded-2xl p-4 border border-emerald-400/20 space-y-2.5">
             <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
               <div class="flex items-center gap-2">
-                <span class="font-extrabold text-white">Kemajuan Fasa ${escapeHTML(batch.status)}</span>
+                <span class="font-extrabold text-white">Kemajuan Fasa ${escapeHTML(getPhaseLabel(batch.status))}</span>
                 <span class="font-mono-num text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 text-emerald-300">
                   Tempoh: ${totalDuration} hari
                 </span>
@@ -1872,10 +2114,13 @@
           </div>
         `;
       } else {
+        const closedNote = activeBlocks === 0 && initialQty > 0
+          ? 'Ditutup automatik (baki 0 bongkah aktif)'
+          : `Direkodkan sejak ${formatDisplayDate(batch.startDate)}`;
         cycleInfoHTML = `
-          <div class="bg-[#070D0B]/90 rounded-2xl p-4 border border-white/10 flex items-center justify-between text-xs">
-            <span class="font-bold text-slate-300">Status Batch: <strong class="text-white">Tamat</strong></span>
-            <span class="font-mono-num text-slate-400">Direkodkan sejak ${formatDisplayDate(batch.startDate)}</span>
+          <div class="bg-[#070D0B]/90 rounded-2xl p-4 border border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs">
+            <span class="font-bold text-slate-300">Status Batch: <strong class="text-white">Tamat / Arkib</strong></span>
+            <span class="font-mono-num text-slate-400">${closedNote}</span>
           </div>
         `;
       }
@@ -1889,13 +2134,12 @@
         climateTelemetryHTML = `
           <div class="rounded-2xl bg-[#070D0B]/80 border border-dashed border-cyan-400/30 p-6 text-center space-y-2">
             <p class="text-sm font-extrabold text-cyan-200">Tiada log iklim bagi batch ${escapeHTML(batch.code)}</p>
-            <p class="text-xs text-slate-400">Klik butang "+ Log Iklim" untuk merekod bacaan suhu (°C) dan kelembapan (%) khusus untuk batch ini.</p>
+            <p class="text-xs text-slate-400">Klik butang "+ Log Suhu & Kelembapan" untuk merekod bacaan suhu (°C) dan kelembapan (%) khusus bagi batch ini.</p>
           </div>
         `;
       } else {
         const tEval = evaluateTemp(latestClimate.tempC);
         const hEval = evaluateHumidity(latestClimate.humidityPct);
-        // Posisi bar visual (Suhu skala 18°C–36°C, Kelembapan skala 50%–100%)
         const tempPercent = Math.min(100, Math.max(5, Math.round(((Number(latestClimate.tempC) - 18) / (36 - 18)) * 100)));
         const humPercent = Math.min(100, Math.max(5, Math.round(((Number(latestClimate.humidityPct) - 50) / (100 - 50)) * 100)));
 
@@ -1919,10 +2163,8 @@
                   <span class="font-mono-num text-3xl font-extrabold ${tEval.textClass}">${Number(latestClimate.tempC).toFixed(1)}</span>
                   <span class="text-sm font-bold text-slate-400">°C</span>
                 </div>
-                <!-- Bar Visual Julat Ideal (24°C - 28°C) -->
                 <div class="space-y-1">
                   <div class="relative w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                    <!-- Penanda zon ideal 24-28°C (33% hingga 56% pada skala 18-36°C) -->
                     <div class="absolute inset-y-0 left-[33%] right-[44%] bg-cyan-400/25 border-x border-cyan-300/60"></div>
                     <div class="h-full ${tEval.barColor} rounded-full transition-all duration-500" style="width: ${tempPercent}%"></div>
                   </div>
@@ -1946,10 +2188,8 @@
                   <span class="font-mono-num text-3xl font-extrabold ${hEval.textClass}">${Math.round(Number(latestClimate.humidityPct))}</span>
                   <span class="text-sm font-bold text-slate-400">%</span>
                 </div>
-                <!-- Bar Visual Julat Ideal (80% - 90%) -->
                 <div class="space-y-1">
                   <div class="relative w-full h-2 bg-white/10 rounded-full overflow-hidden">
-                    <!-- Penanda zon ideal 80-90% (60% hingga 80% pada skala 50-100%) -->
                     <div class="absolute inset-y-0 left-[60%] right-[20%] bg-cyan-400/25 border-x border-cyan-300/60"></div>
                     <div class="h-full ${hEval.barColor} rounded-full transition-all duration-500" style="width: ${humPercent}%"></div>
                   </div>
@@ -1993,7 +2233,10 @@
                 </div>
 
                 <button
-                  onclick="confirmDeleteClimateLog('${batch.id}', '${log.id}')"
+                  type="button"
+                  data-action="delete-climate"
+                  data-batch-id="${escapeHTML(batch.id)}"
+                  data-log-id="${escapeHTML(log.id)}"
                   aria-label="Padam rekod iklim"
                   class="btn-spring p-2 rounded-xl text-slate-400 hover:text-rose-400 hover:bg-rose-500/15 shrink-0"
                 >
@@ -2006,47 +2249,53 @@
           }).join('');
 
       // Sejarah Tuaian Batch
-      const harvestsSorted = [...(batch.harvests || [])].sort((a, b) => (b.timestamp || '').localeCompare(a.timestamp || ''));
+      const harvestsSorted = [...(batch.harvestLogs || [])].sort((a, b) => (b.timestamp || '').localeCompare(a.timestamp || ''));
       const harvestListHTML = harvestsSorted.length === 0
         ? `<div class="rounded-2xl bg-[#070D0B]/80 border border-dashed border-emerald-400/25 p-5 text-center">
              <p class="text-xs font-bold text-slate-400">Belum ada rekod tuaian untuk batch ini.</p>
            </div>`
-        : harvestsSorted.map((h, idx) => `
-            <div style="--stagger:${idx}" class="stagger-item bg-[#070D0B]/85 rounded-2xl p-3.5 border border-emerald-400/20 flex items-center justify-between gap-3">
-              <div class="flex items-center gap-3 min-w-0">
-                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/35 text-emerald-300 flex items-center justify-center shrink-0 font-mono-num text-xs font-extrabold">
-                  #${h.flush}
-                </div>
-                <div class="min-w-0">
-                  <div class="flex items-center gap-2">
-                    <span class="font-mono-num text-sm font-extrabold text-lime-300">+${Number(h.weightKg).toFixed(2)} kg</span>
-                    <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-slate-300">Pusingan #${h.flush}</span>
+        : harvestsSorted.map((h, idx) => {
+            const cycleNum = h.cycle || h.flush || 1;
+            return `
+              <div style="--stagger:${idx}" class="stagger-item bg-[#070D0B]/85 rounded-2xl p-3.5 border border-emerald-400/20 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3 min-w-0">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/35 text-emerald-300 flex items-center justify-center shrink-0 font-mono-num text-xs font-extrabold">
+                    #${cycleNum}
                   </div>
-                  <p class="font-mono-num text-[11px] text-slate-400 mt-0.5">${formatDisplayDateTime(h.timestamp)}</p>
+                  <div class="min-w-0">
+                    <div class="flex items-center gap-2">
+                      <span class="font-mono-num text-sm font-extrabold text-lime-300">+${Number(h.weightKg).toFixed(2)} kg</span>
+                      <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-slate-300">Pusingan #${cycleNum}</span>
+                    </div>
+                    <p class="font-mono-num text-[11px] text-slate-400 mt-0.5">${formatDisplayDateTime(h.timestamp)}</p>
+                  </div>
                 </div>
+                <button
+                  type="button"
+                  data-action="delete-harvest"
+                  data-batch-id="${escapeHTML(batch.id)}"
+                  data-log-id="${escapeHTML(h.id)}"
+                  aria-label="Padam rekod tuaian"
+                  class="btn-spring p-2 rounded-xl text-slate-400 hover:text-rose-400 hover:bg-rose-500/15"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                </button>
               </div>
-              <button
-                onclick="confirmDeleteHarvest('${batch.id}', '${h.id}')"
-                aria-label="Padam rekod tuaian"
-                class="btn-spring p-2 rounded-xl text-slate-400 hover:text-rose-400 hover:bg-rose-500/15"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                </svg>
-              </button>
-            </div>
-          `).join('');
+            `;
+          }).join('');
 
-      // Sejarah Bongkah Rosak & Log Fasa
+      // Sejarah Bongkah Rosak & Sejarah Status
       const combinedLogs = [
-        ...(batch.damages || []).map(d => ({
+        ...(batch.damageLogs || []).map(d => ({
           kind: 'damage',
           id: d.id,
           timestamp: d.timestamp,
           qty: d.qty,
           reason: d.reason
         })),
-        ...(batch.phaseLogs || []).map(p => ({
+        ...(batch.statusHistory || []).map(p => ({
           kind: 'phase',
           id: p.id,
           timestamp: p.timestamp,
@@ -2057,7 +2306,7 @@
       ].sort((a, b) => (b.timestamp || '').localeCompare(a.timestamp || ''));
 
       const activityLogsHTML = combinedLogs.length === 0
-        ? `<p class="text-xs text-slate-500 italic py-2">Tiada rekod bongkah rosak atau perubahan fasa.</p>`
+        ? `<p class="text-xs text-slate-500 italic py-2">Tiada rekod bongkah rosak atau perubahan status.</p>`
         : combinedLogs.map((item, idx) => {
             if (item.kind === 'damage') {
               return `
@@ -2072,7 +2321,10 @@
                     </div>
                   </div>
                   <button
-                    onclick="confirmDeleteDamage('${batch.id}', '${item.id}')"
+                    type="button"
+                    data-action="delete-damage"
+                    data-batch-id="${escapeHTML(batch.id)}"
+                    data-log-id="${escapeHTML(item.id)}"
                     aria-label="Padam rekod rosak"
                     class="btn-spring p-2 rounded-xl text-slate-400 hover:text-rose-300 hover:bg-rose-500/20"
                   >
@@ -2091,7 +2343,7 @@
                   </svg>
                 </div>
                 <div class="min-w-0 flex-1">
-                  <p class="text-xs font-extrabold text-white">Status: ${escapeHTML(item.status)} ${item.durationDays > 0 ? `(${item.durationDays} hari)` : ''}</p>
+                  <p class="text-xs font-extrabold text-white">Status: ${escapeHTML(getPhaseLabel(item.status))} ${item.durationDays > 0 ? `(${item.durationDays} hari)` : ''}</p>
                   ${item.note ? `<p class="text-xs text-slate-300 mt-0.5">${escapeHTML(item.note)}</p>` : ''}
                   <p class="font-mono-num text-[11px] text-slate-400 mt-0.5">${formatDisplayDateTime(item.timestamp)}</p>
                 </div>
@@ -2099,14 +2351,15 @@
             `;
           }).join('');
 
-      const defaultNextPhase = batch.status === 'Buka' ? 'Rehat' : 'Buka';
+      const defaultNextPhase = batch.status === 'buka' ? 'rehat' : 'buka';
 
       document.getElementById('screen-detail').innerHTML = `
         <div class="space-y-6">
           <!-- BAR NAVIGASI ATAS -->
           <div class="flex flex-wrap items-center justify-between gap-3">
             <button
-              onclick="navigateToDashboard()"
+              type="button"
+              data-action="nav-dashboard"
               class="btn-spring inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0F1C17] hover:bg-[#162922] border border-emerald-400/25 text-xs sm:text-sm font-extrabold text-white"
             >
               <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24">
@@ -2116,7 +2369,9 @@
             </button>
 
             <button
-              onclick="confirmDeleteBatch('${batch.id}')"
+              type="button"
+              data-action="delete-batch"
+              data-batch-id="${escapeHTML(batch.id)}"
               class="btn-spring inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-xs font-bold text-rose-300"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -2133,19 +2388,24 @@
                 <h1 class="font-mono-num text-2xl sm:text-3xl font-extrabold text-white">${escapeHTML(batch.code)}</h1>
                 ${getPhaseBadgeHTML(batch.status)}
                 <span class="font-mono-num text-xs font-extrabold px-2.5 py-1 rounded-lg bg-white/10 text-emerald-200 border border-white/10">
-                  Pusingan #${batch.flush || 0}
+                  Pusingan #${batch.cycleCount || 0}
                 </span>
               </div>
 
-              <button
-                onclick="openPhaseSwitchModal('${batch.id}', '${defaultNextPhase}', false)"
-                class="btn-spring inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-500/20 hover:bg-violet-500/30 border border-violet-400/40 text-violet-200 font-extrabold text-xs sm:text-sm"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                </svg>
-                <span>Tukar Status</span>
-              </button>
+              ${activeBlocks > 0 ? `
+                <button
+                  type="button"
+                  data-action="open-phase-switch"
+                  data-batch-id="${escapeHTML(batch.id)}"
+                  data-phase="${defaultNextPhase}"
+                  class="btn-spring inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-500/20 hover:bg-violet-500/30 border border-violet-400/40 text-violet-200 font-extrabold text-xs sm:text-sm"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                  </svg>
+                  <span>Tukar Status</span>
+                </button>
+              ` : ''}
             </div>
 
             <!-- Ringkasan Angka Batch -->
@@ -2158,7 +2418,7 @@
 
               <div class="bg-[#070D0B]/90 rounded-2xl p-4 border border-violet-400/20">
                 <span class="block text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Pusingan Ke-</span>
-                <span class="font-mono-num block text-2xl sm:text-3xl font-extrabold text-violet-300 mt-1">#${batch.flush || 0}</span>
+                <span class="font-mono-num block text-2xl sm:text-3xl font-extrabold text-violet-300 mt-1">#${batch.cycleCount || 0}</span>
                 <span class="block text-xs font-medium text-slate-400 mt-1">Kitaran tuaian cendawan</span>
               </div>
 
@@ -2168,7 +2428,7 @@
                   <span class="font-mono-num text-2xl sm:text-3xl font-extrabold text-lime-300">${totalKg.toFixed(2)} kg</span>
                   <span class="font-mono-num text-xs font-bold text-emerald-300">(${formatNumber(avgYieldGrams)} g/bongkah)</span>
                 </div>
-                <span class="block text-xs font-medium text-slate-400 mt-1 tabular-nums">${(batch.harvests || []).length} rekod kutipan</span>
+                <span class="block text-xs font-medium text-slate-400 mt-1 tabular-nums">${(batch.harvestLogs || []).length} rekod kutipan</span>
               </div>
             </div>
 
@@ -2178,7 +2438,10 @@
             <!-- 3 BUTANG TINDAKAN UTAMA -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
               <button
-                onclick="openHarvestModal('${batch.id}')"
+                type="button"
+                data-action="open-harvest"
+                data-batch-id="${escapeHTML(batch.id)}"
+                ${activeBlocks === 0 ? 'disabled' : ''}
                 class="btn-spring min-h-[50px] bg-gradient-to-r from-emerald-500 to-lime-500 text-obsidian-950 font-extrabold text-sm px-4 py-3.5 rounded-2xl shadow-emerald-neon flex items-center justify-center gap-2"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.8" viewBox="0 0 24 24">
@@ -2188,7 +2451,10 @@
               </button>
 
               <button
-                onclick="openDamageModal('${batch.id}')"
+                type="button"
+                data-action="open-damage"
+                data-batch-id="${escapeHTML(batch.id)}"
+                ${activeBlocks === 0 ? 'disabled' : ''}
                 class="btn-spring min-h-[50px] bg-rose-500/15 hover:bg-rose-500/25 text-rose-300 border border-rose-500/40 font-extrabold text-sm px-4 py-3.5 rounded-2xl flex items-center justify-center gap-2"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24">
@@ -2198,7 +2464,9 @@
               </button>
 
               <button
-                onclick="openClimateModal('${batch.id}')"
+                type="button"
+                data-action="open-climate"
+                data-batch-id="${escapeHTML(batch.id)}"
                 class="btn-spring min-h-[50px] bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 border border-cyan-400/40 font-extrabold text-sm px-4 py-3.5 rounded-2xl flex items-center justify-center gap-2"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
@@ -2221,13 +2489,15 @@
                 </div>
 
                 <button
-                  onclick="openClimateModal('${batch.id}')"
+                  type="button"
+                  data-action="open-climate"
+                  data-batch-id="${escapeHTML(batch.id)}"
                   class="btn-spring inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-cyan-500 text-obsidian-950 font-extrabold text-xs shadow-cyan-neon"
                 >
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.8" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                   </svg>
-                  <span>+ Log Iklim</span>
+                  <span>+ Log Suhu & Kelembapan</span>
                 </button>
               </div>
 
@@ -2265,12 +2535,12 @@
                 </div>
               </section>
 
-              <!-- Log Bongkah Rosak & Fasa -->
+              <!-- Log Bongkah Rosak & Status -->
               <section aria-labelledby="heading-activity" class="surface-card rounded-3xl p-5 sm:p-6 space-y-4">
                 <div class="flex items-center justify-between">
                   <div>
-                    <h2 id="heading-activity" class="text-base sm:text-lg font-extrabold text-white">Bongkah Rosak & Log Fasa</h2>
-                    <p class="text-xs text-slate-400 mt-0.5">Rekod pelupusan bongkah & perubahan status</p>
+                    <h2 id="heading-activity" class="text-base sm:text-lg font-extrabold text-white">Bongkah Rosak & Log Status</h2>
+                    <p class="text-xs text-slate-400 mt-0.5">Rekod pelupusan bongkah & perubahan fasa</p>
                   </div>
                   <span class="font-mono-num text-xs font-bold px-2.5 py-1 rounded-full bg-white/10 text-slate-300">
                     ${combinedLogs.length} rekod
@@ -2289,8 +2559,23 @@
     }
 
     // =========================================================================
-    // 5. PENGENDALI INTERAKSI, BORANG & PENUKARAN STATUS
+    // 5. PENGENDALI INTERAKSI, VALIDASI & TRANSAKSI ATOMIK FIREBASE RTDB
     // =========================================================================
+    function setButtonBusy(btnOrId, isBusy, busyText = 'Menyimpan...') {
+      const btn = typeof btnOrId === 'string' ? document.getElementById(btnOrId) : btnOrId;
+      if (!btn) return;
+      if (isBusy) {
+        btn.dataset.origHtml = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = `<span class="inline-flex items-center justify-center gap-2"><span class="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></span><span>${escapeHTML(busyText)}</span></span>`;
+      } else {
+        btn.disabled = false;
+        if (btn.dataset.origHtml) {
+          btn.innerHTML = btn.dataset.origHtml;
+        }
+      }
+    }
+
     function openBatchDetail(batchId) {
       currentBatchId = batchId;
       activeScreen = 'detail';
@@ -2308,7 +2593,7 @@
 
     function setPhaseFilter(phase) {
       activePhaseFilter = phase;
-      renderBatchGrid();
+      renderBatchLists();
     }
 
     function handleSearchInput(val) {
@@ -2317,7 +2602,7 @@
       if (clearBtn) {
         clearBtn.classList.toggle('hidden', val.trim() === '');
       }
-      renderBatchGrid();
+      renderBatchLists();
     }
 
     function clearBatchSearch() {
@@ -2326,7 +2611,63 @@
       const clearBtn = document.getElementById('clear-search-btn');
       if (input) input.value = '';
       if (clearBtn) clearBtn.classList.add('hidden');
-      renderBatchGrid();
+      renderBatchLists();
+    }
+
+    function setDayChoice(targetKey, dayChoice) {
+      modalDayChoices[targetKey] = dayChoice;
+      const activeClasses = {
+        ps: 'bg-emerald-500 text-obsidian-950 font-extrabold',
+        hv: 'bg-emerald-500 text-obsidian-950 font-extrabold',
+        dm: 'bg-rose-500 text-white font-extrabold',
+        cl: 'bg-cyan-400 text-obsidian-950 font-extrabold'
+      };
+
+      document.querySelectorAll(`.day-toggle-${targetKey}`).forEach(btn => {
+        const isSelected = btn.dataset.day === dayChoice;
+        btn.className = isSelected
+          ? `day-toggle-${targetKey} px-2.5 py-1 rounded-lg text-[11px] transition-all ${activeClasses[targetKey]}`
+          : `day-toggle-${targetKey} px-2.5 py-1 rounded-lg text-[11px] font-bold text-slate-400 hover:text-white transition-all`;
+      });
+
+      if (targetKey === 'ps') updatePhaseSwitchTimeHelper();
+      if (targetKey === 'hv') {
+        updateHarvestTimeHelper();
+        updateHarvestPreview();
+      }
+      if (targetKey === 'dm') updateDamageTimeHelper();
+      if (targetKey === 'cl') updateClimateTimeHelper();
+    }
+
+    function renderTimeHelperHTML(dayChoice, timeVal) {
+      const resolved = resolveCustomDateTime(dayChoice, timeVal);
+      if (resolved.shiftedFromMidnight) {
+        return `<span class="text-amber-300 font-semibold">Masa melintasi tengah malam — dilaraskan automatik ke Semalam (${formatDisplayDateTime(resolved.dateTimeStr)})</span>`;
+      }
+      if (!timeVal && dayChoice === 'hari_ini') {
+        return `Kosongkan = masa semasa (<span class="font-mono-num text-slate-300">${formatDisplayDateTime(resolved.dateTimeStr)}</span>)`;
+      }
+      return `Cap masa rekod: <span class="font-mono-num text-emerald-300 font-semibold">${resolved.dayLabel} (${formatDisplayDateTime(resolved.dateTimeStr)})</span>`;
+    }
+
+    function updatePhaseSwitchTimeHelper() {
+      const timeVal = document.getElementById('ps-custom-time').value;
+      document.getElementById('ps-time-helper').innerHTML = renderTimeHelperHTML(modalDayChoices.ps, timeVal);
+    }
+
+    function updateHarvestTimeHelper() {
+      const timeVal = document.getElementById('hv-custom-time').value;
+      document.getElementById('hv-time-helper').innerHTML = renderTimeHelperHTML(modalDayChoices.hv, timeVal);
+    }
+
+    function updateDamageTimeHelper() {
+      const timeVal = document.getElementById('dm-custom-time').value;
+      document.getElementById('dm-time-helper').innerHTML = renderTimeHelperHTML(modalDayChoices.dm, timeVal);
+    }
+
+    function updateClimateTimeHelper() {
+      const timeVal = document.getElementById('cl-modal-time').value;
+      document.getElementById('cl-time-helper').innerHTML = renderTimeHelperHTML(modalDayChoices.cl, timeVal);
     }
 
     // --- MODAL 1: DAFTAR BATCH BARU ---
@@ -2339,7 +2680,7 @@
     }
 
     function updateNewBatchPreview() {
-      const phase = document.querySelector('input[name="nb-phase"]:checked')?.value || 'Peram';
+      const phase = document.querySelector('input[name="nb-phase"]:checked')?.value || 'peram';
       const defaultDays = DEFAULT_DURATIONS[phase];
       const startDate = document.getElementById('nb-start-date').value || getTodayDateStr();
       const customDaysRaw = document.getElementById('nb-custom-days').value;
@@ -2348,8 +2689,8 @@
 
       customInput.placeholder = `Kosongkan = default duration (${defaultDays} hari)`;
 
-      const hasCustom = customDaysRaw !== '' && parseInt(customDaysRaw, 10) > 0;
-      const effectiveDays = hasCustom ? parseInt(customDaysRaw, 10) : defaultDays;
+      const hasCustom = customDaysRaw !== '' && Number.isInteger(Number(customDaysRaw)) && Number(customDaysRaw) >= 1;
+      const effectiveDays = hasCustom ? Number(customDaysRaw) : defaultDays;
       const targetDate = addDaysToDateStr(startDate, effectiveDays);
 
       const badgeHTML = hasCustom
@@ -2361,71 +2702,100 @@
           ${badgeHTML}
           <span class="font-mono-num text-xs font-extrabold text-white">Sasaran: ${formatDisplayDate(targetDate)}</span>
         </div>
-        <p class="text-[11px] text-slate-400">Fasa <strong class="text-white">${phase}</strong> bermula <strong class="text-slate-200">${formatDisplayDate(startDate)}</strong> selama <strong class="text-emerald-300">${effectiveDays} hari</strong>.</p>
+        <p class="text-[11px] text-slate-400">Fasa <strong class="text-white">${getPhaseLabel(phase)}</strong> bermula <strong class="text-slate-200">${formatDisplayDate(startDate)}</strong> selama <strong class="text-emerald-300">${effectiveDays} hari</strong>.</p>
       `;
     }
 
-    function handleCreateBatch(event) {
+    async function handleCreateBatch(event) {
       event.preventDefault();
       const code = document.getElementById('nb-code').value.trim();
-      const qty = parseInt(document.getElementById('nb-qty').value, 10);
+      const qtyNum = Number(document.getElementById('nb-qty').value);
       const phase = document.querySelector('input[name="nb-phase"]:checked').value;
       const startDate = document.getElementById('nb-start-date').value || getTodayDateStr();
       const customDaysRaw = document.getElementById('nb-custom-days').value;
       const errEl = document.getElementById('error-new-batch');
+      errEl.classList.add('hidden');
 
-      if (!code || isNaN(qty) || qty <= 0) {
-        errEl.textContent = 'Sila masukkan Kod Batch dan Kuantiti Bongkah yang sah.';
+      if (!code) {
+        errEl.textContent = 'Sila masukkan Kod Batch yang sah.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+
+      // Validasi nombor bulat positif untuk kuantiti bongkah
+      if (!Number.isInteger(qtyNum) || qtyNum < 1) {
+        errEl.textContent = 'Kuantiti bongkah mestilah nombor bulat sekurang-kurangnya 1 (tiada perpuluhan).';
+        errEl.classList.remove('hidden');
+        return;
+      }
+
+      // Semak keunikan Kod Batch (case-insensitive)
+      const isDuplicateCode = appState.batches.some(
+        b => String(b.code || '').trim().toLowerCase() === code.toLowerCase()
+      );
+      if (isDuplicateCode) {
+        errEl.textContent = `Kod Batch "${code}" sudah wujud. Sila gunakan kod batch yang unik.`;
         errEl.classList.remove('hidden');
         return;
       }
 
       const defaultDays = DEFAULT_DURATIONS[phase];
-      const durationDays = customDaysRaw !== '' ? parseInt(customDaysRaw, 10) : defaultDays;
-      if (isNaN(durationDays) || durationDays <= 0) {
-        errEl.textContent = 'Tempoh hari mestilah sekurang-kurangnya 1 hari.';
-        errEl.classList.remove('hidden');
-        return;
+      let durationDays = defaultDays;
+      if (customDaysRaw !== '') {
+        const parsedDays = Number(customDaysRaw);
+        if (!Number.isInteger(parsedDays) || parsedDays < 1 || parsedDays > 365) {
+          errEl.textContent = 'Tempoh hari mestilah nombor bulat antara 1 hingga 365 hari.';
+          errEl.classList.remove('hidden');
+          return;
+        }
+        durationDays = parsedDays;
       }
 
       const targetDate = addDaysToDateStr(startDate, durationDays);
-      const nowTime = getKLParts().timeStr;
+      const nowParts = getKLParts();
+      const newBatchRef = push(batchesRef);
+      const initialLogKey = push(ref(db, `mushtrack/batches/${newBatchRef.key}/statusHistory`)).key;
 
-      const newBatch = {
-        id: createId('batch'),
+      const batchPayload = {
         code: code,
+        createdAt: `${nowParts.dateTimeStr}:${String(nowParts.second).padStart(2, '0')}`,
         startDate: startDate,
         durationDays: durationDays,
         targetDate: targetDate,
-        initialQty: qty,
+        initialQty: qtyNum,
+        activeBlocks: qtyNum,
+        totalHarvestKg: 0,
         status: phase,
-        flush: phase === 'Buka' ? 1 : 0,
-        harvests: [],
-        damages: [],
-        climateLogs: [],
-        phaseLogs: [
-          {
-            id: createId('pl'),
-            timestamp: `${startDate}T${nowTime}`,
+        cycleCount: phase === 'buka' ? 1 : 0,
+        statusHistory: {
+          [initialLogKey]: {
+            timestamp: `${startDate}T${nowParts.timeStr}`,
             status: phase,
             durationDays: durationDays,
             note: customDaysRaw !== ''
               ? `Batch baharu didaftarkan (Tempoh tersuai: ${durationDays} hari)`
-              : `Batch baharu didaftarkan (Default duration: ${defaultDays} hari)`
+              : `Batch baharu didaftarkan (default duration: ${defaultDays} hari)`
           }
-        ]
+        }
       };
 
-      appState.batches.unshift(newBatch);
-      activePhaseFilter = 'Semua';
-      saveState();
-      closeModal('modal-new-batch');
-      renderApp(false);
-      showToast(`Batch ${newBatch.code} berjaya didaftarkan (${phase} • ${durationDays} hari).`);
+      setButtonBusy('btn-submit-new-batch', true, 'Menyimpan...');
+      try {
+        await set(newBatchRef, batchPayload);
+        activePhaseFilter = 'semua';
+        closeModal('modal-new-batch');
+        showToast(`Batch ${code} berjaya didaftarkan (${getPhaseLabel(phase)} • ${durationDays} hari).`);
+      } catch (err) {
+        console.error('Ralat menyimpan batch:', err);
+        errEl.textContent = 'Gagal menyimpan batch ke pangkalan data. Sila cuba lagi.';
+        errEl.classList.remove('hidden');
+      } finally {
+        setButtonBusy('btn-submit-new-batch', false);
+      }
     }
 
-    // --- MODAL 2: TUKAR STATUS / SAHKAN TUGASAN ---
-    function openPhaseSwitchModal(batchId, suggestedPhase = 'Buka', isQuickTask = false) {
+    // --- MODAL 2: TUKAR STATUS / TINDAKAN TUGASAN ---
+    function openPhaseSwitchModal(batchId, suggestedPhase = 'buka', isQuickTask = false) {
       const batch = appState.batches.find(b => b.id === batchId);
       if (!batch) return;
 
@@ -2433,30 +2803,32 @@
       document.getElementById('form-phase-switch').reset();
       document.getElementById('error-phase-switch').classList.add('hidden');
       document.getElementById('ps-start-date').value = getTodayDateStr();
+      setDayChoice('ps', 'hari_ini');
 
+      const normalizedSuggested = normalizePhaseKey(suggestedPhase);
       document.getElementById('ps-modal-title').textContent = isQuickTask
-        ? (suggestedPhase === 'Buka' ? 'Sahkan Selesai Buka' : 'Sahkan Mula Rehat')
+        ? (normalizedSuggested === 'buka' ? 'Tindakan Tugasan: Selesai Buka' : 'Tindakan Tugasan: Mula Rehat')
         : 'Tukar Status Batch';
-      document.getElementById('ps-modal-subtitle').textContent = `Batch ${batch.code} • Status semasa: ${batch.status}`;
+      document.getElementById('ps-modal-subtitle').textContent = `Batch ${batch.code} • Status semasa: ${getPhaseLabel(batch.status)}`;
 
-      document.getElementById('ps-target-phase').value = suggestedPhase;
+      document.getElementById('ps-target-phase').value = normalizedSuggested;
       updatePhaseSwitchPreview();
       openModal('modal-phase-switch');
     }
 
     function updatePhaseSwitchPreview() {
-      const targetPhase = document.getElementById('ps-target-phase').value;
+      const targetPhase = normalizePhaseKey(document.getElementById('ps-target-phase').value);
       const scheduleFields = document.getElementById('ps-schedule-fields');
       const helperEl = document.getElementById('ps-duration-helper');
 
-      if (targetPhase === 'Tamat') {
+      if (targetPhase === 'tamat') {
         scheduleFields.classList.add('hidden');
         helperEl.innerHTML = `
           <div class="flex items-center justify-between gap-2">
             <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-[11px] font-extrabold bg-slate-500/25 text-slate-200 border border-slate-400/30">Penutupan Kitaran Batch</span>
             <span class="font-mono-num text-xs font-bold text-slate-300">Tiada tarikh sasaran</span>
           </div>
-          <p class="text-[11px] text-slate-400">Batch akan dipindahkan ke kategori <strong class="text-white">Tamat</strong>.</p>
+          <p class="text-[11px] text-slate-400">Batch akan dipindahkan ke bahagian <strong class="text-white">Batch Tamat / Arkib</strong>.</p>
         `;
         return;
       }
@@ -2469,8 +2841,8 @@
 
       customInput.placeholder = `Kosongkan = default duration (${defaultDays} hari)`;
 
-      const hasCustom = customDaysRaw !== '' && parseInt(customDaysRaw, 10) > 0;
-      const effectiveDays = hasCustom ? parseInt(customDaysRaw, 10) : defaultDays;
+      const hasCustom = customDaysRaw !== '' && Number.isInteger(Number(customDaysRaw)) && Number(customDaysRaw) >= 1;
+      const effectiveDays = hasCustom ? Number(customDaysRaw) : defaultDays;
       const targetDate = addDaysToDateStr(startDate, effectiveDays);
 
       const badgeHTML = hasCustom
@@ -2482,75 +2854,99 @@
           ${badgeHTML}
           <span class="font-mono-num text-xs font-extrabold text-white">Sasaran: ${formatDisplayDate(targetDate)}</span>
         </div>
-        <p class="text-[11px] text-slate-400">Bertukar ke <strong class="text-white">${targetPhase}</strong> selama <strong class="text-emerald-300">${effectiveDays} hari</strong> bermula <strong class="text-slate-200">${formatDisplayDate(startDate)}</strong>.</p>
+        <p class="text-[11px] text-slate-400">Bertukar ke <strong class="text-white">${getPhaseLabel(targetPhase)}</strong> selama <strong class="text-emerald-300">${effectiveDays} hari</strong> bermula <strong class="text-slate-200">${formatDisplayDate(startDate)}</strong>.</p>
       `;
     }
 
-    function handleConfirmPhaseSwitch(event) {
+    async function handleConfirmPhaseSwitch(event) {
       event.preventDefault();
       const batch = appState.batches.find(b => b.id === phaseSwitchContext.batchId);
       if (!batch) return;
 
-      const targetPhase = document.getElementById('ps-target-phase').value;
+      const targetPhase = normalizePhaseKey(document.getElementById('ps-target-phase').value);
       const noteRaw = document.getElementById('ps-note').value.trim();
+      const customTimeRaw = document.getElementById('ps-custom-time').value;
       const errEl = document.getElementById('error-phase-switch');
+      errEl.classList.add('hidden');
 
-      if (targetPhase === 'Tamat') {
-        const nowDT = getNowDateTimeStr();
-        batch.status = 'Tamat';
-        batch.durationDays = 0;
-        batch.targetDate = null;
-        batch.phaseLogs = batch.phaseLogs || [];
-        batch.phaseLogs.push({
-          id: createId('pl'),
-          timestamp: nowDT,
-          status: 'Tamat',
-          durationDays: 0,
-          note: noteRaw || 'Kitaran batch ditamatkan'
+      const resolvedTime = resolveCustomDateTime(modalDayChoices.ps, customTimeRaw);
+      const batchRef = ref(db, `mushtrack/batches/${batch.id}`);
+      const historyLogKey = push(ref(db, `mushtrack/batches/${batch.id}/statusHistory`)).key;
+
+      let durationDays = 0;
+      let startDate = document.getElementById('ps-start-date').value || getTodayDateStr();
+
+      if (targetPhase !== 'tamat') {
+        const defaultDays = DEFAULT_DURATIONS[targetPhase] || 5;
+        const customDaysRaw = document.getElementById('ps-custom-days').value;
+        if (customDaysRaw !== '') {
+          const parsed = Number(customDaysRaw);
+          if (!Number.isInteger(parsed) || parsed < 1 || parsed > 365) {
+            errEl.textContent = 'Tempoh hari mestilah nombor bulat antara 1 hingga 365 hari.';
+            errEl.classList.remove('hidden');
+            return;
+          }
+          durationDays = parsed;
+        } else {
+          durationDays = defaultDays;
+        }
+      }
+
+      setButtonBusy('btn-submit-phase-switch', true, 'Menyimpan...');
+      try {
+        await runTransaction(batchRef, (currentBatch) => {
+          if (!currentBatch) return currentBatch;
+
+          const currentStatus = normalizePhaseKey(currentBatch.status);
+          let nextCycle = Number(currentBatch.cycleCount ?? currentBatch.flush ?? 0);
+
+          if (targetPhase === 'tamat') {
+            currentBatch.status = 'tamat';
+            currentBatch.durationDays = 0;
+            currentBatch.targetDate = null;
+            if (!currentBatch.statusHistory) currentBatch.statusHistory = {};
+            currentBatch.statusHistory[historyLogKey] = {
+              timestamp: resolvedTime.dateTimeStr,
+              status: 'tamat',
+              durationDays: 0,
+              note: noteRaw || 'Kitaran batch ditamatkan'
+            };
+            return currentBatch;
+          }
+
+          if (targetPhase === 'buka' && (currentStatus === 'peram' || currentStatus === 'rehat' || nextCycle === 0)) {
+            nextCycle += 1;
+          }
+
+          currentBatch.status = targetPhase;
+          currentBatch.cycleCount = nextCycle;
+          currentBatch.startDate = startDate;
+          currentBatch.durationDays = durationDays;
+          currentBatch.targetDate = addDaysToDateStr(startDate, durationDays);
+
+          if (!currentBatch.statusHistory) currentBatch.statusHistory = {};
+          currentBatch.statusHistory[historyLogKey] = {
+            timestamp: resolvedTime.dateTimeStr,
+            status: targetPhase,
+            durationDays: durationDays,
+            note: noteRaw || (targetPhase === 'buka' ? `Fasa Buka Pusingan #${nextCycle}` : `Bertukar ke status ${getPhaseLabel(targetPhase)}`)
+          };
+
+          return currentBatch;
         });
 
-        saveState();
         closeModal('modal-phase-switch');
-        renderApp(false);
-        showToast(`Batch ${batch.code} ditandakan Tamat.`);
-        return;
-      }
-
-      const startDate = document.getElementById('ps-start-date').value || getTodayDateStr();
-      const customDaysRaw = document.getElementById('ps-custom-days').value;
-      const customTimeRaw = document.getElementById('ps-custom-time').value;
-
-      const defaultDays = DEFAULT_DURATIONS[targetPhase] || 5;
-      const durationDays = customDaysRaw !== '' ? parseInt(customDaysRaw, 10) : defaultDays;
-      if (isNaN(durationDays) || durationDays <= 0) {
-        errEl.textContent = 'Tempoh hari mestilah sekurang-kurangnya 1 hari.';
+        const label = getPhaseLabel(targetPhase);
+        showToast(targetPhase === 'tamat'
+          ? `Batch ${batch.code} ditandakan Tamat.`
+          : `Batch ${batch.code} dikemas kini ke ${label} (${durationDays} hari).`);
+      } catch (err) {
+        console.error('Ralat transaksi tukar status:', err);
+        errEl.textContent = 'Gagal mengemas kini status ke pangkalan data. Sila cuba lagi.';
         errEl.classList.remove('hidden');
-        return;
+      } finally {
+        setButtonBusy('btn-submit-phase-switch', false);
       }
-
-      if (targetPhase === 'Buka' && (batch.status === 'Peram' || batch.status === 'Rehat' || !batch.flush)) {
-        batch.flush = (Number(batch.flush) || 0) + 1;
-      }
-
-      batch.status = targetPhase;
-      batch.startDate = startDate;
-      batch.durationDays = durationDays;
-      batch.targetDate = addDaysToDateStr(startDate, durationDays);
-
-      const finalTime = customTimeRaw ? customTimeRaw : getKLParts().timeStr;
-      batch.phaseLogs = batch.phaseLogs || [];
-      batch.phaseLogs.push({
-        id: createId('pl'),
-        timestamp: `${startDate}T${finalTime}`,
-        status: targetPhase,
-        durationDays: durationDays,
-        note: noteRaw || (targetPhase === 'Buka' ? `Fasa Buka Pusingan #${batch.flush}` : `Bertukar ke status ${targetPhase}`)
-      });
-
-      saveState();
-      closeModal('modal-phase-switch');
-      renderApp(false);
-      showToast(`Batch ${batch.code} dikemas kini ke ${targetPhase} (${durationDays} hari).`);
     }
 
     // --- MODAL 3: REKOD TUAIAN ---
@@ -2561,9 +2957,10 @@
       currentBatchId = batchId;
       document.getElementById('form-harvest').reset();
       document.getElementById('error-harvest').classList.add('hidden');
+      setDayChoice('hv', 'hari_ini');
 
-      const flushNum = batch.flush > 0 ? batch.flush : 1;
-      document.getElementById('hv-modal-subtitle').textContent = `Batch ${batch.code} • Pusingan #${flushNum}`;
+      const cycleNum = batch.cycleCount > 0 ? batch.cycleCount : 1;
+      document.getElementById('hv-modal-subtitle').textContent = `Batch ${batch.code} • Pusingan #${cycleNum}`;
       updateHarvestPreview();
       openModal('modal-harvest');
     }
@@ -2572,7 +2969,7 @@
       const isEndFlush = document.getElementById('hv-end-flush').checked;
       const restSection = document.getElementById('hv-rest-section');
       const restDaysRaw = document.getElementById('hv-rest-days').value;
-      const customDT = document.getElementById('hv-datetime').value;
+      const customTimeVal = document.getElementById('hv-custom-time').value;
       const helperEl = document.getElementById('hv-rest-helper');
 
       if (!isEndFlush) {
@@ -2581,11 +2978,11 @@
       }
 
       restSection.classList.remove('hidden');
-      const defaultRest = DEFAULT_DURATIONS.Rehat;
-      const hasCustom = restDaysRaw !== '' && parseInt(restDaysRaw, 10) > 0;
-      const effectiveDays = hasCustom ? parseInt(restDaysRaw, 10) : defaultRest;
-      const startDate = customDT ? customDT.split('T')[0] : getTodayDateStr();
-      const targetDate = addDaysToDateStr(startDate, effectiveDays);
+      const defaultRest = DEFAULT_DURATIONS.rehat;
+      const hasCustom = restDaysRaw !== '' && Number.isInteger(Number(restDaysRaw)) && Number(restDaysRaw) >= 1;
+      const effectiveDays = hasCustom ? Number(restDaysRaw) : defaultRest;
+      const resolvedTime = resolveCustomDateTime(modalDayChoices.hv, customTimeVal);
+      const targetDate = addDaysToDateStr(resolvedTime.dateStr, effectiveDays);
 
       const badgeHTML = hasCustom
         ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-extrabold bg-amber-500/25 text-amber-200 border border-amber-400/40">Tempoh tersuai (${effectiveDays} hari)</span>`
@@ -2599,16 +2996,17 @@
       `;
     }
 
-    function handleSaveHarvest(event) {
+    async function handleSaveHarvest(event) {
       event.preventDefault();
       const batch = appState.batches.find(b => b.id === currentBatchId);
       if (!batch) return;
 
       const weight = parseFloat(document.getElementById('hv-weight').value);
-      const customDT = document.getElementById('hv-datetime').value;
+      const customTimeVal = document.getElementById('hv-custom-time').value;
       const isEndFlush = document.getElementById('hv-end-flush').checked;
       const restDaysRaw = document.getElementById('hv-rest-days').value;
       const errEl = document.getElementById('error-harvest');
+      errEl.classList.add('hidden');
 
       if (isNaN(weight) || weight <= 0) {
         errEl.textContent = 'Sila masukkan berat tuaian (kg) yang sah.';
@@ -2616,64 +3014,99 @@
         return;
       }
 
-      const timestamp = customDT ? customDT : getNowDateTimeStr();
-      if (!batch.flush || batch.flush < 1) batch.flush = 1;
-
-      batch.harvests = batch.harvests || [];
-      batch.harvests.push({
-        id: createId('hv'),
-        timestamp: timestamp,
-        flush: batch.flush,
-        weightKg: Math.round(weight * 100) / 100
-      });
-
-      if (isEndFlush) {
-        const defaultRest = DEFAULT_DURATIONS.Rehat;
-        const restDays = restDaysRaw !== '' ? parseInt(restDaysRaw, 10) : defaultRest;
-        if (isNaN(restDays) || restDays <= 0) {
-          errEl.textContent = 'Tempoh hari rehat mestilah sekurang-kurangnya 1 hari.';
+      let restDays = DEFAULT_DURATIONS.rehat;
+      if (isEndFlush && restDaysRaw !== '') {
+        const parsedRest = Number(restDaysRaw);
+        if (!Number.isInteger(parsedRest) || parsedRest < 1 || parsedRest > 90) {
+          errEl.textContent = 'Tempoh hari rehat mestilah nombor bulat antara 1 hingga 90 hari.';
           errEl.classList.remove('hidden');
           return;
         }
-        const restStartDate = timestamp.split('T')[0];
-        batch.status = 'Rehat';
-        batch.startDate = restStartDate;
-        batch.durationDays = restDays;
-        batch.targetDate = addDaysToDateStr(restStartDate, restDays);
-
-        batch.phaseLogs = batch.phaseLogs || [];
-        batch.phaseLogs.push({
-          id: createId('pl'),
-          timestamp: timestamp,
-          status: 'Rehat',
-          durationDays: restDays,
-          note: `Tuaian terakhir Pusingan #${batch.flush} selesai`
-        });
+        restDays = parsedRest;
       }
 
-      saveState();
-      closeModal('modal-harvest');
-      renderApp(false);
+      const resolvedTime = resolveCustomDateTime(modalDayChoices.hv, customTimeVal);
+      const cleanWeight = Math.round(weight * 100) / 100;
+      const batchRef = ref(db, `mushtrack/batches/${batch.id}`);
+      const harvestKey = push(ref(db, `mushtrack/batches/${batch.id}/harvestLogs`)).key;
+      const historyKey = push(ref(db, `mushtrack/batches/${batch.id}/statusHistory`)).key;
 
-      const msg = isEndFlush
-        ? `Tuaian ${weight.toFixed(2)} kg disimpan & batch direhatkan ${batch.durationDays} hari.`
-        : `Tuaian ${weight.toFixed(2)} kg berjaya direkodkan.`;
-      showToast(msg);
+      setButtonBusy('btn-submit-harvest', true, 'Menyimpan...');
+      try {
+        await runTransaction(batchRef, (currentBatch) => {
+          if (!currentBatch) return currentBatch;
+
+          const activeCycle = Math.max(1, Number(currentBatch.cycleCount ?? currentBatch.flush ?? 1));
+          currentBatch.cycleCount = activeCycle;
+
+          if (!currentBatch.harvestLogs) currentBatch.harvestLogs = {};
+          currentBatch.harvestLogs[harvestKey] = {
+            timestamp: resolvedTime.dateTimeStr,
+            cycle: activeCycle,
+            weightKg: cleanWeight
+          };
+
+          // Kira semula jumlah hasil secara atomik daripada semua log tuaian
+          const allHarvests = Object.values(currentBatch.harvestLogs).filter(v => v && typeof v === 'object');
+          const sumKg = allHarvests.reduce((acc, item) => acc + Number(item.weightKg || 0), 0);
+          currentBatch.totalHarvestKg = Math.round(sumKg * 100) / 100;
+
+          if (isEndFlush) {
+            currentBatch.status = 'rehat';
+            currentBatch.startDate = resolvedTime.dateStr;
+            currentBatch.durationDays = restDays;
+            currentBatch.targetDate = addDaysToDateStr(resolvedTime.dateStr, restDays);
+
+            if (!currentBatch.statusHistory) currentBatch.statusHistory = {};
+            currentBatch.statusHistory[historyKey] = {
+              timestamp: resolvedTime.dateTimeStr,
+              status: 'rehat',
+              durationDays: restDays,
+              note: `Tuaian terakhir Pusingan #${activeCycle} selesai`
+            };
+          }
+
+          return currentBatch;
+        });
+
+        closeModal('modal-harvest');
+        const msg = isEndFlush
+          ? `Tuaian ${cleanWeight.toFixed(2)} kg disimpan & batch direhatkan ${restDays} hari.`
+          : `Tuaian ${cleanWeight.toFixed(2)} kg berjaya direkodkan.`;
+        showToast(msg);
+      } catch (err) {
+        console.error('Ralat transaksi tuaian:', err);
+        errEl.textContent = 'Gagal menyimpan rekod tuaian ke pangkalan data.';
+        errEl.classList.remove('hidden');
+      } finally {
+        setButtonBusy('btn-submit-harvest', false);
+      }
     }
 
     function confirmDeleteHarvest(batchId, harvestId) {
       const batch = appState.batches.find(b => b.id === batchId);
-      if (!batch) return;
+      const log = batch?.harvestLogs?.find(h => h.id === harvestId);
+      const weightText = log ? `${Number(log.weightKg).toFixed(2)} kg` : 'ini';
 
       openConfirmDelete(
         'Padam Rekod Tuaian?',
-        'Jumlah hasil (kg) dan purata per bongkah akan dikira semula secara automatik.',
-        () => {
-          batch.harvests = (batch.harvests || []).filter(h => h.id !== harvestId);
-          saveState();
+        `Rekod tuaian +${weightText} akan dipadam dan jumlah hasil batch akan ditolak sebanyak ${weightText} secara automatik.`,
+        async () => {
+          const batchRef = ref(db, `mushtrack/batches/${batchId}`);
+          await runTransaction(batchRef, (currentBatch) => {
+            if (!currentBatch) return currentBatch;
+            if (currentBatch.harvestLogs && currentBatch.harvestLogs[harvestId]) {
+              delete currentBatch.harvestLogs[harvestId];
+            }
+            const remaining = currentBatch.harvestLogs
+              ? Object.values(currentBatch.harvestLogs).filter(v => v && typeof v === 'object')
+              : [];
+            const sumKg = remaining.reduce((acc, item) => acc + Number(item.weightKg || 0), 0);
+            currentBatch.totalHarvestKg = Math.round(sumKg * 100) / 100;
+            return currentBatch;
+          });
           closeModal('modal-confirm-delete');
-          renderBatchDetailView(batch);
-          showToast('Rekod tuaian telah dipadam.', 'info');
+          showToast('Rekod tuaian dipadam & jumlah hasil dikemas kini.', 'info');
         }
       );
     }
@@ -2688,6 +3121,7 @@
       document.getElementById('form-damage').reset();
       document.getElementById('error-damage').classList.add('hidden');
       document.getElementById('dm-modal-subtitle').textContent = `Batch ${batch.code} • Baki aktif: ${formatNumber(activeBlocks)} bongkah`;
+      setDayChoice('dm', 'hari_ini');
 
       selectDamageReason('Kulat Hijau');
       openModal('modal-damage');
@@ -2704,57 +3138,149 @@
       });
     }
 
-    function handleSaveDamage(event) {
+    async function handleSaveDamage(event) {
       event.preventDefault();
       const batch = appState.batches.find(b => b.id === currentBatchId);
       if (!batch) return;
 
-      const qty = parseInt(document.getElementById('dm-qty').value, 10);
-      const customDT = document.getElementById('dm-datetime').value;
-      const activeBlocks = getBatchActiveBlocks(batch);
+      const qtyNum = Number(document.getElementById('dm-qty').value);
+      const customTimeVal = document.getElementById('dm-custom-time').value;
       const errEl = document.getElementById('error-damage');
+      errEl.classList.add('hidden');
 
-      if (isNaN(qty) || qty <= 0) {
-        errEl.textContent = 'Sila masukkan bilangan bongkah rosak yang sah.';
+      // Validasi ketat nombor bulat positif
+      if (!Number.isInteger(qtyNum) || qtyNum < 1) {
+        errEl.textContent = 'Bilangan bongkah rosak mestilah nombor bulat sekurang-kurangnya 1.';
         errEl.classList.remove('hidden');
         return;
       }
 
-      if (qty > activeBlocks) {
-        errEl.textContent = `Bilangan melebihi baki bongkah aktif (${formatNumber(activeBlocks)} bongkah).`;
+      const resolvedTime = resolveCustomDateTime(modalDayChoices.dm, customTimeVal);
+      const batchRef = ref(db, `mushtrack/batches/${batch.id}`);
+      const damageKey = push(ref(db, `mushtrack/batches/${batch.id}/damageLogs`)).key;
+      const autoCloseHistoryKey = push(ref(db, `mushtrack/batches/${batch.id}/statusHistory`)).key;
+
+      let autoClosedToTamat = false;
+
+      setButtonBusy('btn-submit-damage', true, 'Menyimpan...');
+      try {
+        await runTransaction(batchRef, (currentBatch) => {
+          if (!currentBatch) return currentBatch;
+
+          const initQty = Math.max(0, Math.round(Number(currentBatch.initialQty || 0)));
+          const existingDamages = currentBatch.damageLogs
+            ? Object.values(currentBatch.damageLogs).filter(v => v && typeof v === 'object')
+            : [];
+          const prevDamaged = existingDamages.reduce((acc, item) => acc + Math.max(0, Math.round(Number(item.qty || 0))), 0);
+          const currentActive = Math.max(0, initQty - prevDamaged);
+
+          if (qtyNum > currentActive) {
+            throw new Error(`EXCEEDS_ACTIVE:${currentActive}`);
+          }
+
+          if (!currentBatch.damageLogs) currentBatch.damageLogs = {};
+          currentBatch.damageLogs[damageKey] = {
+            timestamp: resolvedTime.dateTimeStr,
+            qty: qtyNum,
+            reason: selectedDamageReason
+          };
+
+          const nextActive = Math.max(0, currentActive - qtyNum);
+          currentBatch.activeBlocks = nextActive;
+
+          // Penutupan automatik apabila activeBlocks mencapai 0
+          if (nextActive === 0) {
+            autoClosedToTamat = true;
+            currentBatch.status = 'tamat';
+            currentBatch.durationDays = 0;
+            currentBatch.targetDate = null;
+
+            if (!currentBatch.statusHistory) currentBatch.statusHistory = {};
+            currentBatch.statusHistory[autoCloseHistoryKey] = {
+              timestamp: resolvedTime.dateTimeStr,
+              status: 'tamat',
+              durationDays: 0,
+              note: 'Batch ditutup automatik (baki 0 bongkah aktif)'
+            };
+          }
+
+          return currentBatch;
+        });
+
+        closeModal('modal-damage');
+        if (autoClosedToTamat) {
+          showToast(`Baki bongkah 0 — Batch ${batch.code} ditutup automatik ke Arkib Tamat.`, 'info');
+        } else {
+          showToast(`${formatNumber(qtyNum)} bongkah rosak ditolak daripada ${batch.code}.`);
+        }
+      } catch (err) {
+        console.error('Ralat transaksi bongkah rosak:', err);
+        if (err.message && err.message.startsWith('EXCEEDS_ACTIVE:')) {
+          const maxAvail = Number(err.message.split(':')[1] || 0);
+          errEl.textContent = `Bilangan melebihi baki bongkah aktif semasa (${formatNumber(maxAvail)} bongkah).`;
+        } else {
+          errEl.textContent = 'Gagal menyimpan rekod bongkah rosak ke pangkalan data.';
+        }
         errEl.classList.remove('hidden');
-        return;
+      } finally {
+        setButtonBusy('btn-submit-damage', false);
       }
-
-      const timestamp = customDT ? customDT : getNowDateTimeStr();
-
-      batch.damages = batch.damages || [];
-      batch.damages.push({
-        id: createId('dm'),
-        timestamp: timestamp,
-        qty: qty,
-        reason: selectedDamageReason
-      });
-
-      saveState();
-      closeModal('modal-damage');
-      renderApp(false);
-      showToast(`${formatNumber(qty)} bongkah rosak ditolak daripada ${batch.code}.`);
     }
 
     function confirmDeleteDamage(batchId, damageId) {
       const batch = appState.batches.find(b => b.id === batchId);
-      if (!batch) return;
+      const log = batch?.damageLogs?.find(d => d.id === damageId);
+      const qtyText = log ? `${formatNumber(log.qty)} bongkah` : 'rekod ini';
 
       openConfirmDelete(
         'Padam Rekod Bongkah Rosak?',
-        'Baki bongkah aktif bagi batch ini akan dipulihkan semula.',
-        () => {
-          batch.damages = (batch.damages || []).filter(d => d.id !== damageId);
-          saveState();
+        `Rekod -${qtyText} rosak akan dipadam dan baki bongkah aktif akan dipulihkan semula secara automatik.`,
+        async () => {
+          const batchRef = ref(db, `mushtrack/batches/${batchId}`);
+          const restoreLogKey = push(ref(db, `mushtrack/batches/${batchId}/statusHistory`)).key;
+          const todayStr = getTodayDateStr();
+          const nowDT = getNowDateTimeStr();
+
+          await runTransaction(batchRef, (currentBatch) => {
+            if (!currentBatch) return currentBatch;
+
+            if (currentBatch.damageLogs && currentBatch.damageLogs[damageId]) {
+              delete currentBatch.damageLogs[damageId];
+            }
+
+            const initQty = Math.max(0, Math.round(Number(currentBatch.initialQty || 0)));
+            const remainingDamages = currentBatch.damageLogs
+              ? Object.values(currentBatch.damageLogs).filter(v => v && typeof v === 'object')
+              : [];
+            const totalDamaged = remainingDamages.reduce((acc, item) => acc + Math.max(0, Math.round(Number(item.qty || 0))), 0);
+            const restoredActive = Math.max(0, initQty - totalDamaged);
+            currentBatch.activeBlocks = restoredActive;
+
+            // Pulihkan status jika sebelum ini ditutup automatik akibat 0 bongkah
+            if (normalizePhaseKey(currentBatch.status) === 'tamat' && restoredActive > 0) {
+              const cycle = Math.max(0, Math.round(Number(currentBatch.cycleCount ?? currentBatch.flush ?? 0)));
+              const restoredStatus = cycle > 0 ? 'buka' : 'peram';
+              const restoredDuration = DEFAULT_DURATIONS[restoredStatus];
+
+              currentBatch.status = restoredStatus;
+              currentBatch.startDate = todayStr;
+              currentBatch.durationDays = restoredDuration;
+              currentBatch.targetDate = addDaysToDateStr(todayStr, restoredDuration);
+
+              if (!currentBatch.statusHistory) currentBatch.statusHistory = {};
+              currentBatch.statusHistory[restoreLogKey] = {
+                timestamp: nowDT,
+                status: restoredStatus,
+                durationDays: restoredDuration,
+                note: `Batch dipulihkan aktif (${formatNumber(restoredActive)} bongkah)`
+              };
+            }
+
+            return currentBatch;
+          });
+
           closeModal('modal-confirm-delete');
-          renderBatchDetailView(batch);
-          showToast('Rekod bongkah rosak dipadam & baki dipulihkan.', 'info');
+          showToast('Rekod bongkah rosak dipadam & baki bongkah dipulihkan.', 'info');
         }
       );
     }
@@ -2768,6 +3294,7 @@
       document.getElementById('form-climate').reset();
       document.getElementById('error-climate').classList.add('hidden');
       document.getElementById('cl-modal-subtitle').textContent = `Batch ${batch.code} • Ideal: 24–28°C & 80–90%`;
+      setDayChoice('cl', 'hari_ini');
       updateClimateModalPreview();
       openModal('modal-climate');
     }
@@ -2789,7 +3316,7 @@
       badgesEl.innerHTML = html;
     }
 
-    function handleSaveClimateModal(event) {
+    async function handleSaveClimateModal(event) {
       event.preventDefault();
       const batch = appState.batches.find(b => b.id === currentBatchId);
       if (!batch) return;
@@ -2799,42 +3326,46 @@
       const timeVal = document.getElementById('cl-modal-time').value;
       const noteVal = document.getElementById('cl-modal-note').value.trim();
       const errEl = document.getElementById('error-climate');
+      errEl.classList.add('hidden');
 
-      if (isNaN(tempVal) || isNaN(humVal) || humVal < 0 || humVal > 100) {
-        errEl.textContent = 'Sila masukkan nilai suhu (°C) dan kelembapan (0–100%) yang sah.';
+      if (isNaN(tempVal) || tempVal < 0 || tempVal > 60 || isNaN(humVal) || humVal < 0 || humVal > 100) {
+        errEl.textContent = 'Sila masukkan nilai suhu (0–60°C) dan kelembapan (0–100%) yang sah.';
         errEl.classList.remove('hidden');
         return;
       }
 
-      const finalTimestamp = timeVal ? timeVal : getNowDateTimeStr();
+      const resolvedTime = resolveCustomDateTime(modalDayChoices.cl, timeVal);
+      const newClimateRef = push(ref(db, `mushtrack/batches/${batch.id}/climateLogs`));
 
-      batch.climateLogs = batch.climateLogs || [];
-      batch.climateLogs.push({
-        id: createId('cl'),
-        timestamp: finalTimestamp,
-        tempC: Math.round(tempVal * 10) / 10,
-        humidityPct: Math.round(humVal),
-        note: noteVal
-      });
-
-      saveState();
-      closeModal('modal-climate');
-      renderApp(false);
-      showToast(`Log iklim ${tempVal.toFixed(1)}°C · ${Math.round(humVal)}% disimpan untuk ${batch.code}.`);
+      setButtonBusy('btn-submit-climate', true, 'Menyimpan...');
+      try {
+        await set(newClimateRef, {
+          timestamp: resolvedTime.dateTimeStr,
+          tempC: Math.round(tempVal * 10) / 10,
+          humidityPct: Math.round(humVal),
+          note: noteVal
+        });
+        closeModal('modal-climate');
+        showToast(`Log iklim ${tempVal.toFixed(1)}°C · ${Math.round(humVal)}% disimpan untuk ${batch.code}.`);
+      } catch (err) {
+        console.error('Ralat menyimpan log iklim:', err);
+        errEl.textContent = 'Gagal menyimpan log iklim ke pangkalan data.';
+        errEl.classList.remove('hidden');
+      } finally {
+        setButtonBusy('btn-submit-climate', false);
+      }
     }
 
     function confirmDeleteClimateLog(batchId, logId) {
       const batch = appState.batches.find(b => b.id === batchId);
-      if (!batch) return;
+      const code = batch ? batch.code : '';
 
       openConfirmDelete(
         'Padam Rekod Iklim?',
-        `Bacaan suhu dan kelembapan ini akan dipadam daripada rekod batch ${batch.code}.`,
-        () => {
-          batch.climateLogs = (batch.climateLogs || []).filter(c => c.id !== logId);
-          saveState();
+        `Bacaan suhu dan kelembapan ini akan dipadam secara kekal daripada rekod batch ${code}.`,
+        async () => {
+          await remove(ref(db, `mushtrack/batches/${batchId}/climateLogs/${logId}`));
           closeModal('modal-confirm-delete');
-          renderBatchDetailView(batch);
           showToast('Rekod iklim telah dipadam.', 'info');
         }
       );
@@ -2846,10 +3377,9 @@
 
       openConfirmDelete(
         `Padam Batch ${batch.code}?`,
-        'Keseluruhan rekod tuaian, bongkah rosak, dan log iklim bagi batch ini akan dipadamkan kekal.',
-        () => {
-          appState.batches = appState.batches.filter(b => b.id !== batchId);
-          saveState();
+        'Keseluruhan rekod tuaian, bongkah rosak, dan log iklim bagi batch ini akan dipadamkan secara kekal.',
+        async () => {
+          await remove(ref(db, `mushtrack/batches/${batchId}`));
           closeModal('modal-confirm-delete');
           navigateToDashboard();
           showToast(`Batch ${batch.code} telah dipadamkan.`, 'info');
@@ -2857,8 +3387,25 @@
       );
     }
 
+    async function clearAllDataFromFirebase() {
+      setButtonBusy('settings-confirm-yes', true, 'Memadam...');
+      try {
+        await remove(batchesRef);
+        closeModal('modal-settings');
+        currentBatchId = null;
+        activeScreen = 'dashboard';
+        renderApp(true);
+        showToast('Semua rekod batch telah dipadamkan.', 'info');
+      } catch (err) {
+        console.error('Ralat memadam data:', err);
+        showToast('Gagal memadam rekod daripada pangkalan data.', 'error');
+      } finally {
+        setButtonBusy('settings-confirm-yes', false);
+      }
+    }
+
     // =========================================================================
-    // 6. PENGURUSAN MODAL SPRING, TETAPAN & TOAST NOTIFICATIONS
+    // 6. PENGURUSAN MODAL SPRING, EVENT DELEGATION & TOAST NOTIFICATIONS
     // =========================================================================
     function openModal(modalId) {
       const backdrop = document.getElementById(modalId);
@@ -2894,52 +3441,31 @@
       }, 210);
     }
 
-    function openConfirmDelete(title, desc, onConfirm) {
+    function openConfirmDelete(title, desc, onConfirmAsync) {
       document.getElementById('cd-title').textContent = title;
       document.getElementById('cd-desc').textContent = desc;
-      document.getElementById('cd-confirm-btn').onclick = onConfirm;
+      const confirmBtn = document.getElementById('cd-confirm-btn');
+
+      confirmBtn.onclick = async () => {
+        setButtonBusy(confirmBtn, true, 'Memadam...');
+        try {
+          await onConfirmAsync();
+        } catch (err) {
+          console.error('Ralat pemadaman:', err);
+          showToast('Gagal memadam rekod daripada pangkalan data.', 'error');
+        } finally {
+          setButtonBusy(confirmBtn, false);
+        }
+      };
+
       openModal('modal-confirm-delete');
     }
 
     function openSettingsModal() {
-      hideSettingsConfirm();
-      openModal('modal-settings');
-    }
-
-    function promptSettingsAction(actionType) {
-      const panel = document.getElementById('settings-confirm-panel');
-      const msg = document.getElementById('settings-confirm-msg');
-      const yesBtn = document.getElementById('settings-confirm-yes');
-
-      panel.classList.remove('hidden');
-
-      if (actionType === 'demo') {
-        msg.textContent = 'Data sedia ada akan digantikan dengan 4 batch contoh (B26-01, B26-02, B26-03, B25-09) berserta tugasan & log iklim. Teruskan?';
-        yesBtn.onclick = () => {
-          appState = buildDemoData();
-          saveState();
-          closeModal('modal-settings');
-          currentBatchId = null;
-          activeScreen = 'dashboard';
-          renderApp(true);
-          showToast('Data contoh berjaya dimuatkan semula.');
-        };
-      } else {
-        msg.textContent = 'Amaran: Semua rekod batch, tuaian, dan log iklim akan dipadamkan sepenuhnya. Teruskan?';
-        yesBtn.onclick = () => {
-          appState = { batches: [] };
-          saveState();
-          closeModal('modal-settings');
-          currentBatchId = null;
-          activeScreen = 'dashboard';
-          renderApp(true);
-          showToast('Semua data telah dikosongkan.', 'info');
-        };
-      }
-    }
-
-    function hideSettingsConfirm() {
       document.getElementById('settings-confirm-panel').classList.add('hidden');
+      const countEl = document.getElementById('settings-batch-count');
+      if (countEl) countEl.textContent = `${appState.batches.length} batch`;
+      openModal('modal-settings');
     }
 
     function showToast(message, type = 'success') {
@@ -2970,8 +3496,117 @@
         toast.classList.remove('toast-in');
         toast.classList.add('toast-out');
         setTimeout(() => toast.remove(), 220);
-      }, 2900);
+      }, 3000);
     }
+
+    // Delegasi Acara Global (Elak sebarang inline onclick dengan data pengguna)
+    document.addEventListener('click', (e) => {
+      const actionEl = e.target.closest('[data-action]');
+      if (!actionEl) return;
+
+      const action = actionEl.dataset.action;
+
+      switch (action) {
+        case 'nav-dashboard':
+          navigateToDashboard();
+          break;
+        case 'open-new-batch':
+          openNewBatchModal();
+          break;
+        case 'open-settings':
+          openSettingsModal();
+          break;
+        case 'close-modal':
+          closeModal(actionEl.dataset.modalId);
+          break;
+        case 'clear-search':
+          clearBatchSearch();
+          break;
+        case 'set-filter':
+          setPhaseFilter(actionEl.dataset.phase);
+          break;
+        case 'toggle-archive':
+          isArchiveExpanded = !isArchiveExpanded;
+          renderBatchLists();
+          break;
+        case 'open-batch-detail':
+          openBatchDetail(actionEl.dataset.batchId);
+          break;
+        case 'quick-task':
+          e.stopPropagation();
+          openPhaseSwitchModal(actionEl.dataset.batchId, actionEl.dataset.phase, true);
+          break;
+        case 'open-phase-switch':
+          openPhaseSwitchModal(actionEl.dataset.batchId, actionEl.dataset.phase, false);
+          break;
+        case 'open-harvest':
+          openHarvestModal(actionEl.dataset.batchId);
+          break;
+        case 'open-damage':
+          openDamageModal(actionEl.dataset.batchId);
+          break;
+        case 'open-climate':
+          openClimateModal(actionEl.dataset.batchId);
+          break;
+        case 'select-damage-reason':
+          selectDamageReason(actionEl.dataset.reason);
+          break;
+        case 'set-day-choice':
+          setDayChoice(actionEl.dataset.target, actionEl.dataset.day);
+          break;
+        case 'delete-harvest':
+          confirmDeleteHarvest(actionEl.dataset.batchId, actionEl.dataset.logId);
+          break;
+        case 'delete-damage':
+          confirmDeleteDamage(actionEl.dataset.batchId, actionEl.dataset.logId);
+          break;
+        case 'delete-climate':
+          confirmDeleteClimateLog(actionEl.dataset.batchId, actionEl.dataset.logId);
+          break;
+        case 'delete-batch':
+          confirmDeleteBatch(actionEl.dataset.batchId);
+          break;
+        case 'prompt-clear-all':
+          document.getElementById('settings-confirm-panel').classList.remove('hidden');
+          break;
+        case 'hide-settings-confirm':
+          document.getElementById('settings-confirm-panel').classList.add('hidden');
+          break;
+        case 'confirm-clear-all':
+          clearAllDataFromFirebase();
+          break;
+      }
+    });
+
+    // Pendengar Borang & Input Dinamik
+    document.getElementById('batch-search-input').addEventListener('input', (e) => handleSearchInput(e.target.value));
+
+    document.getElementById('form-new-batch').addEventListener('submit', handleCreateBatch);
+    document.querySelectorAll('input[name="nb-phase"]').forEach(r => r.addEventListener('change', updateNewBatchPreview));
+    document.getElementById('nb-start-date').addEventListener('change', updateNewBatchPreview);
+    document.getElementById('nb-custom-days').addEventListener('input', updateNewBatchPreview);
+
+    document.getElementById('form-phase-switch').addEventListener('submit', handleConfirmPhaseSwitch);
+    document.getElementById('ps-target-phase').addEventListener('change', updatePhaseSwitchPreview);
+    document.getElementById('ps-start-date').addEventListener('change', updatePhaseSwitchPreview);
+    document.getElementById('ps-custom-days').addEventListener('input', updatePhaseSwitchPreview);
+    document.getElementById('ps-custom-time').addEventListener('input', updatePhaseSwitchTimeHelper);
+
+    document.getElementById('form-harvest').addEventListener('submit', handleSaveHarvest);
+    document.getElementById('hv-end-flush').addEventListener('change', updateHarvestPreview);
+    document.getElementById('hv-rest-days').addEventListener('input', updateHarvestPreview);
+    document.getElementById('hv-custom-time').addEventListener('input', () => {
+      updateHarvestTimeHelper();
+      updateHarvestPreview();
+    });
+
+    document.getElementById('form-damage').addEventListener('submit', handleSaveDamage);
+    document.getElementById('dm-custom-time').addEventListener('input', updateDamageTimeHelper);
+
+    document.getElementById('form-climate').addEventListener('submit', handleSaveClimateModal);
+    document.getElementById('cl-modal-temp').addEventListener('input', updateClimateModalPreview);
+    document.getElementById('cl-modal-humidity').addEventListener('input', updateClimateModalPreview);
+    document.getElementById('cl-modal-time').addEventListener('input', updateClimateTimeHelper);
 
     // Tutup modal apabila klik di luar permukaan dialog
     ['modal-new-batch', 'modal-phase-switch', 'modal-harvest', 'modal-damage', 'modal-climate', 'modal-settings', 'modal-confirm-delete'].forEach(id => {
@@ -2981,13 +3616,11 @@
     });
 
     // =========================================================================
-    // 7. INISIALISASI APLIKASI
+    // 7. INISIALISASI AUTH, JAM LANGSUNG & PAPARAN AWAL
     // =========================================================================
-    window.addEventListener('DOMContentLoaded', () => {
-      loadState();
-      renderApp(true);
-      setInterval(updateHeaderClock, 1000);
-    });
+    initAnonymousAuth();
+    renderApp(true);
+    setInterval(updateHeaderClock, 1000);
   </script>
 </body>
 </html>
