@@ -8,6 +8,9 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- SheetJS (XLSX & CSV) CDN for Backup Export & Import -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+
   <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -322,6 +325,19 @@
           <span class="hidden md:inline text-emerald-400/25">|</span>
           <span id="live-clock-label" class="font-mono-num text-xs sm:text-sm font-bold text-emerald-300">00:00:00</span>
         </div>
+
+        <!-- Backup Data (Eksport / Import) Button -->
+        <button
+          type="button"
+          data-action="open-backup"
+          class="btn-spring inline-flex items-center gap-1.5 sm:gap-2 bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-400/40 text-cyan-200 font-extrabold text-xs sm:text-sm px-3 sm:px-3.5 py-2.5 rounded-xl"
+        >
+          <svg class="w-4 h-4 text-cyan-300 shrink-0" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+          </svg>
+          <span class="hidden md:inline">Backup Data</span>
+          <span class="md:hidden">Backup</span>
+        </button>
 
         <!-- Desktop "+ Batch Baru" Button -->
         <button
@@ -1010,6 +1026,19 @@
           <span id="settings-batch-count" class="font-mono-num text-xs font-extrabold px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-400/30">0 batch</span>
         </div>
 
+        <!-- Pintasan ke Modul Backup (Eksport / Import CSV & Excel) -->
+        <button type="button" data-action="open-backup" class="btn-spring w-full flex items-center gap-3.5 p-4 rounded-2xl border border-cyan-400/35 bg-cyan-500/10 hover:bg-cyan-500/15 text-left">
+          <div class="w-10 h-10 rounded-xl bg-cyan-400 text-obsidian-950 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+            </svg>
+          </div>
+          <div>
+            <span class="block text-sm font-extrabold text-cyan-300">Backup & Pulihkan Data (CSV / Excel)</span>
+            <span class="block text-xs text-cyan-100/70">Muat turun salinan .xlsx atau .csv dan import semula data ke pangkalan data.</span>
+          </div>
+        </button>
+
         <button type="button" data-action="prompt-clear-all" class="btn-spring w-full flex items-center gap-3.5 p-4 rounded-2xl border border-rose-500/30 bg-rose-500/10 hover:bg-rose-500/15 text-left">
           <div class="w-10 h-10 rounded-xl bg-rose-500 text-white flex items-center justify-center shrink-0">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
@@ -1032,6 +1061,125 @@
           <button type="button" data-action="hide-settings-confirm" class="btn-spring flex-1 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-bold text-slate-200">Batal</button>
           <button type="button" id="settings-confirm-yes" data-action="confirm-clear-all" class="btn-spring flex-1 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-extrabold">Ya, Padam Semua</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL BARU: BACKUP & PULIHKAN DATA (CSV / EXCEL) ==================== -->
+  <div id="modal-backup" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="modal-surface bg-[#0F1C17] w-full max-w-xl rounded-t-3xl sm:rounded-3xl p-5 sm:p-6 shadow-2xl border border-cyan-400/30 max-h-[92vh] overflow-y-auto space-y-5">
+      <div class="w-10 h-1 bg-cyan-400/25 rounded-full mx-auto mb-1 sm:hidden"></div>
+      <div class="flex items-center justify-between pb-3.5 border-b border-cyan-400/20">
+        <div>
+          <h3 class="text-lg font-extrabold text-white">Backup Data (Eksport & Import)</h3>
+          <p class="text-xs text-cyan-200/75">Simpan salinan laporan dalam format Excel (.xlsx) atau CSV (.csv) dan pulihkan bila-bila masa</p>
+        </div>
+        <button type="button" data-action="close-modal" data-modal-id="modal-backup" aria-label="Tutup" class="btn-spring p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- BAHAGIAN 1: EKSPORT DATA -->
+      <div class="p-4 rounded-2xl bg-[#070D0B]/90 border border-emerald-400/25 space-y-3.5">
+        <div class="flex items-center justify-between gap-2">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-300">1. Eksport Salinan Backup</span>
+            <p class="text-xs text-slate-400 mt-0.5">Muat turun semua rekod batch, tuaian, bongkah rosak & log suhu kelembapan</p>
+          </div>
+          <span id="backup-export-summary" class="font-mono-num text-[11px] font-bold px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 shrink-0">0 Batch</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button
+            type="button"
+            data-action="export-excel"
+            class="btn-spring flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-lime-500 text-obsidian-950 font-extrabold text-xs sm:text-sm shadow-emerald-neon"
+          >
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+            </svg>
+            <span>Eksport Excel (.xlsx)</span>
+          </button>
+
+          <button
+            type="button"
+            data-action="export-csv"
+            class="btn-spring flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/45 text-cyan-200 font-extrabold text-xs sm:text-sm"
+          >
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>Eksport CSV (.csv)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- BAHAGIAN 2: IMPORT / PULIHKAN DATA -->
+      <div class="p-4 rounded-2xl bg-[#070D0B]/90 border border-cyan-400/25 space-y-4">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-cyan-300">2. Import & Pulihkan Data</span>
+          <p class="text-xs text-slate-400 mt-0.5">Pilih fail backup <code class="text-cyan-300">.xlsx</code> atau <code class="text-cyan-300">.csv</code> untuk dimuat naik semula ke pangkalan data</p>
+        </div>
+
+        <div id="error-backup-import" class="hidden bg-rose-500/15 border border-rose-500/40 text-rose-300 text-xs font-semibold px-3.5 py-2.5 rounded-xl"></div>
+
+        <!-- Dropzone Input Fail -->
+        <label
+          for="backup-file-input"
+          class="cursor-pointer block border-2 border-dashed border-cyan-400/35 hover:border-cyan-400/70 bg-[#0F1C17]/70 rounded-2xl p-5 text-center transition-all"
+        >
+          <input type="file" id="backup-file-input" accept=".xlsx,.xls,.csv" class="sr-only" />
+          <div class="w-11 h-11 rounded-2xl bg-cyan-500/15 border border-cyan-400/30 text-cyan-300 flex items-center justify-center mx-auto mb-2.5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+          </div>
+          <p id="backup-file-name" class="text-xs sm:text-sm font-extrabold text-white">Klik untuk pilih fail .xlsx atau .csv</p>
+          <p class="text-[11px] text-slate-400 mt-1">Menyokong fail Eksport MushTrack (.xlsx berbilang helaian atau .csv bersepadu)</p>
+        </label>
+
+        <!-- Lencana Pratonton Data Dikesan -->
+        <div id="backup-preview-box" class="hidden p-3.5 rounded-xl bg-cyan-500/10 border border-cyan-400/35 space-y-1.5">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-xs font-extrabold text-cyan-300">Pratonton Fail Backup</span>
+            <span id="backup-preview-format" class="font-mono-num text-[10px] font-bold px-2 py-0.5 rounded bg-cyan-400/20 text-cyan-200 uppercase">XLSX</span>
+          </div>
+          <p id="backup-preview-counts" class="font-mono-num text-xs font-bold text-white"></p>
+        </div>
+
+        <!-- Pilihan Mod Import -->
+        <div>
+          <span class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">Mod Pemulihan Data</span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <label class="cursor-pointer">
+              <input type="radio" name="import-mode" value="merge" class="peer sr-only" checked />
+              <div class="p-3 rounded-xl border-2 border-white/10 bg-[#0F1C17] peer-checked:border-cyan-400 peer-checked:bg-cyan-500/15 transition-all">
+                <span class="block text-xs font-extrabold text-white">Gabung / Kemas Kini (Merge)</span>
+                <span class="block text-[11px] text-slate-400 mt-0.5">Tambah/kemas kini batch tanpa memadam batch lain sedia ada</span>
+              </div>
+            </label>
+
+            <label class="cursor-pointer">
+              <input type="radio" name="import-mode" value="overwrite" class="peer sr-only" />
+              <div class="p-3 rounded-xl border-2 border-white/10 bg-[#0F1C17] peer-checked:border-amber-400 peer-checked:bg-amber-500/15 transition-all">
+                <span class="block text-xs font-extrabold text-white">Ganti Semua Data (Overwrite)</span>
+                <span class="block text-[11px] text-slate-400 mt-0.5">Gantikan keseluruhan pangkalan data dengan kandungan fail ini</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          id="btn-confirm-import"
+          data-action="confirm-import"
+          disabled
+          class="btn-spring w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 text-obsidian-950 font-extrabold text-xs sm:text-sm shadow-cyan-neon"
+        >
+          Muat Naik & Pulihkan Data
+        </button>
       </div>
     </div>
   </div>
@@ -1066,9 +1214,9 @@
 
   <!-- ==================== FIREBASE REALTIME DATABASE & AUTH MODULE ==================== -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-    import { getDatabase, ref, onValue, set, remove, push, runTransaction } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+    import { getDatabase, ref, onValue, set, update, remove, push, runTransaction } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
     // Konfigurasi Projek Firebase MushTrack
     const firebaseConfig = {
@@ -1610,6 +1758,7 @@
     // 4. PEMAPARAN SKRIN 1 (DASHBOARD) & SKRIN 2 (DETAIL BATCH)
     // =========================================================================
     function renderApp(animateView = false) {
+      const prevScrollY = window.scrollY;
       updateHeaderClock();
 
       const dashEl = document.getElementById('screen-dashboard');
@@ -1645,6 +1794,10 @@
         }
 
         renderBatchDetailView(batch);
+      }
+
+      if (!animateView) {
+        window.scrollTo(0, prevScrollY);
       }
     }
 
@@ -2392,20 +2545,18 @@
                 </span>
               </div>
 
-              ${activeBlocks > 0 ? `
-                <button
-                  type="button"
-                  data-action="open-phase-switch"
-                  data-batch-id="${escapeHTML(batch.id)}"
-                  data-phase="${defaultNextPhase}"
-                  class="btn-spring inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-500/20 hover:bg-violet-500/30 border border-violet-400/40 text-violet-200 font-extrabold text-xs sm:text-sm"
-                >
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                  </svg>
-                  <span>Tukar Status</span>
-                </button>
-              ` : ''}
+              <button
+                type="button"
+                data-action="open-phase-switch"
+                data-batch-id="${escapeHTML(batch.id)}"
+                data-phase="${defaultNextPhase}"
+                class="btn-spring inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-violet-500/20 hover:bg-violet-500/30 border border-violet-400/40 text-violet-200 font-extrabold text-xs sm:text-sm"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                </svg>
+                <span>${batch.status === 'tamat' ? 'Aktifkan Semula / Tukar Status' : 'Tukar Status'}</span>
+              </button>
             </div>
 
             <!-- Ringkasan Angka Batch -->
@@ -3468,6 +3619,524 @@
       openModal('modal-settings');
     }
 
+    // =========================================================================
+    // 6B. MODUL BACKUP DATA: EKSPORT & IMPORT (.XLSX DAN .CSV)
+    // =========================================================================
+    let parsedBackupPayload = null;
+
+    function openBackupModal() {
+      closeModal('modal-settings');
+      parsedBackupPayload = null;
+
+      const fileInput = document.getElementById('backup-file-input');
+      if (fileInput) fileInput.value = '';
+      document.getElementById('backup-file-name').textContent = 'Klik untuk pilih fail .xlsx atau .csv';
+      document.getElementById('backup-preview-box').classList.add('hidden');
+      document.getElementById('error-backup-import').classList.add('hidden');
+      document.getElementById('btn-confirm-import').disabled = true;
+
+      const summaryEl = document.getElementById('backup-export-summary');
+      if (summaryEl) summaryEl.textContent = `${appState.batches.length} Batch`;
+
+      openModal('modal-backup');
+    }
+
+    function buildExportRowsFromState() {
+      const batchRows = [];
+      const harvestRows = [];
+      const damageRows = [];
+      const climateRows = [];
+      const unifiedCsvRows = [];
+
+      appState.batches.forEach(b => {
+        batchRows.push({
+          BatchId: b.id,
+          BatchCode: b.code || '',
+          Status: b.status || 'peram',
+          InitialQty: Number(b.initialQty || 0),
+          ActiveBlocks: Number(b.activeBlocks ?? 0),
+          TotalHarvestKg: Number(b.totalHarvestKg || 0),
+          CycleCount: Number(b.cycleCount || 0),
+          StartDate: b.startDate || '',
+          DurationDays: Number(b.durationDays || 0),
+          TargetDate: b.targetDate || '',
+          CreatedAt: b.createdAt || '',
+          StatusHistoryJSON: JSON.stringify(b.statusHistory || [])
+        });
+
+        unifiedCsvRows.push({
+          RecordType: 'BATCH',
+          BatchId: b.id,
+          BatchCode: b.code || '',
+          LogId: '',
+          Timestamp: b.createdAt || '',
+          Status: b.status || 'peram',
+          InitialQty: Number(b.initialQty || 0),
+          ActiveBlocks: Number(b.activeBlocks ?? 0),
+          TotalHarvestKg: Number(b.totalHarvestKg || 0),
+          CycleCount: Number(b.cycleCount || 0),
+          StartDate: b.startDate || '',
+          DurationDays: Number(b.durationDays || 0),
+          TargetDate: b.targetDate || '',
+          WeightKg: '',
+          DamageQty: '',
+          Reason: '',
+          TempC: '',
+          HumidityPct: '',
+          Note: '',
+          ExtraJSON: JSON.stringify(b.statusHistory || [])
+        });
+
+        (b.harvestLogs || []).forEach(h => {
+          harvestRows.push({
+            BatchId: b.id,
+            BatchCode: b.code || '',
+            LogId: h.id,
+            Timestamp: h.timestamp || '',
+            Cycle: Number(h.cycle || 1),
+            WeightKg: Number(h.weightKg || 0)
+          });
+          unifiedCsvRows.push({
+            RecordType: 'HARVEST',
+            BatchId: b.id,
+            BatchCode: b.code || '',
+            LogId: h.id,
+            Timestamp: h.timestamp || '',
+            Status: '',
+            InitialQty: '',
+            ActiveBlocks: '',
+            TotalHarvestKg: '',
+            CycleCount: Number(h.cycle || 1),
+            StartDate: '',
+            DurationDays: '',
+            TargetDate: '',
+            WeightKg: Number(h.weightKg || 0),
+            DamageQty: '',
+            Reason: '',
+            TempC: '',
+            HumidityPct: '',
+            Note: '',
+            ExtraJSON: ''
+          });
+        });
+
+        (b.damageLogs || []).forEach(d => {
+          damageRows.push({
+            BatchId: b.id,
+            BatchCode: b.code || '',
+            LogId: d.id,
+            Timestamp: d.timestamp || '',
+            DamageQty: Number(d.qty || 0),
+            Reason: d.reason || ''
+          });
+          unifiedCsvRows.push({
+            RecordType: 'DAMAGE',
+            BatchId: b.id,
+            BatchCode: b.code || '',
+            LogId: d.id,
+            Timestamp: d.timestamp || '',
+            Status: '',
+            InitialQty: '',
+            ActiveBlocks: '',
+            TotalHarvestKg: '',
+            CycleCount: '',
+            StartDate: '',
+            DurationDays: '',
+            TargetDate: '',
+            WeightKg: '',
+            DamageQty: Number(d.qty || 0),
+            Reason: d.reason || '',
+            TempC: '',
+            HumidityPct: '',
+            Note: '',
+            ExtraJSON: ''
+          });
+        });
+
+        (b.climateLogs || []).forEach(c => {
+          climateRows.push({
+            BatchId: b.id,
+            BatchCode: b.code || '',
+            LogId: c.id,
+            Timestamp: c.timestamp || '',
+            TempC: Number(c.tempC || 0),
+            HumidityPct: Number(c.humidityPct || 0),
+            Note: c.note || ''
+          });
+          unifiedCsvRows.push({
+            RecordType: 'CLIMATE',
+            BatchId: b.id,
+            BatchCode: b.code || '',
+            LogId: c.id,
+            Timestamp: c.timestamp || '',
+            Status: '',
+            InitialQty: '',
+            ActiveBlocks: '',
+            TotalHarvestKg: '',
+            CycleCount: '',
+            StartDate: '',
+            DurationDays: '',
+            TargetDate: '',
+            WeightKg: '',
+            DamageQty: '',
+            Reason: '',
+            TempC: Number(c.tempC || 0),
+            HumidityPct: Number(c.humidityPct || 0),
+            Note: c.note || '',
+            ExtraJSON: ''
+          });
+        });
+      });
+
+      return { batchRows, harvestRows, damageRows, climateRows, unifiedCsvRows };
+    }
+
+    function exportBackupExcel() {
+      if (typeof XLSX === 'undefined') {
+        showToast('Pustaka Excel sedang dimuatkan, sila cuba sebentar lagi.', 'error');
+        return;
+      }
+      if (appState.batches.length === 0) {
+        showToast('Tiada rekod batch untuk dieksport.', 'error');
+        return;
+      }
+
+      const { batchRows, harvestRows, damageRows, climateRows } = buildExportRowsFromState();
+      const wb = XLSX.utils.book_new();
+
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(batchRows), 'Batches');
+      XLSX.utils.book_append_sheet(
+        wb,
+        XLSX.utils.json_to_sheet(harvestRows.length ? harvestRows : [{ BatchId: '', BatchCode: '', LogId: '', Timestamp: '', Cycle: '', WeightKg: '' }]),
+        'HarvestLogs'
+      );
+      XLSX.utils.book_append_sheet(
+        wb,
+        XLSX.utils.json_to_sheet(damageRows.length ? damageRows : [{ BatchId: '', BatchCode: '', LogId: '', Timestamp: '', DamageQty: '', Reason: '' }]),
+        'DamageLogs'
+      );
+      XLSX.utils.book_append_sheet(
+        wb,
+        XLSX.utils.json_to_sheet(climateRows.length ? climateRows : [{ BatchId: '', BatchCode: '', LogId: '', Timestamp: '', TempC: '', HumidityPct: '', Note: '' }]),
+        'ClimateLogs'
+      );
+
+      const fileName = `mushtrack-backup-${getTodayDateStr()}.xlsx`;
+      XLSX.writeFile(wb, fileName);
+      showToast(`Fail Excel (${fileName}) berjaya dimuat turun.`);
+    }
+
+    function exportBackupCSV() {
+      if (typeof XLSX === 'undefined') {
+        showToast('Pustaka CSV sedang dimuatkan, sila cuba sebentar lagi.', 'error');
+        return;
+      }
+      if (appState.batches.length === 0) {
+        showToast('Tiada rekod batch untuk dieksport.', 'error');
+        return;
+      }
+
+      const { unifiedCsvRows } = buildExportRowsFromState();
+      const ws = XLSX.utils.json_to_sheet(unifiedCsvRows);
+      const csvContent = XLSX.utils.sheet_to_csv(ws);
+      const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+
+      const fileName = `mushtrack-backup-${getTodayDateStr()}.csv`;
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', fileName);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      showToast(`Fail CSV (${fileName}) berjaya dimuat turun.`);
+    }
+
+    function parseBackupWorkbook(workbook, fileName) {
+      const sheetNames = workbook.SheetNames || [];
+      const batchesMap = {};
+      let harvestCount = 0;
+      let damageCount = 0;
+      let climateCount = 0;
+
+      const makeSafeId = (prefix) => `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
+
+      // Kes 1: Workbook Excel Multi-Sheet (Mempunyai helaian 'Batches')
+      if (sheetNames.includes('Batches')) {
+        const batchRows = XLSX.utils.sheet_to_json(workbook.Sheets['Batches'], { defval: '' });
+        batchRows.forEach(row => {
+          const code = String(row.BatchCode || '').trim();
+          const id = String(row.BatchId || '').trim() || (code ? `batch_${code.replace(/[^a-zA-Z0-9_-]/g, '_')}` : makeSafeId('batch'));
+          if (!code && !row.BatchId) return;
+
+          const statusHistoryMap = {};
+          if (row.StatusHistoryJSON) {
+            try {
+              const parsedHist = JSON.parse(row.StatusHistoryJSON);
+              if (Array.isArray(parsedHist)) {
+                parsedHist.forEach((h, i) => {
+                  const hId = h.id || `hist_${i + 1}`;
+                  statusHistoryMap[hId] = {
+                    timestamp: h.timestamp || getNowDateTimeStr(),
+                    status: normalizePhaseKey(h.status),
+                    durationDays: Number(h.durationDays || 0),
+                    note: h.note || ''
+                  };
+                });
+              }
+            } catch (_) {}
+          }
+
+          batchesMap[id] = {
+            code: code || id,
+            status: normalizePhaseKey(row.Status || 'peram'),
+            initialQty: Math.max(1, Math.round(Number(row.InitialQty || 1))),
+            activeBlocks: Math.max(0, Math.round(Number(row.ActiveBlocks ?? row.InitialQty ?? 0))),
+            totalHarvestKg: Math.round(Number(row.TotalHarvestKg || 0) * 100) / 100,
+            cycleCount: Math.max(0, Math.round(Number(row.CycleCount || 0))),
+            startDate: String(row.StartDate || getTodayDateStr()),
+            durationDays: Math.max(0, Math.round(Number(row.DurationDays || 0))),
+            targetDate: row.TargetDate ? String(row.TargetDate) : null,
+            createdAt: String(row.CreatedAt || `${getNowDateTimeStr()}:00`),
+            statusHistory: statusHistoryMap,
+            harvestLogs: {},
+            damageLogs: {},
+            climateLogs: {}
+          };
+        });
+
+        if (sheetNames.includes('HarvestLogs')) {
+          const hRows = XLSX.utils.sheet_to_json(workbook.Sheets['HarvestLogs'], { defval: '' });
+          hRows.forEach(r => {
+            const bId = String(r.BatchId || '').trim();
+            const weight = Number(r.WeightKg);
+            if (!bId || !batchesMap[bId] || isNaN(weight) || weight <= 0) return;
+            const logId = String(r.LogId || '').trim() || makeSafeId('hv');
+            batchesMap[bId].harvestLogs[logId] = {
+              timestamp: String(r.Timestamp || getNowDateTimeStr()),
+              cycle: Math.max(1, Math.round(Number(r.Cycle || 1))),
+              weightKg: Math.round(weight * 100) / 100
+            };
+            harvestCount++;
+          });
+        }
+
+        if (sheetNames.includes('DamageLogs')) {
+          const dRows = XLSX.utils.sheet_to_json(workbook.Sheets['DamageLogs'], { defval: '' });
+          dRows.forEach(r => {
+            const bId = String(r.BatchId || '').trim();
+            const qty = Math.round(Number(r.DamageQty));
+            if (!bId || !batchesMap[bId] || isNaN(qty) || qty <= 0) return;
+            const logId = String(r.LogId || '').trim() || makeSafeId('dm');
+            batchesMap[bId].damageLogs[logId] = {
+              timestamp: String(r.Timestamp || getNowDateTimeStr()),
+              qty,
+              reason: String(r.Reason || 'Kulat Hijau')
+            };
+            damageCount++;
+          });
+        }
+
+        if (sheetNames.includes('ClimateLogs')) {
+          const cRows = XLSX.utils.sheet_to_json(workbook.Sheets['ClimateLogs'], { defval: '' });
+          cRows.forEach(r => {
+            const bId = String(r.BatchId || '').trim();
+            const temp = parseFloat(r.TempC);
+            const hum = parseFloat(r.HumidityPct);
+            if (!bId || !batchesMap[bId] || isNaN(temp) || isNaN(hum)) return;
+            const logId = String(r.LogId || '').trim() || makeSafeId('cl');
+            batchesMap[bId].climateLogs[logId] = {
+              timestamp: String(r.Timestamp || getNowDateTimeStr()),
+              tempC: Math.round(temp * 10) / 10,
+              humidityPct: Math.round(hum),
+              note: String(r.Note || '')
+            };
+            climateCount++;
+          });
+        }
+      } else {
+        // Kes 2: Fail CSV Bersepadu (RecordType: BATCH | HARVEST | DAMAGE | CLIMATE)
+        const firstSheet = workbook.Sheets[sheetNames[0]];
+        const rows = XLSX.utils.sheet_to_json(firstSheet, { defval: '' });
+
+        rows.forEach(row => {
+          const type = String(row.RecordType || 'BATCH').trim().toUpperCase();
+          const bId = String(row.BatchId || '').trim() || (row.BatchCode ? `batch_${String(row.BatchCode).replace(/[^a-zA-Z0-9_-]/g, '_')}` : '');
+          if (!bId) return;
+
+          if (type === 'BATCH') {
+            const statusHistoryMap = {};
+            if (row.ExtraJSON) {
+              try {
+                const parsedHist = JSON.parse(row.ExtraJSON);
+                if (Array.isArray(parsedHist)) {
+                  parsedHist.forEach((h, i) => {
+                    const hId = h.id || `hist_${i + 1}`;
+                    statusHistoryMap[hId] = {
+                      timestamp: h.timestamp || getNowDateTimeStr(),
+                      status: normalizePhaseKey(h.status),
+                      durationDays: Number(h.durationDays || 0),
+                      note: h.note || ''
+                    };
+                  });
+                }
+              } catch (_) {}
+            }
+
+            batchesMap[bId] = {
+              code: String(row.BatchCode || bId),
+              status: normalizePhaseKey(row.Status || 'peram'),
+              initialQty: Math.max(1, Math.round(Number(row.InitialQty || 1))),
+              activeBlocks: Math.max(0, Math.round(Number(row.ActiveBlocks ?? row.InitialQty ?? 0))),
+              totalHarvestKg: Math.round(Number(row.TotalHarvestKg || 0) * 100) / 100,
+              cycleCount: Math.max(0, Math.round(Number(row.CycleCount || 0))),
+              startDate: String(row.StartDate || getTodayDateStr()),
+              durationDays: Math.max(0, Math.round(Number(row.DurationDays || 0))),
+              targetDate: row.TargetDate ? String(row.TargetDate) : null,
+              createdAt: String(row.Timestamp || `${getNowDateTimeStr()}:00`),
+              statusHistory: statusHistoryMap,
+              harvestLogs: batchesMap[bId]?.harvestLogs || {},
+              damageLogs: batchesMap[bId]?.damageLogs || {},
+              climateLogs: batchesMap[bId]?.climateLogs || {}
+            };
+          } else if (type === 'HARVEST' && batchesMap[bId]) {
+            const weight = Number(row.WeightKg);
+            if (!isNaN(weight) && weight > 0) {
+              const logId = String(row.LogId || '').trim() || makeSafeId('hv');
+              batchesMap[bId].harvestLogs[logId] = {
+                timestamp: String(row.Timestamp || getNowDateTimeStr()),
+                cycle: Math.max(1, Math.round(Number(row.CycleCount || 1))),
+                weightKg: Math.round(weight * 100) / 100
+              };
+              harvestCount++;
+            }
+          } else if (type === 'DAMAGE' && batchesMap[bId]) {
+            const qty = Math.round(Number(row.DamageQty));
+            if (!isNaN(qty) && qty > 0) {
+              const logId = String(row.LogId || '').trim() || makeSafeId('dm');
+              batchesMap[bId].damageLogs[logId] = {
+                timestamp: String(row.Timestamp || getNowDateTimeStr()),
+                qty,
+                reason: String(row.Reason || 'Kulat Hijau')
+              };
+              damageCount++;
+            }
+          } else if (type === 'CLIMATE' && batchesMap[bId]) {
+            const temp = parseFloat(row.TempC);
+            const hum = parseFloat(row.HumidityPct);
+            if (!isNaN(temp) && !isNaN(hum)) {
+              const logId = String(row.LogId || '').trim() || makeSafeId('cl');
+              batchesMap[bId].climateLogs[logId] = {
+                timestamp: String(row.Timestamp || getNowDateTimeStr()),
+                tempC: Math.round(temp * 10) / 10,
+                humidityPct: Math.round(hum),
+                note: String(row.Note || '')
+              };
+              climateCount++;
+            }
+          }
+        });
+      }
+
+      // Selaraskan kiraan baki bongkah & jumlah tuaian setiap batch yang diimport
+      Object.values(batchesMap).forEach(b => {
+        const hList = Object.values(b.harvestLogs || {});
+        if (hList.length > 0) {
+          b.totalHarvestKg = Math.round(hList.reduce((acc, item) => acc + Number(item.weightKg || 0), 0) * 100) / 100;
+        }
+        const dList = Object.values(b.damageLogs || {});
+        if (dList.length > 0) {
+          const dmgSum = dList.reduce((acc, item) => acc + Math.max(0, Math.round(Number(item.qty || 0))), 0);
+          b.activeBlocks = Math.max(0, b.initialQty - dmgSum);
+        }
+        if (b.activeBlocks === 0 && b.initialQty > 0) {
+          b.status = 'tamat';
+        }
+      });
+
+      const batchCount = Object.keys(batchesMap).length;
+      return {
+        batchesMap,
+        batchCount,
+        harvestCount,
+        damageCount,
+        climateCount,
+        format: fileName.toLowerCase().endsWith('.csv') ? 'CSV' : 'EXCEL (.XLSX)'
+      };
+    }
+
+    function handleBackupFileSelect(event) {
+      const file = event.target.files?.[0];
+      const errEl = document.getElementById('error-backup-import');
+      const previewBox = document.getElementById('backup-preview-box');
+      const importBtn = document.getElementById('btn-confirm-import');
+
+      errEl.classList.add('hidden');
+      previewBox.classList.add('hidden');
+      importBtn.disabled = true;
+      parsedBackupPayload = null;
+
+      if (!file) return;
+      document.getElementById('backup-file-name').textContent = file.name;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const data = new Uint8Array(e.target.result);
+          const workbook = XLSX.read(data, { type: 'array' });
+          const parsed = parseBackupWorkbook(workbook, file.name);
+
+          if (parsed.batchCount === 0) {
+            errEl.textContent = 'Tiada rekod batch yang sah ditemui dalam fail ini. Pastikan anda memuat naik fail backup MushTrack (.xlsx atau .csv).';
+            errEl.classList.remove('hidden');
+            return;
+          }
+
+          parsedBackupPayload = parsed;
+          document.getElementById('backup-preview-format').textContent = parsed.format;
+          document.getElementById('backup-preview-counts').textContent =
+            `Dikesan: ${parsed.batchCount} Batch, ${parsed.harvestCount} Rekod Tuaian, ${parsed.damageCount} Rekod Rosak, ${parsed.climateCount} Log Iklim`;
+          previewBox.classList.remove('hidden');
+          importBtn.disabled = false;
+        } catch (err) {
+          console.error('Ralat membaca fail backup:', err);
+          errEl.textContent = 'Gagal membaca fail. Sila pastikan format fail ialah .xlsx atau .csv yang sah.';
+          errEl.classList.remove('hidden');
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    async function handleConfirmImport() {
+      if (!parsedBackupPayload || parsedBackupPayload.batchCount === 0) return;
+
+      const mode = document.querySelector('input[name="import-mode"]:checked')?.value || 'merge';
+      const errEl = document.getElementById('error-backup-import');
+      errEl.classList.add('hidden');
+
+      setButtonBusy('btn-confirm-import', true, 'Memulihkan Data...');
+      try {
+        if (mode === 'overwrite') {
+          await set(batchesRef, parsedBackupPayload.batchesMap);
+        } else {
+          await update(batchesRef, parsedBackupPayload.batchesMap);
+        }
+
+        closeModal('modal-backup');
+        showToast(
+          `Berjaya memulihkan ${parsedBackupPayload.batchCount} batch (${mode === 'overwrite' ? 'Ganti Semua' : 'Gabung Data'}).`
+        );
+      } catch (err) {
+        console.error('Ralat import ke Firebase:', err);
+        errEl.textContent = 'Gagal memuat naik data ke pangkalan data. Sila semak sambungan internet.';
+        errEl.classList.remove('hidden');
+      } finally {
+        setButtonBusy('btn-confirm-import', false);
+      }
+    }
+
     function showToast(message, type = 'success') {
       const stack = document.getElementById('toast-stack');
       const toast = document.createElement('div');
@@ -3515,6 +4184,18 @@
           break;
         case 'open-settings':
           openSettingsModal();
+          break;
+        case 'open-backup':
+          openBackupModal();
+          break;
+        case 'export-excel':
+          exportBackupExcel();
+          break;
+        case 'export-csv':
+          exportBackupCSV();
+          break;
+        case 'confirm-import':
+          handleConfirmImport();
           break;
         case 'close-modal':
           closeModal(actionEl.dataset.modalId);
@@ -3608,8 +4289,11 @@
     document.getElementById('cl-modal-humidity').addEventListener('input', updateClimateModalPreview);
     document.getElementById('cl-modal-time').addEventListener('input', updateClimateTimeHelper);
 
+    // Pendengar Fail Import Backup (.xlsx / .csv)
+    document.getElementById('backup-file-input').addEventListener('change', handleBackupFileSelect);
+
     // Tutup modal apabila klik di luar permukaan dialog
-    ['modal-new-batch', 'modal-phase-switch', 'modal-harvest', 'modal-damage', 'modal-climate', 'modal-settings', 'modal-confirm-delete'].forEach(id => {
+    ['modal-new-batch', 'modal-phase-switch', 'modal-harvest', 'modal-damage', 'modal-climate', 'modal-settings', 'modal-backup', 'modal-confirm-delete'].forEach(id => {
       document.getElementById(id).addEventListener('click', function (e) {
         if (e.target === this) closeModal(id);
       });
